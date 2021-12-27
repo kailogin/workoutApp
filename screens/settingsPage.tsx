@@ -1,26 +1,24 @@
 import { StyleSheet } from "react-native";
 
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
-import { RootTabScreenProps } from "../types";
 
-export const TabOneScreen = ({ navigation }: RootTabScreenProps<"TabOne">) => {
+export const SettingsScreen = () => {
   // --- RENDER ---
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+    <View style={settingsScreenStyles.container}>
+      <Text style={settingsScreenStyles.title}>Settings</Text>
+
       <View
-        style={styles.separator}
+        style={settingsScreenStyles.separator}
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const settingsScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",

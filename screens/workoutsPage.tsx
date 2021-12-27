@@ -1,25 +1,27 @@
 import { StyleSheet } from "react-native";
 
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+import { RootTabScreenProps } from "../navigation/helpers/navigationTypes";
 
-export const TabTwoScreen = () => {
+export type WorkoutsScreenType = RootTabScreenProps<"Workouts">;
+
+export const WorkoutsScreen = ({ navigation }: WorkoutsScreenType) => {
   // --- RENDER ---
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
+    <View style={workoutsScreenStyles.container}>
+      <Text style={workoutsScreenStyles.title}>Workouts</Text>
+
       <View
-        style={styles.separator}
+        style={workoutsScreenStyles.separator}
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const workoutsScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
