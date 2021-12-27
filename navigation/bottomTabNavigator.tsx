@@ -5,11 +5,11 @@ import { MaterialIcons } from "@expo/vector-icons";
 import useColorScheme from "../hooks/useColorScheme";
 import Colors from "../constants/Colors";
 import { RootTabParamList } from "./helpers/navigationTypes";
-import { WorkoutsScreen, WorkoutsScreenType } from "../screens/workoutsPage";
+import { WorkoutsScreen, WorkoutsScreenType } from "../screens/workoutsScreen";
 import { FontAwesome } from "@expo/vector-icons";
 import { ExercisesScreen } from "../screens/exercisesScreen";
 import { LogsScreen } from "../screens/logsScreen";
-import { SettingsScreen } from "../screens/settingsPage";
+import { SettingsScreen } from "../screens/settingsScreen";
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
