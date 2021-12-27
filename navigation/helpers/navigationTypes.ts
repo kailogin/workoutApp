@@ -11,21 +11,25 @@ declare global {
   }
 }
 
+// All prevelant screens
 export type RootStackParamList = {
-  Root: NavigatorScreenParams<RootTabParamList> | undefined;
+  Home: undefined;
   Modal: undefined;
   NotFound: undefined;
+  Root: NavigatorScreenParams<RootTabParamList> | undefined;
 };
 
 export type RootStackScreenProps<
   Screen extends keyof RootStackParamList
 > = NativeStackScreenProps<RootStackParamList, Screen>;
 
+// Only root screens and shown in bottom navbar
 export type RootTabParamList = {
-  Workouts: undefined;
   Exercises: undefined;
+  Home: undefined;
   Logs: undefined;
   Settings: undefined;
+  Workouts: undefined;
 };
 
 export type RootTabScreenProps<

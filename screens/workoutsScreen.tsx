@@ -1,39 +1,74 @@
 import { StyleSheet } from "react-native";
 
-import { Text, View } from "../components/Themed";
+import { View } from "../components/Themed";
 import { RootTabScreenProps } from "../navigation/helpers/navigationTypes";
+import { useMemo } from "react";
+import { ListElement } from "../components/listElement";
 
 export type WorkoutsScreenType = RootTabScreenProps<"Workouts">;
 
-export const WorkoutsScreen = ({ navigation }: WorkoutsScreenType) => {
+export const WorkoutsScreen = () => {
+  // --- MEMOIZED DATA ---
+
+  const workouts = useMemo(
+    () => [
+      {
+        title: "Push",
+        subtitle: "Chest & Shoulders",
+      },
+      {
+        title: "Pull",
+        subtitle: "Back & Biceps",
+      },
+      {
+        title: "Legs",
+        subtitle: "Quads & Abs",
+      },
+      {
+        title: "Push II",
+        subtitle: "Chest & Shoulders",
+      },
+      {
+        title: "Pull II",
+        subtitle: "Back & Biceps",
+      },
+    ],
+    []
+  );
+
   // --- RENDER ---
 
   return (
-    <View style={workoutsScreenStyles.container}>
-      <Text style={workoutsScreenStyles.title}>Workouts</Text>
+    <>
+      {workouts.map((workout, i) => (
+        <View key={i} style={workoutsScreenStyles.container}>
+          <ListElement title={workout.title} subtitle={workout.subtitle} />
 
-      <View
-        style={workoutsScreenStyles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-    </View>
+          <View
+            style={workoutsScreenStyles.separator}
+            lightColor="#000000"
+            darkColor="#FFFFFF"
+          />
+        </View>
+      ))}
+    </>
   );
 };
 
 const workoutsScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
+    margin: 32,
+  },
+  separator: {
+    height: 1,
+    marginVertical: 30,
+    width: "100%",
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
   },
 });

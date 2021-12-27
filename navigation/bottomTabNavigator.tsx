@@ -1,30 +1,37 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Pressable } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import useColorScheme from "../hooks/useColorScheme";
-import Colors from "../constants/Colors";
+import Colors from "../utils/colors";
 import { RootTabParamList } from "./helpers/navigationTypes";
 import { WorkoutsScreen, WorkoutsScreenType } from "../screens/workoutsScreen";
-import { FontAwesome } from "@expo/vector-icons";
 import { ExercisesScreen } from "../screens/exercisesScreen";
 import { LogsScreen } from "../screens/logsScreen";
 import { SettingsScreen } from "../screens/settingsScreen";
+import { HomeScreen } from "../screens/homeScreen";
+import { useAppSelector } from "../utils/hooks";
+import { RootState } from "../stores/store";
+import { View } from "../components/Themed";
 
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 export const BottomTabNavigator = () => {
+  // --- STATE ---
+
   const colorScheme = useColorScheme();
+
+  const isFirstVisit = useAppSelector(({ user }: RootState) => user.firstVisit);
 
   // --- RENDER ---
 
+  if (isFirstVisit) {
+    return <HomeScreen />;
+  }
+
   return (
     <BottomTab.Navigator
-      initialRouteName="Workouts"
+      initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}
@@ -38,20 +45,37 @@ export const BottomTabNavigator = () => {
             <MaterialIcons name="fitness-center" size={24} color={color} />
           ),
           headerRight: () => (
-            <Pressable
-              // @ts-ignore
-              onPress={() => navigation.navigate("Modal")}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
+            <View style={bottomTabNavigatorStyles.container}>
+              <Pressable
+                // @ts-ignore
+                onPress={() => navigation.navigate("Modal")}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                  marginRight: 16,
+                })}
+              >
+                <MaterialIcons
+                  name="add"
+                  size={24}
+                  color={Colors[colorScheme].text}
+                />
+              </Pressable>
+
+              <Pressable
+                // @ts-ignore
+                onPress={() => navigation.navigate("Modal")}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                })}
+              >
+                <MaterialIcons
+                  name="edit"
+                  size={24}
+                  color={Colors[colorScheme].text}
+                  style={{ marginRight: 16 }}
+                />
+              </Pressable>
+            </View>
           ),
         })}
       />
@@ -91,3 +115,13 @@ export const BottomTabNavigator = () => {
     </BottomTab.Navigator>
   );
 };
+
+const bottomTabNavigatorStyles = StyleSheet.create({
+  container: {
+    borderBottomColor: undefined,
+    backgroundColor: undefined,
+    flex: 1,
+    flexDirection: "row",
+    marginTop: 16,
+  },
+});

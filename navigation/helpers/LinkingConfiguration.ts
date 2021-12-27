@@ -15,14 +15,10 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Root: {
         screens: {
+          Home: "",
           Workouts: "/workouts",
           // TODO: Add deeper levels of paths for subsequent pages.
-          // {
-          // screens: {
-          //   TabOneScreen: "one",
-          // },
-          // },
-          Exercises: "exercises",
+          Exercises: "/exercises",
 
           Logs: "/logs",
 

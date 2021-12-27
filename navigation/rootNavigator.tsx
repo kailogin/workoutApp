@@ -4,6 +4,7 @@ import { NotFoundScreen } from "../screens/notFoundScreen";
 
 import { BottomTabNavigator } from "./bottomTabNavigator";
 import { RootStackParamList } from "./helpers/navigationTypes";
+import { HomeScreen } from "../screens/homeScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -12,7 +13,12 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
  * https://reactnavigation.org/docs/modal
  */
 export const RootNavigator = () => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    initialRouteName="Home"
+    screenOptions={{
+      headerShown: false,
+    }}
+  >
     <Stack.Screen
       name="Root"
       component={BottomTabNavigator}
@@ -20,9 +26,15 @@ export const RootNavigator = () => (
     />
 
     <Stack.Screen
+      name="Home"
+      component={HomeScreen}
+      options={{ headerShown: false }}
+    />
+
+    <Stack.Screen
       name="NotFound"
       component={NotFoundScreen}
-      options={{ title: "Oops!" }}
+      options={{ title: "Oops! This screen does not exist." }}
     />
 
     <Stack.Group screenOptions={{ presentation: "modal" }}>
