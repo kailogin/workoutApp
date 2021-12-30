@@ -16,6 +16,7 @@ export const HomeScreen = () => {
   // --- CALLBACKS ---
 
   const handleButtonPress = () => {
+    // https://js.coach/react-native-button?search=react-native+button
     dispatch(setFirstVisitedStateFalse(false));
   };
 
@@ -35,7 +36,7 @@ export const HomeScreen = () => {
           onPress={handleButtonPress}
           style={homeScreenStyles.button}
         >
-          <Text>Continue</Text>
+          <Text style={homeScreenStyles.text}>Continue</Text>
         </TouchableOpacity>
 
         {/* Use a light status bar on iOS to account for the black space above the modal */}
@@ -51,7 +52,6 @@ const homeScreenStyles = StyleSheet.create({
     backgroundColor: "#F2994A",
     borderRadius: 12,
     padding: 12,
-    textAlign: "center",
     width: 140,
   },
   container: {
@@ -60,6 +60,9 @@ const homeScreenStyles = StyleSheet.create({
   },
   image: {
     flex: 1,
+  },
+  text: {
+    alignSelf: "center",
   },
   title: {
     alignSelf: "center",

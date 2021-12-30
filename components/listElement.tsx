@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { Text, View } from "../components/Themed";
+import { Text } from "../components/Themed";
 
 interface ListElementProps {
   subtitle: string;
@@ -28,12 +28,12 @@ const listElementStyles = StyleSheet.create({
     marginLeft: 8,
   },
   title: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: 30,
     marginLeft: 24,
+    marginBottom: 8,
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 18,
     marginLeft: 24,
   },
 });

@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 
-import { View } from "../components/Themed";
-import { RootTabScreenProps } from "../navigation/helpers/navigationTypes";
+import { View } from "../../components/Themed";
+import { RootTabScreenProps } from "../../navigation/helpers/navigationTypes";
 import { useMemo } from "react";
-import { ListElement } from "../components/listElement";
+import { ListElement } from "../../components/listElement";
 
 export type WorkoutsScreenType = RootTabScreenProps<"Workouts">;
 
@@ -61,6 +61,7 @@ const workoutsScreenStyles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "center",
     margin: 32,
+    marginTop: 56,
   },
   separator: {
     height: 1,

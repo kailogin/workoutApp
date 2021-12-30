@@ -5,10 +5,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import useColorScheme from "../hooks/useColorScheme";
 import Colors from "../utils/colors";
 import { RootTabParamList } from "./helpers/navigationTypes";
-import { WorkoutsScreen, WorkoutsScreenType } from "../screens/workoutsScreen";
-import { ExercisesScreen } from "../screens/exercisesScreen";
+import {
+  WorkoutsScreen,
+  WorkoutsScreenType,
+} from "../screens/workoutsScreen/workoutsScreen";
+import { ExercisesScreen } from "../screens/exercisesScreen/exercisesScreen";
 import { LogsScreen } from "../screens/logsScreen";
-import { SettingsScreen } from "../screens/settingsScreen";
+import { SettingsScreen } from "../screens/settingsScreen/settingsScreen";
 import { HomeScreen } from "../screens/homeScreen";
 import { useAppSelector } from "../utils/hooks";
 import { RootState } from "../stores/store";
@@ -22,18 +25,21 @@ export const BottomTabNavigator = () => {
   const colorScheme = useColorScheme();
 
   const isFirstVisit = useAppSelector(({ user }: RootState) => user.firstVisit);
+  console.log(isFirstVisit);
+  // https://github.com/expo/examples
 
   // --- RENDER ---
 
-  if (isFirstVisit) {
-    return <HomeScreen />;
-  }
+  // if (isFirstVisit) {
+  //   return <HomeScreen />;
+  // }
 
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveTintColor: "#F2994A",
+        tabBarInactiveTintColor: Colors[colorScheme].tint,
       }}
     >
       <BottomTab.Screen
@@ -88,10 +94,43 @@ export const BottomTabNavigator = () => {
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="list-alt" size={24} color={color} />
           ),
+          headerRight: () => (
+            <View style={bottomTabNavigatorStyles.container}>
+              <Pressable
+                // @ts-ignore
+                onPress={() => navigation.navigate("Modal")}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                  marginRight: 16,
+                })}
+              >
+                <MaterialIcons
+                  name="add"
+                  size={24}
+                  color={Colors[colorScheme].text}
+                />
+              </Pressable>
+
+              <Pressable
+                // @ts-ignore
+                onPress={() => navigation.navigate("Modal")}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                })}
+              >
+                <MaterialIcons
+                  name="edit"
+                  size={24}
+                  color={Colors[colorScheme].text}
+                  style={{ marginRight: 16 }}
+                />
+              </Pressable>
+            </View>
+          ),
         }}
       />
 
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name="Logs"
         component={LogsScreen}
         options={{
@@ -100,7 +139,7 @@ export const BottomTabNavigator = () => {
             <MaterialIcons name="history" size={24} color={color} />
           ),
         }}
-      />
+      /> */}
 
       <BottomTab.Screen
         name="Settings"
