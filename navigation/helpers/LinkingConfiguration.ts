@@ -19,10 +19,8 @@ const linking: LinkingOptions<RootStackParamList> = {
           Workouts: "/workouts",
           // TODO: Add deeper levels of paths for subsequent pages.
           Exercises: "/exercises",
-
-          Logs: "/logs",
-
           Settings: "/settings",
+          Timer: "/timer",
         },
       },
       Modal: "modal",

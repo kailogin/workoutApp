@@ -1,0 +1,12 @@
+{
+  "settings": {
+    "changeAppLanguage": "Change Language",
+    "darkModeCta": "Dark Mode",
+    "timer": "Timer"
+  },
+  "bottomTabNav": {
+    "workouts": "Workouts",
+    "settings": "Settings",
+    "exercises": "Exercises"
+  }
+}

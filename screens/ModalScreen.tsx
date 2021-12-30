@@ -1,24 +1,34 @@
 import { StatusBar } from "expo-status-bar";
 import { Platform, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import { Text, View } from "../components/Themed";
+import { Colors } from "../utils/colors";
 
-export const ModalScreen = () => (
-  <View style={modalScreenStyles.container}>
-    <Text style={modalScreenStyles.title}>Modal</Text>
+export const ModalScreen = () => {
+  const { t } = useTranslation();
 
-    <View
-      style={modalScreenStyles.separator}
-      lightColor="#eee"
-      darkColor="rgba(255,255,255,0.1)"
-    />
+  const translate = (key: string) => t(`modalScreen.${key}`);
 
-    {/* Use a light status bar on iOS to account for the black space above the modal */}
-    <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
-  </View>
-);
+  // --- RENDER ---
 
-const modalScreenStyles = StyleSheet.create({
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{translate("title")}</Text>
+
+      <View
+        style={styles.separator}
+        lightColor={Colors.WHITE}
+        darkColor={Colors.BLACK}
+      />
+
+      {/* Use a light status bar on iOS to account for the black space above the modal */}
+      <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",

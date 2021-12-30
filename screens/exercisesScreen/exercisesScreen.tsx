@@ -1,24 +1,18 @@
-import { StyleSheet, SectionList } from "react-native";
-const lodash = require("lodash");
+import React, { useState, useMemo } from "react";
+import { StyleSheet } from "react-native";
 
-import { Text, View } from "../../components/Themed";
-import { useMemo } from "react";
-import { ListElement } from "../../components/listElement";
-import React from "react";
+import { View, Text } from "../../components/Themed";
 
-export enum Categories {
-  ABS = "Abs",
-  BACK = "Back",
-  Biceps = "Biceps",
-  CHEST = "Chest",
-  LEGS = "Legs",
-  SHOULDERS = "Shoulders",
-  Triceps = "Triceps",
-}
-
-type Exercise = { category: Categories; exerciseName: string };
+import { Exercise, Categories } from "./exerciseTypes";
+import { SearchBar } from "../../components/searchBar";
+import { Colors } from "../../utils/colors";
 
 export const ExercisesScreen = () => {
+  // --- STATE ---
+
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
+
   // --- DATA ---
 
   // TODO: Should this be placed in redux store?
@@ -49,10 +43,27 @@ export const ExercisesScreen = () => {
     },
   ];
 
-  // --- MEMOIZED DATA ---
+  const filteredExercises = useMemo((): Exercise[] => {
+    if (searchPhrase === "") {
+      return exercises;
+    }
+
+    const newExercises: Exercise[] = exercises.filter(
+      (object: Exercise) =>
+        object.category
+          .toUpperCase()
+          .includes(searchPhrase.toUpperCase().trim().replace(/\s/g, "")) ||
+        object.exerciseName
+          .toUpperCase()
+          .includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))
+    );
+
+    return newExercises;
+  }, [exercises, searchPhrase]);
+
   const groupedExercises = useMemo(
     () =>
-      exercises.reduce((accumulator, exercise) => {
+      filteredExercises.reduce((accumulator, exercise) => {
         accumulator[exercise.category] = accumulator[exercise.category] || [];
         accumulator[exercise.category].push(exercise);
 
@@ -66,26 +77,23 @@ export const ExercisesScreen = () => {
       Object.keys(groupedExercises)
         .map((key) => [key, groupedExercises[key]])
         .map((category) => {
-          const exerciseListPerCategory = category[1].map(
-            (exercise: Exercise, i: number) => (
-              <React.Fragment key={`${exercise.exerciseName}+${i}`}>
-                <Text style={exerciseScreenStyles.listElement}>
-                  {exercise.exerciseName}
-                </Text>
-
-                <View
-                  style={exerciseScreenStyles.separator}
-                  darkColor="#ffffff"
-                  lightColor="#000000"
-                />
-              </React.Fragment>
+          const exercises = category[1].map(
+            (exercise1: { category: Categories; exerciseName: string }) => (
+              <Text style={styles.listElement}>{exercise1.exerciseName}</Text>
             )
           );
 
           return (
-            <View style={exerciseScreenStyles.listGroupContainer}>
-              <Text style={exerciseScreenStyles.title}>{category[0]}</Text>
-              {exerciseListPerCategory}
+            <View style={styles.listGroupContainer}>
+              <Text style={styles.title}>{category[0]}</Text>
+
+              {exercises}
+
+              <View
+                style={styles.separator}
+                lightColor={Colors.BLACK}
+                darkColor={Colors.WHITE}
+              />
             </View>
           );
         }),
@@ -95,13 +103,20 @@ export const ExercisesScreen = () => {
   // --- RENDER ---
 
   return (
-    <View style={exerciseScreenStyles.container}>
+    <View style={styles.container}>
+      <SearchBar
+        searchPhrase={searchPhrase}
+        isSearchBarClicked={isSearchBarClicked}
+        setSearchPhrase={setSearchPhrase}
+        setIsSearchBarClicked={setIsSearchBarClicked}
+      />
+
       {workoutExercisesGroupedList}
     </View>
   );
 };
 
-const exerciseScreenStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     margin: 40,
@@ -121,8 +136,8 @@ const exerciseScreenStyles = StyleSheet.create({
     marginBottom: 32,
   },
   separator: {
-    marginVertical: 16,
     height: 1,
+    marginVertical: 16,
     width: "80%",
   },
 });

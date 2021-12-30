@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Pressable, StyleSheet } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 import useColorScheme from "../hooks/useColorScheme";
 import Colors from "../utils/colors";
@@ -10,7 +11,7 @@ import {
   WorkoutsScreenType,
 } from "../screens/workoutsScreen/workoutsScreen";
 import { ExercisesScreen } from "../screens/exercisesScreen/exercisesScreen";
-import { LogsScreen } from "../screens/logsScreen";
+import { TimerScreen } from "../screens/timerScreen";
 import { SettingsScreen } from "../screens/settingsScreen/settingsScreen";
 import { HomeScreen } from "../screens/homeScreen";
 import { useAppSelector } from "../utils/hooks";
@@ -20,12 +21,16 @@ import { View } from "../components/Themed";
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 export const BottomTabNavigator = () => {
+  const { t } = useTranslation();
+
+  const translate = (key: string) => t(`bottomTabNav.${key}`);
+
   // --- STATE ---
 
   const colorScheme = useColorScheme();
 
   const isFirstVisit = useAppSelector(({ user }: RootState) => user.firstVisit);
-  console.log(isFirstVisit);
+  // console.log(isFirstVisit);
   // https://github.com/expo/examples
 
   // --- RENDER ---
@@ -36,7 +41,7 @@ export const BottomTabNavigator = () => {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Workouts"
       screenOptions={{
         tabBarActiveTintColor: "#F2994A",
         tabBarInactiveTintColor: Colors[colorScheme].tint,
@@ -46,7 +51,7 @@ export const BottomTabNavigator = () => {
         name="Workouts"
         component={WorkoutsScreen}
         options={({ navigation }: WorkoutsScreenType) => ({
-          title: "Workouts",
+          title: translate("workouts"),
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="fitness-center" size={24} color={color} />
           ),
@@ -90,7 +95,7 @@ export const BottomTabNavigator = () => {
         name="Exercises"
         component={ExercisesScreen}
         options={{
-          title: "Exercises",
+          title: translate("exercises"),
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="list-alt" size={24} color={color} />
           ),
@@ -130,22 +135,22 @@ export const BottomTabNavigator = () => {
         }}
       />
 
-      {/* <BottomTab.Screen
-        name="Logs"
-        component={LogsScreen}
+      <BottomTab.Screen
+        name="Timer"
+        component={TimerScreen}
         options={{
-          title: "Logs",
+          title: "Timer",
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="history" size={24} color={color} />
           ),
         }}
-      /> */}
+      />
 
       <BottomTab.Screen
         name="Settings"
         component={SettingsScreen}
         options={{
-          title: "Settings",
+          title: translate("settings"),
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="settings" size={24} color={color} />
           ),

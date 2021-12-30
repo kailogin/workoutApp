@@ -4,6 +4,7 @@ import { View } from "../../components/Themed";
 import { RootTabScreenProps } from "../../navigation/helpers/navigationTypes";
 import { useMemo } from "react";
 import { ListElement } from "../../components/listElement";
+import { Colors } from "../../utils/colors";
 
 export type WorkoutsScreenType = RootTabScreenProps<"Workouts">;
 
@@ -39,26 +40,30 @@ export const WorkoutsScreen = () => {
   // --- RENDER ---
 
   return (
-    <>
+    <View style={styles.container}>
       {workouts.map((workout, i) => (
-        <View key={i} style={workoutsScreenStyles.container}>
+        <View key={i} style={styles.list_container}>
           <ListElement title={workout.title} subtitle={workout.subtitle} />
 
           <View
-            style={workoutsScreenStyles.separator}
-            lightColor="#000000"
-            darkColor="#FFFFFF"
+            style={styles.separator}
+            lightColor={Colors.BLACK}
+            darkColor={Colors.WHITE}
           />
         </View>
       ))}
-    </>
+    </View>
   );
 };
 
-const workoutsScreenStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: 40,
+  },
+  list_container: {
     alignItems: "flex-start",
+    flex: 1,
     justifyContent: "center",
     margin: 32,
     marginTop: 56,

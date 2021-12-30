@@ -27,8 +27,8 @@ export type RootStackScreenProps<
 export type RootTabParamList = {
   Exercises: undefined;
   Home: undefined;
-  Logs: undefined;
   Settings: undefined;
+  Timer: undefined;
   Workouts: undefined;
 };
 
