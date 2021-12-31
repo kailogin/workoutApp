@@ -1,4 +1,5 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
+import { BaseView } from "../components/baseView";
 
 import { Text, View } from "../components/Themed";
 import { RootStackScreenProps } from "../navigation/helpers/navigationTypes";
@@ -9,7 +10,7 @@ export const NotFoundScreen = ({ navigation }: NotFoundScreenProps) => {
   // --- RENDER ---
 
   return (
-    <View style={notFoundScreenStyles.container}>
+    <BaseView>
       <Text style={notFoundScreenStyles.title}>This screen doesn't exist.</Text>
 
       <TouchableOpacity
@@ -19,17 +20,11 @@ export const NotFoundScreen = ({ navigation }: NotFoundScreenProps) => {
       >
         <Text style={notFoundScreenStyles.linkText}>Go to home screen!</Text>
       </TouchableOpacity>
-    </View>
+    </BaseView>
   );
 };
 
 const notFoundScreenStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-  },
   title: {
     fontSize: 20,
     fontWeight: "bold",

@@ -6,6 +6,9 @@ import { View, Text } from "../../components/Themed";
 import { Exercise, Categories } from "./exerciseTypes";
 import { SearchBar } from "../../components/searchBar";
 import { Colors } from "../../utils/colors";
+import { BaseView } from "../../components/baseView";
+import { exercises } from "./exercisesConstants";
+import { Separator } from "../../components/separator";
 
 export const ExercisesScreen = () => {
   // --- STATE ---
@@ -13,35 +16,7 @@ export const ExercisesScreen = () => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
 
-  // --- DATA ---
-
-  // TODO: Should this be placed in redux store?
-  const exercises: Exercise[] = [
-    {
-      category: Categories.CHEST,
-      exerciseName: "Butterfly",
-    },
-    {
-      category: Categories.CHEST,
-      exerciseName: "Dumbbell Press",
-    },
-    {
-      category: Categories.CHEST,
-      exerciseName: "Flat Bench Press",
-    },
-    {
-      category: Categories.SHOULDERS,
-      exerciseName: "Arnold Press",
-    },
-    {
-      category: Categories.BACK,
-      exerciseName: "Deadlifts",
-    },
-    {
-      category: Categories.BACK,
-      exerciseName: "Rows",
-    },
-  ];
+  // --- MEMOIZED DATA ---
 
   const filteredExercises = useMemo((): Exercise[] => {
     if (searchPhrase === "") {
@@ -69,7 +44,7 @@ export const ExercisesScreen = () => {
 
         return accumulator;
       }, Object.create(null)),
-    [exercises]
+    [filteredExercises]
   );
 
   const workoutExercisesGroupedList = useMemo(
@@ -89,11 +64,7 @@ export const ExercisesScreen = () => {
 
               {exercises}
 
-              <View
-                style={styles.separator}
-                lightColor={Colors.BLACK}
-                darkColor={Colors.WHITE}
-              />
+              <Separator />
             </View>
           );
         }),
@@ -103,7 +74,7 @@ export const ExercisesScreen = () => {
   // --- RENDER ---
 
   return (
-    <View style={styles.container}>
+    <BaseView>
       <SearchBar
         searchPhrase={searchPhrase}
         isSearchBarClicked={isSearchBarClicked}
@@ -112,7 +83,7 @@ export const ExercisesScreen = () => {
       />
 
       {workoutExercisesGroupedList}
-    </View>
+    </BaseView>
   );
 };
 
@@ -134,10 +105,5 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     marginBottom: 32,
-  },
-  separator: {
-    height: 1,
-    marginVertical: 16,
-    width: "80%",
   },
 });

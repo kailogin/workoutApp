@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
+import { useMemo } from "react";
 
 import { View } from "../../components/Themed";
 import { RootTabScreenProps } from "../../navigation/helpers/navigationTypes";
-import { useMemo } from "react";
 import { ListElement } from "../../components/listElement";
-import { Colors } from "../../utils/colors";
+import { Separator } from "../../components/separator";
+import { BaseView } from "../../components/baseView";
 
 export type WorkoutsScreenType = RootTabScreenProps<"Workouts">;
 
@@ -40,38 +41,25 @@ export const WorkoutsScreen = () => {
   // --- RENDER ---
 
   return (
-    <View style={styles.container}>
+    <BaseView>
       {workouts.map((workout, i) => (
         <View key={i} style={styles.list_container}>
           <ListElement title={workout.title} subtitle={workout.subtitle} />
 
-          <View
-            style={styles.separator}
-            lightColor={Colors.BLACK}
-            darkColor={Colors.WHITE}
-          />
+          <Separator />
         </View>
       ))}
-    </View>
+    </BaseView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    margin: 40,
-  },
   list_container: {
     alignItems: "flex-start",
     flex: 1,
     justifyContent: "center",
     margin: 32,
     marginTop: 56,
-  },
-  separator: {
-    height: 1,
-    marginVertical: 30,
-    width: "100%",
   },
   title: {
     fontSize: 20,

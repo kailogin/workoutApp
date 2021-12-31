@@ -5,6 +5,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
+import { BaseView } from "../components/baseView";
 
 import { Text, View } from "../components/Themed";
 import { setFirstVisitedStateFalse } from "../stores/userStore/userActions";
@@ -23,7 +24,7 @@ export const HomeScreen = () => {
   // --- RENDER ---
 
   return (
-    <View style={homeScreenStyles.container}>
+    <BaseView>
       <ImageBackground
         resizeMode="cover"
         source={require("../images/dumbbell.jpg")}
@@ -42,7 +43,7 @@ export const HomeScreen = () => {
         {/* Use a light status bar on iOS to account for the black space above the modal */}
         <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
       </ImageBackground>
-    </View>
+    </BaseView>
   );
 };
 
@@ -53,10 +54,6 @@ const homeScreenStyles = StyleSheet.create({
     borderRadius: 12,
     padding: 12,
     width: 140,
-  },
-  container: {
-    flex: 1,
-    justifyContent: "center",
   },
   image: {
     flex: 1,

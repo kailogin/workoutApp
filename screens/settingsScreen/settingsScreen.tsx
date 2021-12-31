@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet, Switch, Pressable } from "react-native";
+import { StyleSheet, Switch } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { useTranslation } from "react-i18next";
 
 import { Text, View } from "../../components/Themed";
 import { Languages } from "../../utils/types";
 import i18n from "../../i18n.config";
-import { Colors } from "../../utils/colors";
+import { BaseView } from "../../components/baseView";
+import { Separator } from "../../components/separator";
 
 export const SettingsScreen = () => {
   const { t } = useTranslation();
@@ -28,7 +29,7 @@ export const SettingsScreen = () => {
   // --- RENDER ---
 
   return (
-    <View style={styles.container}>
+    <BaseView>
       {/* DARK MODE */}
       <View style={styles.containerElement}>
         <Text style={styles.containerElementText}>
@@ -44,19 +45,11 @@ export const SettingsScreen = () => {
         />
       </View>
 
-      <View
-        style={styles.separator}
-        lightColor={Colors.BLACK}
-        darkColor={Colors.WHITE}
-      />
+      <Separator />
 
       {/* Export als XLS */}
 
-      <View
-        style={styles.separator}
-        lightColor={Colors.BLACK}
-        darkColor={Colors.WHITE}
-      />
+      <Separator />
 
       {/* LanguagePicker */}
       <View style={styles.containerElement}>
@@ -77,12 +70,8 @@ export const SettingsScreen = () => {
         </Picker>
       </View>
 
-      <View
-        style={styles.separator}
-        lightColor={Colors.BLACK}
-        darkColor={Colors.WHITE}
-      />
-    </View>
+      <Separator />
+    </BaseView>
   );
 };
 
@@ -102,10 +91,5 @@ const styles = StyleSheet.create({
   },
   dropDownPicker: {
     backgroundColor: "white",
-  },
-  separator: {
-    height: 1,
-    marginVertical: 30,
-    width: "80%",
   },
 });

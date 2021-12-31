@@ -2,8 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import { Platform, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
 
-import { Text, View } from "../components/Themed";
-import { Colors } from "../utils/colors";
+import { Text } from "../components/Themed";
+import { BaseView } from "../components/baseView";
+import { Separator } from "../components/separator";
 
 export const ModalScreen = () => {
   const { t } = useTranslation();
@@ -13,34 +14,20 @@ export const ModalScreen = () => {
   // --- RENDER ---
 
   return (
-    <View style={styles.container}>
+    <BaseView>
       <Text style={styles.title}>{translate("title")}</Text>
 
-      <View
-        style={styles.separator}
-        lightColor={Colors.WHITE}
-        darkColor={Colors.BLACK}
-      />
+      <Separator />
 
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
-    </View>
+    </BaseView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   title: {
     fontSize: 20,
     fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
   },
 });

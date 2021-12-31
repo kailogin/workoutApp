@@ -24,7 +24,7 @@ export const TimerScreen = () => {
   // TODO: Fix type
   const inputRef = useRef<any>();
 
-  const [duration, setDuration] = useState(15);
+  const [duration, setDuration] = useState(timers[0]);
 
   const timerAnimation = useRef(new Animated.Value(height)).current;
   const buttonAnimation = useRef(new Animated.Value(0)).current;
