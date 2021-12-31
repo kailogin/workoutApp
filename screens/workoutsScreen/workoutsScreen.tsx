@@ -1,15 +1,29 @@
-import { StyleSheet } from "react-native";
-import { useMemo } from "react";
+import { Button, StyleSheet } from "react-native";
+import React, { useMemo } from "react";
 
 import { View } from "../../components/Themed";
-import { RootTabScreenProps } from "../../navigation/helpers/navigationTypes";
+import {
+  RootStackParamList,
+  RootTabParamList,
+  RootTabScreenProps,
+} from "../../navigation/helpers/navigationTypes";
 import { ListElement } from "../../components/listElement";
 import { Separator } from "../../components/separator";
 import { BaseView } from "../../components/baseView";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { CompositeNavigationProp } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+interface WorkoutsScreenProps {
+  navigation: CompositeNavigationProp<
+    BottomTabNavigationProp<RootTabParamList, "Workouts">,
+    NativeStackNavigationProp<RootStackParamList, "Root">
+  >;
+}
 
 export type WorkoutsScreenType = RootTabScreenProps<"Workouts">;
 
-export const WorkoutsScreen = () => {
+export const WorkoutsScreen = ({ navigation }: WorkoutsScreenProps) => {
   // --- MEMOIZED DATA ---
 
   const workouts = useMemo(
@@ -44,6 +58,11 @@ export const WorkoutsScreen = () => {
     <BaseView>
       {workouts.map((workout, i) => (
         <View key={i} style={styles.list_container}>
+          {/* TODO: Replace this with the proper page. */}
+          <Button
+            onPress={() => navigation.navigate("Settings")}
+            title="Navigate"
+          />
           <ListElement title={workout.title} subtitle={workout.subtitle} />
 
           <Separator />

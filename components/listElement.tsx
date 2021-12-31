@@ -1,6 +1,7 @@
-import { StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 import { Text } from "../components/Themed";
+import { WorkoutsScreenType } from "../screens/workoutsScreen/workoutsScreen";
 
 interface ListElementProps {
   subtitle: string;
@@ -13,20 +14,14 @@ export const ListElement = ({ subtitle, title }: ListElementProps) => {
   // --- RENDER ---
 
   return (
-    <>
+    <Pressable>
       <Text style={listElementStyles.title}>{title}</Text>
       <Text style={listElementStyles.subtitle}> &#8226; {subtitle}</Text>
-    </>
+    </Pressable>
   );
 };
 
 const listElementStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    marginLeft: 8,
-  },
   title: {
     fontSize: 30,
     marginLeft: 24,

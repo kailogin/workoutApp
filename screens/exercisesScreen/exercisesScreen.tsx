@@ -1,16 +1,31 @@
 import React, { useState, useMemo } from "react";
-import { StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 import { View, Text } from "../../components/Themed";
-
 import { Exercise, Categories } from "./exerciseTypes";
 import { SearchBar } from "../../components/searchBar";
-import { Colors } from "../../utils/colors";
 import { BaseView } from "../../components/baseView";
 import { exercises } from "./exercisesConstants";
 import { Separator } from "../../components/separator";
+import {
+  RootStackParamList,
+  RootTabParamList,
+  RootTabScreenProps,
+} from "../../navigation/helpers/navigationTypes";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { CompositeNavigationProp } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export const ExercisesScreen = () => {
+interface ExercisesScreenProps {
+  navigation: CompositeNavigationProp<
+    BottomTabNavigationProp<RootTabParamList, "Workouts">,
+    NativeStackNavigationProp<RootStackParamList, "Root">
+  >;
+}
+
+export type ExercisesScreenType = RootTabScreenProps<"Exercises">;
+
+export const ExercisesScreen = ({ navigation }: ExercisesScreenProps) => {
   // --- STATE ---
 
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -54,7 +69,10 @@ export const ExercisesScreen = () => {
         .map((category) => {
           const exercises = category[1].map(
             (exercise1: { category: Categories; exerciseName: string }) => (
-              <Text style={styles.listElement}>{exercise1.exerciseName}</Text>
+              // TODO: Fix the path here.
+              <Pressable onPress={() => navigation.navigate("Settings")}>
+                <Text style={styles.listElement}>{exercise1.exerciseName}</Text>
+              </Pressable>
             )
           );
 

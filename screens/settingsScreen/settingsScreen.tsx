@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { StyleSheet, Switch } from "react-native";
-import { Picker } from "@react-native-picker/picker";
+import RNPickerSelect from "react-native-picker-select";
 import { useTranslation } from "react-i18next";
 
 import { Text, View } from "../../components/Themed";
 import { Languages } from "../../utils/types";
-import i18n from "../../i18n.config";
+import i18n, {
+  LanguagesType,
+  mapLanguageCodeToLanguage,
+} from "../../i18n.config";
 import { BaseView } from "../../components/baseView";
 import { Separator } from "../../components/separator";
 
@@ -17,8 +20,8 @@ export const SettingsScreen = () => {
   // --- STATE ---
 
   const [isDarkModeEnabled, setIsDarkModeEnabled] = useState(true);
-  const [selectedLanguage, setSelectedLanguage] = useState<Languages>(
-    Languages.ENG
+  const [selectedLanguage, setSelectedLanguage] = useState<LanguagesType>(
+    "English"
   );
 
   // --- CALLBACKS ---
@@ -57,17 +60,21 @@ export const SettingsScreen = () => {
           {translate("changeAppLanguage")}
         </Text>
 
-        <Picker
-          selectedValue={selectedLanguage}
+        <RNPickerSelect
+          placeholder={selectedLanguage}
+          items={[
+            { label: "English", value: Languages.ENG },
+            { label: "Deutsch", value: Languages.GER },
+            { label: "Italiano", value: Languages.ITA },
+          ]}
           onValueChange={(itemValue: Languages) => {
             i18n.changeLanguage(itemValue);
-            setSelectedLanguage(itemValue);
+            const lng = mapLanguageCodeToLanguage(itemValue);
+            setSelectedLanguage(lng);
           }}
-        >
-          <Picker.Item label="English" value={Languages.ENG} />
-          <Picker.Item label="Deutsch" value={Languages.GER} />
-          <Picker.Item label="Italiano" value={Languages.ITA} />
-        </Picker>
+          value={selectedLanguage}
+          style={customPickerStyles}
+        />
       </View>
 
       <Separator />
@@ -76,11 +83,6 @@ export const SettingsScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    flex: 1,
-    justifyContent: "center",
-  },
   containerElement: {
     flexDirection: "row",
   },
@@ -91,5 +93,25 @@ const styles = StyleSheet.create({
   },
   dropDownPicker: {
     backgroundColor: "white",
+  },
+});
+
+const customPickerStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 14,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderWidth: 1,
+    borderColor: "green",
+    borderRadius: 8,
+    color: "black",
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 14,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 1,
+    borderColor: "blue",
   },
 });

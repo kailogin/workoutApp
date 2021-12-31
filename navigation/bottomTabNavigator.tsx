@@ -10,7 +10,10 @@ import {
   WorkoutsScreen,
   WorkoutsScreenType,
 } from "../screens/workoutsScreen/workoutsScreen";
-import { ExercisesScreen } from "../screens/exercisesScreen/exercisesScreen";
+import {
+  ExercisesScreen,
+  ExercisesScreenType,
+} from "../screens/exercisesScreen/exercisesScreen";
 import { TimerScreen } from "../screens/timerScreen";
 import { SettingsScreen } from "../screens/settingsScreen/settingsScreen";
 import { HomeScreen } from "../screens/homeScreen";
@@ -49,7 +52,9 @@ export const BottomTabNavigator = () => {
     >
       <BottomTab.Screen
         name="Workouts"
-        component={WorkoutsScreen}
+        component={({ navigation }: WorkoutsScreenType) => (
+          <WorkoutsScreen navigation={navigation} />
+        )}
         options={({ navigation }: WorkoutsScreenType) => ({
           title: translate("workouts"),
           tabBarIcon: ({ color }) => (
@@ -58,7 +63,6 @@ export const BottomTabNavigator = () => {
           headerRight: () => (
             <View style={bottomTabNavigatorStyles.container}>
               <Pressable
-                // @ts-ignore
                 onPress={() => navigation.navigate("Modal")}
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
@@ -93,7 +97,9 @@ export const BottomTabNavigator = () => {
 
       <BottomTab.Screen
         name="Exercises"
-        component={ExercisesScreen}
+        component={({ navigation }: ExercisesScreenType) => (
+          <ExercisesScreen navigation={navigation} />
+        )}
         options={{
           title: translate("exercises"),
           tabBarIcon: ({ color }) => (

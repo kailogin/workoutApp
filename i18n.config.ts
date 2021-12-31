@@ -4,6 +4,7 @@ import { initReactI18next } from "react-i18next";
 import en from "./translations/en.json";
 import de from "./translations/de.json";
 import ita from "./translations/ita.json";
+import { Languages } from "./utils/types";
 
 const resources = {
   en: {
@@ -15,6 +16,26 @@ const resources = {
   ita: {
     translation: ita,
   },
+};
+
+export type LanguagesType = "English" | "Deutsch" | "Italiano";
+
+export const mapLanguageCodeToLanguage = (
+  languageCode: Languages
+): LanguagesType => {
+  if (languageCode === Languages.ENG) {
+    return "English";
+  }
+
+  if (languageCode === Languages.GER) {
+    return "Deutsch";
+  }
+
+  if (languageCode === Languages.ITA) {
+    return "Italiano";
+  }
+
+  return "English";
 };
 
 i18n
