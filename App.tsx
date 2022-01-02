@@ -4,16 +4,17 @@ import { Provider } from "react-redux";
 import "./i18n.config";
 
 import useCachedResources from "./hooks/useCachedResources";
-import useColorScheme from "./hooks/useColorScheme";
+// import useColorScheme from "./hooks/useColorScheme";
 import { Navigation } from "./navigation";
 import { SplashScreen } from "./screens/splashScreen";
 import { RootStore } from "./stores/store";
+import { AuthProvider } from "./components/authProvider/authProvider";
 
 export default function App() {
   // --- STATE ---
 
   const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
+  // const colorScheme = useColorScheme();
 
   // --- RENDER ---
 
@@ -23,10 +24,14 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
+      {/* <AuthProvider> */}
       <Provider store={RootStore}>
-        <Navigation colorScheme={colorScheme} />
+        {/* <Navigation colorScheme={colorScheme} /> */}
+        <Navigation />
+
         <StatusBar />
       </Provider>
+      {/* </AuthProvider> */}
     </SafeAreaProvider>
   );
 }

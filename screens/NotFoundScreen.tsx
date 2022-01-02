@@ -1,8 +1,8 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import { BaseView } from "../components/baseView";
 
-import { Text, View } from "../components/Themed";
-import { RootStackScreenProps } from "../navigation/helpers/navigationTypes";
+import { RootStackScreenProps } from "../navigation/utils/navigationTypes";
+import { Colors } from "../utils/colors";
 
 export type NotFoundScreenProps = RootStackScreenProps<"NotFound">;
 
@@ -35,6 +35,6 @@ const notFoundScreenStyles = StyleSheet.create({
   },
   linkText: {
     fontSize: 14,
-    color: "#2e78b7",
+    color: Colors.WHITE,
   },
 });

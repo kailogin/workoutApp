@@ -4,11 +4,12 @@ import {
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
+  Text,
 } from "react-native";
 import { BaseView } from "../components/baseView";
 
-import { Text, View } from "../components/Themed";
 import { setFirstVisitedStateFalse } from "../stores/userStore/userActions";
+import { Colors } from "../utils/colors";
 import { useAppDispatch } from "../utils/hooks";
 
 export const HomeScreen = () => {
@@ -60,17 +61,18 @@ const homeScreenStyles = StyleSheet.create({
   },
   text: {
     alignSelf: "center",
+    color: Colors.WHITE,
   },
   title: {
     alignSelf: "center",
-    color: "#000000",
+    color: Colors.WHITE,
     fontSize: 48,
     fontWeight: "bold",
     marginTop: 48,
   },
   secondTitle: {
     alignSelf: "center",
-    color: "#000000",
+    color: Colors.WHITE,
     fontSize: 48,
     fontWeight: "bold",
     margin: 16,

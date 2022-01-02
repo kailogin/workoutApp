@@ -20,6 +20,7 @@ export default {
 
 export enum Colors {
   BLACK = "#000000",
+  ORANGE = "#F2994A",
   RED = "#F76A6A",
   WHITE = "#fff",
 }

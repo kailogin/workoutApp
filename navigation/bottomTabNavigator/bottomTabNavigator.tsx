@@ -1,27 +1,21 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 
-import useColorScheme from "../hooks/useColorScheme";
-import Colors from "../utils/colors";
-import { RootTabParamList } from "./helpers/navigationTypes";
 import {
-  WorkoutsScreen,
-  WorkoutsScreenType,
-} from "../screens/workoutsScreen/workoutsScreen";
-import {
-  ExercisesScreen,
-  ExercisesScreenType,
-} from "../screens/exercisesScreen/exercisesScreen";
-import { TimerScreen } from "../screens/timerScreen";
-import { SettingsScreen } from "../screens/settingsScreen/settingsScreen";
-import { HomeScreen } from "../screens/homeScreen";
-import { useAppSelector } from "../utils/hooks";
-import { RootState } from "../stores/store";
-import { View } from "../components/Themed";
+  BottomTabParamList,
+  RootTabScreenProps,
+} from "../utils/navigationTypes";
+import { TimerScreen } from "../../screens/timerScreen";
+import { SettingsScreen } from "../../screens/settingsScreen/settingsScreen";
+import { useAppSelector } from "../../utils/hooks";
+import { RootState } from "../../stores/store";
+import { ExercisesStack } from "../../screens/exercisesScreen/exercisesStack";
+import { WorkoutsStack } from "../../screens/workoutsScreen/workoutsStack";
+import { Colors } from "../../utils/colors";
 
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export const BottomTabNavigator = () => {
   const { t } = useTranslation();
@@ -30,7 +24,7 @@ export const BottomTabNavigator = () => {
 
   // --- STATE ---
 
-  const colorScheme = useColorScheme();
+  // const colorScheme = useColorScheme();
 
   const isFirstVisit = useAppSelector(({ user }: RootState) => user.firstVisit);
   // console.log(isFirstVisit);
@@ -46,16 +40,17 @@ export const BottomTabNavigator = () => {
     <BottomTab.Navigator
       initialRouteName="Workouts"
       screenOptions={{
-        tabBarActiveTintColor: "#F2994A",
-        tabBarInactiveTintColor: Colors[colorScheme].tint,
+        header: () => null,
+        tabBarActiveTintColor: Colors.ORANGE,
+        tabBarInactiveTintColor: Colors.WHITE,
+        tabBarActiveBackgroundColor: Colors.BLACK,
+        tabBarInactiveBackgroundColor: Colors.BLACK,
       }}
     >
       <BottomTab.Screen
         name="Workouts"
-        component={({ navigation }: WorkoutsScreenType) => (
-          <WorkoutsScreen navigation={navigation} />
-        )}
-        options={({ navigation }: WorkoutsScreenType) => ({
+        component={WorkoutsStack}
+        options={({ navigation }: RootTabScreenProps<"Workouts">) => ({
           title: translate("workouts"),
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="fitness-center" size={24} color={color} />
@@ -69,16 +64,11 @@ export const BottomTabNavigator = () => {
                   marginRight: 16,
                 })}
               >
-                <MaterialIcons
-                  name="add"
-                  size={24}
-                  color={Colors[colorScheme].text}
-                />
+                <MaterialIcons name="add" size={24} color={Colors.WHITE} />
               </Pressable>
 
               <Pressable
-                // @ts-ignore
-                onPress={() => navigation.navigate("Modal")}
+                onPress={() => navigation.navigate("Workouts")}
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
                 })}
@@ -86,7 +76,7 @@ export const BottomTabNavigator = () => {
                 <MaterialIcons
                   name="edit"
                   size={24}
-                  color={Colors[colorScheme].text}
+                  color={Colors.WHITE}
                   style={{ marginRight: 16 }}
                 />
               </Pressable>
@@ -97,48 +87,13 @@ export const BottomTabNavigator = () => {
 
       <BottomTab.Screen
         name="Exercises"
-        component={({ navigation }: ExercisesScreenType) => (
-          <ExercisesScreen navigation={navigation} />
-        )}
-        options={{
+        component={ExercisesStack}
+        options={({ navigation, route }: RootTabScreenProps<"Exercises">) => ({
           title: translate("exercises"),
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="list-alt" size={24} color={color} />
           ),
-          headerRight: () => (
-            <View style={bottomTabNavigatorStyles.container}>
-              <Pressable
-                // @ts-ignore
-                onPress={() => navigation.navigate("Modal")}
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                  marginRight: 16,
-                })}
-              >
-                <MaterialIcons
-                  name="add"
-                  size={24}
-                  color={Colors[colorScheme].text}
-                />
-              </Pressable>
-
-              <Pressable
-                // @ts-ignore
-                onPress={() => navigation.navigate("Modal")}
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                })}
-              >
-                <MaterialIcons
-                  name="edit"
-                  size={24}
-                  color={Colors[colorScheme].text}
-                  style={{ marginRight: 16 }}
-                />
-              </Pressable>
-            </View>
-          ),
-        }}
+        })}
       />
 
       <BottomTab.Screen

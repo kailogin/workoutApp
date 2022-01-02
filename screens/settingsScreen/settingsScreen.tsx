@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, Switch } from "react-native";
+import { StyleSheet, Switch, Text, View } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { useTranslation } from "react-i18next";
 
-import { Text, View } from "../../components/Themed";
 import { Languages } from "../../utils/types";
 import i18n, {
   LanguagesType,
@@ -11,6 +10,7 @@ import i18n, {
 } from "../../i18n.config";
 import { BaseView } from "../../components/baseView";
 import { Separator } from "../../components/separator";
+import { Colors } from "../../utils/colors";
 
 export const SettingsScreen = () => {
   const { t } = useTranslation();
@@ -51,8 +51,7 @@ export const SettingsScreen = () => {
       <Separator />
 
       {/* Export als XLS */}
-
-      <Separator />
+      {/* <Separator /> */}
 
       {/* LanguagePicker */}
       <View style={styles.containerElement}>
@@ -63,9 +62,9 @@ export const SettingsScreen = () => {
         <RNPickerSelect
           placeholder={selectedLanguage}
           items={[
-            { label: "English", value: Languages.ENG },
-            { label: "Deutsch", value: Languages.GER },
-            { label: "Italiano", value: Languages.ITA },
+            { label: "English", value: Languages.ENG, key: "en" },
+            { label: "Deutsch", value: Languages.GER, key: "ger" },
+            { label: "Italiano", value: Languages.ITA, key: "ita" },
           ]}
           onValueChange={(itemValue: Languages) => {
             i18n.changeLanguage(itemValue);
@@ -87,6 +86,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   containerElementText: {
+    color: Colors.WHITE,
     fontSize: 20,
     fontWeight: "bold",
     marginRight: 24,
@@ -99,19 +99,19 @@ const styles = StyleSheet.create({
 const customPickerStyles = StyleSheet.create({
   inputIOS: {
     fontSize: 14,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    padding: 12,
     borderWidth: 1,
-    borderColor: "green",
     borderRadius: 8,
-    color: "black",
-    paddingRight: 30, // to ensure the text is never behind the icon
+    borderColor: Colors.WHITE,
+    color: Colors.WHITE,
   },
   inputAndroid: {
+    backgroundColor: Colors.ORANGE,
+    color: Colors.WHITE,
     fontSize: 14,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
+    padding: 12,
     borderWidth: 1,
-    borderColor: "blue",
+    borderColor: Colors.WHITE,
+    width: 240,
   },
 });

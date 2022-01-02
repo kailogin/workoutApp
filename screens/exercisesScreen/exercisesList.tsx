@@ -1,31 +1,18 @@
 import React, { useState, useMemo } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-import { View, Text } from "../../components/Themed";
-import { Exercise, Categories } from "./exerciseTypes";
+import { Exercise, Categories } from "./utils/exerciseTypes";
 import { SearchBar } from "../../components/searchBar";
 import { BaseView } from "../../components/baseView";
-import { exercises } from "./exercisesConstants";
+import { exercises } from "./utils/exercisesConstants";
 import { Separator } from "../../components/separator";
-import {
-  RootStackParamList,
-  RootTabParamList,
-  RootTabScreenProps,
-} from "../../navigation/helpers/navigationTypes";
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { CompositeNavigationProp } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { ExerciseStackNavProps } from "./utils/exerciseParamList";
+import { Colors } from "../../utils/colors";
 
-interface ExercisesScreenProps {
-  navigation: CompositeNavigationProp<
-    BottomTabNavigationProp<RootTabParamList, "Workouts">,
-    NativeStackNavigationProp<RootStackParamList, "Root">
-  >;
-}
-
-export type ExercisesScreenType = RootTabScreenProps<"Exercises">;
-
-export const ExercisesScreen = ({ navigation }: ExercisesScreenProps) => {
+export const ExercisesList = ({
+  navigation,
+  route,
+}: ExerciseStackNavProps<"ExercisesList">) => {
   // --- STATE ---
 
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -66,18 +53,35 @@ export const ExercisesScreen = ({ navigation }: ExercisesScreenProps) => {
     () =>
       Object.keys(groupedExercises)
         .map((key) => [key, groupedExercises[key]])
-        .map((category) => {
+        .map((category, index: number) => {
           const exercises = category[1].map(
-            (exercise1: { category: Categories; exerciseName: string }) => (
+            (
+              exercise: { category: Categories; exerciseName: string },
+              index: number
+            ) => (
               // TODO: Fix the path here.
-              <Pressable onPress={() => navigation.navigate("Settings")}>
-                <Text style={styles.listElement}>{exercise1.exerciseName}</Text>
+              <Pressable
+                onPress={() =>
+                  navigation.navigate("Exercise", {
+                    name: exercise.exerciseName,
+                  })
+                }
+                key={
+                  exercise.exerciseName +
+                  index.toString() +
+                  Math.random().toString()
+                }
+              >
+                <Text style={styles.listElement}>{exercise.exerciseName}</Text>
               </Pressable>
             )
           );
 
           return (
-            <View style={styles.listGroupContainer}>
+            <View
+              key={index.toString() + Math.random().toString()}
+              style={styles.listGroupContainer}
+            >
               <Text style={styles.title}>{category[0]}</Text>
 
               {exercises}
@@ -111,15 +115,18 @@ const styles = StyleSheet.create({
     margin: 40,
   },
   listElement: {
+    color: Colors.WHITE,
     fontSize: 18,
     marginBottom: 8,
-    marginLeft: 16,
+    marginLeft: 8,
+    padding: 8,
   },
   listGroupContainer: {
     // flex: 1,
     marginBottom: 16,
   },
   title: {
+    color: Colors.WHITE,
     fontSize: 30,
     fontWeight: "bold",
     marginBottom: 32,

@@ -1,8 +1,7 @@
 import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet } from "react-native";
+import { Platform, StyleSheet, Text } from "react-native";
 import { useTranslation } from "react-i18next";
 
-import { Text } from "../components/Themed";
 import { BaseView } from "../components/baseView";
 import { Separator } from "../components/separator";
 

@@ -7,31 +7,21 @@
 import { LinkingOptions } from "@react-navigation/native";
 import * as Linking from "expo-linking";
 
-import { RootStackParamList } from "./navigationTypes";
+import { BottomTabParamList } from "./navigationTypes";
 
 const config = {
   screens: {
-    Root: {
-      screens: {
-        Home: "",
-        Workouts: {
-          path: "/workouts",
-          screens: {
-            Edit: "/edit",
-            Alternatives: "/alternatives",
-          },
-        },
-        Exercises: "/exercises",
-        Settings: "/settings",
-        Timer: "/timer",
-      },
-    },
+    Home: "",
+    Workouts: "/workouts",
+    Exercises: "/exercises",
+    Settings: "/settings",
+    Timer: "/timer",
     Modal: "modal",
     NotFound: "*",
   },
 };
 
-const linking: LinkingOptions<RootStackParamList> = {
+const linking: LinkingOptions<BottomTabParamList> = {
   prefixes: [Linking.makeUrl("/")],
   config: config,
 };

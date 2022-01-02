@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-import { View, Text } from "../components/Themed";
+import { Colors } from "../utils/colors";
 
 export const SplashScreen = () => {
   // --- RENDER ---
@@ -15,6 +15,7 @@ export const SplashScreen = () => {
 const splashScreenStyles = StyleSheet.create({
   container: {
     alignItems: "center",
+    backgroundColor: Colors.BLACK,
     justifyContent: "center",
     height: "100%",
   },
