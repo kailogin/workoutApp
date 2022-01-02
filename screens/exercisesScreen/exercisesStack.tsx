@@ -1,7 +1,7 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { StyleSheet, TouchableOpacity, Pressable, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { Colors } from "../../utils/colors";
 import { EditExercise } from "./components/editExercise";
@@ -40,14 +40,11 @@ export const ExercisesStack: React.FC<ExercisesStackProps> = ({}) => {
           headerTitle: "Exercises",
           headerRight: () => (
             <View style={styles.container}>
-              <Pressable
+              <TouchableOpacity
                 onPress={() =>
                   // Set state to edit mode so that exercises can be deleted but stay on same side?
                   navigation.navigate("ExercisesList")
                 }
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                })}
               >
                 <MaterialIcons
                   name="edit"
@@ -55,20 +52,16 @@ export const ExercisesStack: React.FC<ExercisesStackProps> = ({}) => {
                   color={Colors.WHITE}
                   style={{ marginRight: 16 }}
                 />
-              </Pressable>
+              </TouchableOpacity>
 
-              <Pressable
+              <TouchableOpacity
                 onPress={() =>
                   // TODO: Fix the name of the route and use it correctly
                   navigation.navigate("Exercise", { name: "PIMMEL" })
                 }
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                  marginRight: 16,
-                })}
               >
                 <MaterialIcons name="add" size={24} color={Colors.WHITE} />
-              </Pressable>
+              </TouchableOpacity>
             </View>
           ),
           title: "Exercises",
@@ -85,13 +78,10 @@ export const ExercisesStack: React.FC<ExercisesStackProps> = ({}) => {
           headerTitle: route.params?.name,
           headerRight: () => (
             <View style={styles.container}>
-              <Pressable
+              <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("Exercise", { name: route.params?.name })
                 }
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                })}
               >
                 <MaterialIcons
                   name="edit"
@@ -99,7 +89,7 @@ export const ExercisesStack: React.FC<ExercisesStackProps> = ({}) => {
                   color={Colors.WHITE}
                   style={{ marginRight: 16 }}
                 />
-              </Pressable>
+              </TouchableOpacity>
             </View>
           ),
           title: route.params?.name,

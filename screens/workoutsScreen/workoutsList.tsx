@@ -1,7 +1,12 @@
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
 
-import { Separator } from "../../components/separator";
 import { workouts } from "./workoutsConstants";
 import { WorkoutStackNavProps } from "./utils/workoutsParamList";
 import { Colors } from "../../utils/colors";
@@ -9,6 +14,8 @@ import { Colors } from "../../utils/colors";
 export const WorkoutList = ({
   navigation,
 }: WorkoutStackNavProps<"WorkoutList">) => {
+  // --- STATE ---
+
   // --- RENDER ---
 
   return (
@@ -20,12 +27,9 @@ export const WorkoutList = ({
         }
         renderItem={({ item }) => {
           return (
-            <>
-              {/* TODO: Fix the path here. */}
-              <Pressable
+            <View style={styles.renderItem_container}>
+              <TouchableOpacity
                 onPress={() => {
-                  console.log(item);
-
                   navigation.navigate("Workout", {
                     name: item.title,
                   });
@@ -33,10 +37,10 @@ export const WorkoutList = ({
                 key={item.title + item.subtitle + Math.random().toString()}
               >
                 <Text style={styles.title}>{item.title}</Text>
+
                 <Text style={styles.subtitle}>&#8226; {item.subtitle}</Text>
-              </Pressable>
-              <Separator />
-            </>
+              </TouchableOpacity>
+            </View>
           );
         }}
       />
@@ -45,6 +49,13 @@ export const WorkoutList = ({
 };
 
 const styles = StyleSheet.create({
+  renderItem_container: {
+    backgroundColor: Colors.CARD,
+    borderBottomWidth: 1,
+    borderRadius: 8,
+    marginBottom: 4,
+    padding: 8,
+  },
   view_container: {
     backgroundColor: Colors.BLACK,
     flex: 1,
@@ -59,13 +70,15 @@ const styles = StyleSheet.create({
   },
   title: {
     color: Colors.WHITE,
-    fontSize: 30,
-    marginLeft: 24,
+    fontSize: 20,
+    fontWeight: "bold",
     marginBottom: 8,
+    marginLeft: 24,
   },
   subtitle: {
     color: Colors.WHITE,
-    fontSize: 18,
-    marginLeft: 24,
+    fontSize: 16,
+    marginBottom: 24,
+    marginLeft: 32,
   },
 });

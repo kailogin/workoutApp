@@ -1,7 +1,7 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { StyleSheet, TouchableOpacity, Pressable, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Colors } from "../../utils/colors";
 
 import { EditWorkout } from "./components/editWorkout";
@@ -36,14 +36,11 @@ export const WorkoutsStack: React.FC<WorkoutsStackProps> = ({}) => {
           headerTitle: "Workouts",
           headerRight: () => (
             <View style={styles.container}>
-              <Pressable
+              <TouchableOpacity
                 onPress={() =>
                   // Set state to edit mode so that workouts can be deleted but stay on same side?
                   navigation.navigate("WorkoutList")
                 }
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                })}
               >
                 <MaterialIcons
                   name="edit"
@@ -51,20 +48,16 @@ export const WorkoutsStack: React.FC<WorkoutsStackProps> = ({}) => {
                   color={Colors.WHITE}
                   style={{ marginRight: 16 }}
                 />
-              </Pressable>
+              </TouchableOpacity>
 
-              <Pressable
+              <TouchableOpacity
                 onPress={() =>
                   // TODO: fix the name prop
                   navigation.navigate("Workout", { name: "New Workout" })
                 }
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                  marginRight: 16,
-                })}
               >
                 <MaterialIcons name="add" size={24} color={Colors.WHITE} />
-              </Pressable>
+              </TouchableOpacity>
             </View>
           ),
           title: "Workouts",
@@ -78,19 +71,15 @@ export const WorkoutsStack: React.FC<WorkoutsStackProps> = ({}) => {
           headerTitle: route.params?.name,
           headerRight: () => (
             <View style={styles.container}>
-              <Pressable
+              <TouchableOpacity
                 onPress={() =>
                   // TODO: Dispatch an action to save the new workout in redux.
                   // dispatch(setSaveNewWorkout)
                   navigation.navigate("WorkoutList")
                 }
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                  marginRight: 16,
-                })}
               >
                 <MaterialIcons name="save" size={24} color={Colors.WHITE} />
-              </Pressable>
+              </TouchableOpacity>
             </View>
           ),
           title: route.params?.name,

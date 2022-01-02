@@ -1,11 +1,10 @@
 import React, { useState, useMemo } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 
 import { Exercise, Categories } from "./utils/exerciseTypes";
 import { SearchBar } from "../../components/searchBar";
 import { BaseView } from "../../components/baseView";
 import { exercises } from "./utils/exercisesConstants";
-import { Separator } from "../../components/separator";
 import { ExerciseStackNavProps } from "./utils/exerciseParamList";
 import { Colors } from "../../utils/colors";
 
@@ -60,7 +59,7 @@ export const ExercisesList = ({
               index: number
             ) => (
               // TODO: Fix the path here.
-              <Pressable
+              <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("Exercise", {
                     name: exercise.exerciseName,
@@ -71,9 +70,10 @@ export const ExercisesList = ({
                   index.toString() +
                   Math.random().toString()
                 }
+                style={styles.listElementButton}
               >
                 <Text style={styles.listElement}>{exercise.exerciseName}</Text>
-              </Pressable>
+              </TouchableOpacity>
             )
           );
 
@@ -85,8 +85,6 @@ export const ExercisesList = ({
               <Text style={styles.title}>{category[0]}</Text>
 
               {exercises}
-
-              <Separator />
             </View>
           );
         }),
@@ -113,6 +111,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     margin: 40,
+  },
+  listElementButton: {
+    backgroundColor: Colors.CARD,
+    marginBottom: 8,
   },
   listElement: {
     color: Colors.WHITE,

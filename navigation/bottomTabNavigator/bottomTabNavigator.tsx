@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Pressable, StyleSheet, View, Text, StatusBar } from "react-native";
+import { TouchableOpacity, StyleSheet, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 
@@ -62,7 +62,7 @@ export const BottomTabNavigator = () => {
           ),
           headerRight: () => (
             <View style={bottomTabNavigatorStyles.container}>
-              <Pressable
+              <TouchableOpacity
                 onPress={() => navigation.navigate("Modal")}
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
@@ -70,9 +70,9 @@ export const BottomTabNavigator = () => {
                 })}
               >
                 <MaterialIcons name="add" size={24} color={Colors.WHITE} />
-              </Pressable>
+              </TouchableOpacity>
 
-              <Pressable
+              <TouchableOpacity
                 onPress={() => navigation.navigate("Workouts")}
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
@@ -84,7 +84,7 @@ export const BottomTabNavigator = () => {
                   color={Colors.WHITE}
                   style={{ marginRight: 16 }}
                 />
-              </Pressable>
+              </TouchableOpacity>
             </View>
           ),
         })}
