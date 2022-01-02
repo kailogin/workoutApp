@@ -21,7 +21,7 @@ const resources = {
 export type LanguagesType = "English" | "Deutsch" | "Italiano";
 
 export const mapLanguageCodeToLanguage = (
-  languageCode: Languages
+  languageCode: Languages | undefined
 ): LanguagesType => {
   if (languageCode === Languages.ENG) {
     return "English";

@@ -33,6 +33,7 @@ export const WorkoutsStack: React.FC<WorkoutsStackProps> = ({}) => {
         component={WorkoutList}
         name="WorkoutList"
         options={({ navigation }: WorkoutStackNavProps<"WorkoutList">) => ({
+          headerTitle: "Workouts",
           headerRight: () => (
             <View style={styles.container}>
               <Pressable
@@ -66,6 +67,7 @@ export const WorkoutsStack: React.FC<WorkoutsStackProps> = ({}) => {
               </Pressable>
             </View>
           ),
+          title: "Workouts",
         })}
       />
 
@@ -91,6 +93,7 @@ export const WorkoutsStack: React.FC<WorkoutsStackProps> = ({}) => {
               </Pressable>
             </View>
           ),
+          title: route.params?.name,
         })}
       />
 
@@ -113,6 +116,7 @@ export const WorkoutsStack: React.FC<WorkoutsStackProps> = ({}) => {
               <MaterialIcons name="save" size={24} color={Colors.WHITE} />
             </TouchableOpacity>
           ),
+          title: route.params?.name,
         })}
       />
     </Stack.Navigator>
@@ -123,8 +127,6 @@ const styles = StyleSheet.create({
   container: {
     borderBottomColor: undefined,
     backgroundColor: undefined,
-    flex: 1,
     flexDirection: "row",
-    marginTop: 16,
   },
 });

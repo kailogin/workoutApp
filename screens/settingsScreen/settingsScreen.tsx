@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, Switch, Text, View } from "react-native";
-import RNPickerSelect from "react-native-picker-select";
 import { useTranslation } from "react-i18next";
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel,
+} from "react-native-simple-radio-button";
 
 import { Languages } from "../../utils/types";
 import i18n, {
@@ -23,12 +27,43 @@ export const SettingsScreen = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<LanguagesType>(
     "English"
   );
+  const [selectedIndex, setSelectedIndex] = useState<0 | 1 | 2>(0);
+
+  // --- HELPERS ---
+
+  const radio_props = [
+    { label: "English", value: 0 },
+    { label: "Deutsch", value: 1 },
+    { label: "Italiano", value: 2 },
+  ];
 
   // --- CALLBACKS ---
 
   const toggleSwitch = () =>
     setIsDarkModeEnabled((previousState) => !previousState);
 
+  const handleRadioButtonPress = (itemValue: 0 | 1 | 2) => {
+    let language;
+
+    if (itemValue === 0) {
+      language = Languages.ENG;
+    }
+
+    if (itemValue === 1) {
+      language = Languages.GER;
+    }
+
+    if (itemValue === 2) {
+      language = Languages.ITA;
+    }
+
+    console.log(itemValue, language);
+
+    i18n.changeLanguage(language);
+    const lng = mapLanguageCodeToLanguage(language);
+    setSelectedIndex(itemValue);
+    setSelectedLanguage(lng);
+  };
   // --- RENDER ---
 
   return (
@@ -59,21 +94,35 @@ export const SettingsScreen = () => {
           {translate("changeAppLanguage")}
         </Text>
 
-        <RNPickerSelect
-          placeholder={selectedLanguage}
-          items={[
-            { label: "English", value: Languages.ENG, key: "en" },
-            { label: "Deutsch", value: Languages.GER, key: "ger" },
-            { label: "Italiano", value: Languages.ITA, key: "ita" },
-          ]}
-          onValueChange={(itemValue: Languages) => {
-            i18n.changeLanguage(itemValue);
-            const lng = mapLanguageCodeToLanguage(itemValue);
-            setSelectedLanguage(lng);
-          }}
-          value={selectedLanguage}
-          style={customPickerStyles}
-        />
+        <RadioForm animation={true}>
+          {radio_props.map((radio_prop) => (
+            <RadioButton
+              labelHorizontal={true}
+              key={radio_prop.label + radio_prop.value}
+            >
+              <RadioButtonInput
+                buttonOuterColor={Colors.WHITE}
+                buttonInnerColor={Colors.ORANGE}
+                obj={radio_prop}
+                index={radio_prop.value}
+                isSelected={selectedIndex === radio_prop.value}
+                onPress={handleRadioButtonPress}
+                buttonSize={10}
+                buttonOuterSize={25}
+                buttonWrapStyle={{ marginLeft: 10 }}
+              />
+
+              <RadioButtonLabel
+                obj={radio_prop}
+                index={radio_prop.value + 10}
+                labelHorizontal={true}
+                onPress={handleRadioButtonPress}
+                labelStyle={{ fontSize: 16, color: Colors.WHITE }}
+                labelWrapStyle={{}}
+              />
+            </RadioButton>
+          ))}
+        </RadioForm>
       </View>
 
       <Separator />

@@ -36,6 +36,8 @@ export const ExercisesStack: React.FC<ExercisesStackProps> = ({}) => {
           navigation,
           route,
         }: ExerciseStackNavProps<"ExercisesList">) => ({
+          headerTintColor: Colors.WHITE,
+          headerTitle: "Exercises",
           headerRight: () => (
             <View style={styles.container}>
               <Pressable
@@ -69,6 +71,7 @@ export const ExercisesStack: React.FC<ExercisesStackProps> = ({}) => {
               </Pressable>
             </View>
           ),
+          title: "Exercises",
         })}
       />
 
@@ -99,6 +102,7 @@ export const ExercisesStack: React.FC<ExercisesStackProps> = ({}) => {
               </Pressable>
             </View>
           ),
+          title: route.params?.name,
         })}
       />
 
@@ -120,6 +124,7 @@ export const ExercisesStack: React.FC<ExercisesStackProps> = ({}) => {
               <MaterialIcons name="save" size={24} color={Colors.WHITE} />
             </TouchableOpacity>
           ),
+          title: route.params?.name,
         })}
       />
     </Stack.Navigator>
@@ -130,8 +135,7 @@ const styles = StyleSheet.create({
   container: {
     borderBottomColor: undefined,
     backgroundColor: undefined,
-    flex: 1,
+    // alignItems: "center",
     flexDirection: "row",
-    marginTop: 16,
   },
 });

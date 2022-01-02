@@ -12,5 +12,6 @@ export const BaseText: React.FC<BaseTextProps> = ({ children }) => {
 const styles = StyleSheet.create({
   text: {
     color: Colors.WHITE,
+    fontFamily: "Montserrat",
   },
 });

@@ -1,5 +1,6 @@
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View, Text, StatusBar } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 
@@ -40,7 +41,10 @@ export const BottomTabNavigator = () => {
     <BottomTab.Navigator
       initialRouteName="Workouts"
       screenOptions={{
-        header: () => null,
+        headerTintColor: Colors.WHITE,
+        headerStyle: {
+          backgroundColor: Colors.BLACK,
+        },
         tabBarActiveTintColor: Colors.ORANGE,
         tabBarInactiveTintColor: Colors.WHITE,
         tabBarActiveBackgroundColor: Colors.BLACK,
@@ -51,6 +55,7 @@ export const BottomTabNavigator = () => {
         name="Workouts"
         component={WorkoutsStack}
         options={({ navigation }: RootTabScreenProps<"Workouts">) => ({
+          header: () => null,
           title: translate("workouts"),
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="fitness-center" size={24} color={color} />
@@ -89,6 +94,7 @@ export const BottomTabNavigator = () => {
         name="Exercises"
         component={ExercisesStack}
         options={({ navigation, route }: RootTabScreenProps<"Exercises">) => ({
+          header: () => null,
           title: translate("exercises"),
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="list-alt" size={24} color={color} />
@@ -100,6 +106,7 @@ export const BottomTabNavigator = () => {
         name="Timer"
         component={TimerScreen}
         options={{
+          header: () => null,
           title: "Timer",
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="history" size={24} color={color} />
@@ -111,6 +118,7 @@ export const BottomTabNavigator = () => {
         name="Settings"
         component={SettingsScreen}
         options={{
+          headerTitle: translate("settings"),
           title: translate("settings"),
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="settings" size={24} color={color} />
