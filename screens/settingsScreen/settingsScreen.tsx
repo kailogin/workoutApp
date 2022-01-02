@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Switch, Text, View } from "react-native";
+import { StyleSheet, Switch, Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import RadioForm, {
   RadioButton,
@@ -13,7 +13,6 @@ import i18n, {
   mapLanguageCodeToLanguage,
 } from "../../i18n.config";
 import { BaseView } from "../../components/baseView";
-import { Separator } from "../../components/separator";
 import { Colors } from "../../utils/colors";
 
 export const SettingsScreen = () => {
@@ -57,48 +56,25 @@ export const SettingsScreen = () => {
       language = Languages.ITA;
     }
 
-    console.log(itemValue, language);
-
     i18n.changeLanguage(language);
-    const lng = mapLanguageCodeToLanguage(language);
+    // const lng = mapLanguageCodeToLanguage(language);
     setSelectedIndex(itemValue);
-    setSelectedLanguage(lng);
+    // setSelectedLanguage(lng);
   };
   // --- RENDER ---
 
   return (
     <BaseView>
-      {/* DARK MODE */}
-      <View style={styles.containerElement}>
-        <Text style={styles.containerElementText}>
-          {translate("darkModeCta")}
-        </Text>
-
-        <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isDarkModeEnabled ? "#f5dd4b" : "#f4f3f4"}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleSwitch}
-          value={isDarkModeEnabled}
-        />
-      </View>
-
-      <Separator />
-
-      {/* Export als XLS */}
-      {/* <Separator /> */}
-
       {/* LanguagePicker */}
-      <View style={styles.containerElement}>
-        <Text style={styles.containerElementText}>
-          {translate("changeAppLanguage")}
-        </Text>
+      <View style={{ marginBottom: 40 }}>
+        <Text style={styles.title}>{translate("changeAppLanguage")}</Text>
 
         <RadioForm animation={true}>
           {radio_props.map((radio_prop) => (
             <RadioButton
               labelHorizontal={true}
               key={radio_prop.label + radio_prop.value}
+              style={{ marginBottom: 16 }}
             >
               <RadioButtonInput
                 buttonOuterColor={Colors.WHITE}
@@ -125,42 +101,37 @@ export const SettingsScreen = () => {
         </RadioForm>
       </View>
 
-      <Separator />
+      <View>
+        <Text style={[styles.title, { marginRight: 24 }]}>
+          {translate("darkModeCta")}
+        </Text>
+
+        <Switch
+          trackColor={{ false: Colors.CARD, true: Colors.ORANGE }}
+          thumbColor={Colors.WHITE}
+          onValueChange={toggleSwitch}
+          value={isDarkModeEnabled}
+        />
+      </View>
     </BaseView>
   );
 };
 
 const styles = StyleSheet.create({
-  containerElement: {
-    flexDirection: "row",
-  },
-  containerElementText: {
+  // containerElement: {
+  //   flexDirection: "row",
+  // },
+  title: {
     color: Colors.WHITE,
     fontSize: 20,
     fontWeight: "bold",
-    marginRight: 24,
+    marginBottom: 24,
   },
-  dropDownPicker: {
-    backgroundColor: "white",
-  },
-});
-
-const customPickerStyles = StyleSheet.create({
-  inputIOS: {
-    fontSize: 14,
-    padding: 12,
-    borderWidth: 1,
+  button: {
+    backgroundColor: Colors.CARD,
+    borderBottomWidth: 1,
     borderRadius: 8,
-    borderColor: Colors.WHITE,
-    color: Colors.WHITE,
-  },
-  inputAndroid: {
-    backgroundColor: Colors.ORANGE,
-    color: Colors.WHITE,
-    fontSize: 14,
-    padding: 12,
-    borderWidth: 1,
-    borderColor: Colors.WHITE,
-    width: 240,
+    marginBottom: 4,
+    padding: 8,
   },
 });

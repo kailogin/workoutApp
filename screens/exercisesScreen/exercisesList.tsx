@@ -7,6 +7,7 @@ import { BaseView } from "../../components/baseView";
 import { exercises } from "./utils/exercisesConstants";
 import { ExerciseStackNavProps } from "./utils/exerciseParamList";
 import { Colors } from "../../utils/colors";
+import { BaseStatusBar } from "../../components/baseStatusBar";
 
 export const ExercisesList = ({
   navigation,
@@ -95,6 +96,8 @@ export const ExercisesList = ({
 
   return (
     <BaseView>
+      <BaseStatusBar />
+
       <SearchBar
         searchPhrase={searchPhrase}
         isSearchBarClicked={isSearchBarClicked}
@@ -114,7 +117,9 @@ const styles = StyleSheet.create({
   },
   listElementButton: {
     backgroundColor: Colors.CARD,
-    marginBottom: 8,
+    borderBottomWidth: 1,
+    borderRadius: 8,
+    marginBottom: 6,
   },
   listElement: {
     color: Colors.WHITE,

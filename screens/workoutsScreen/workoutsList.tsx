@@ -1,5 +1,6 @@
 import {
   FlatList,
+  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -10,6 +11,7 @@ import React from "react";
 import { workouts } from "./workoutsConstants";
 import { WorkoutStackNavProps } from "./utils/workoutsParamList";
 import { Colors } from "../../utils/colors";
+import { BaseStatusBar } from "../../components/baseStatusBar";
 
 export const WorkoutList = ({
   navigation,
@@ -19,7 +21,9 @@ export const WorkoutList = ({
   // --- RENDER ---
 
   return (
-    <View style={styles.view_container}>
+    <SafeAreaView style={styles.view_container}>
+      <BaseStatusBar />
+
       <FlatList
         data={workouts}
         keyExtractor={({ title, subtitle }, index) =>
@@ -43,8 +47,9 @@ export const WorkoutList = ({
             </View>
           );
         }}
+        style={{ padding: 40 }}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -26,7 +26,7 @@ export const ModalScreen = () => {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
   },
 });

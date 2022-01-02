@@ -26,7 +26,7 @@ export const NotFoundScreen = ({ navigation }: NotFoundScreenProps) => {
 
 const notFoundScreenStyles = StyleSheet.create({
   title: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
   },
   link: {

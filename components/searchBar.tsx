@@ -74,12 +74,12 @@ const styles = StyleSheet.create({
   },
   inputClicked: {
     borderColor: "#F2994A",
-    fontSize: 20,
+    fontSize: 16,
     marginLeft: 10,
     width: "90%",
   },
   input: {
-    fontSize: 20,
+    fontSize: 16,
     marginLeft: 10,
     width: "90%",
   },

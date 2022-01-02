@@ -1,7 +1,6 @@
 import React, { useCallback, useState, useRef, useEffect } from "react";
 import {
   Vibration,
-  StatusBar,
   TextInput,
   Dimensions,
   Animated,
@@ -9,6 +8,7 @@ import {
   View,
   StyleSheet,
 } from "react-native";
+import { BaseStatusBar } from "../components/baseStatusBar";
 import { Colors } from "../utils/colors";
 
 const { width, height } = Dimensions.get("window");
@@ -108,7 +108,7 @@ export const TimerScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
+      <BaseStatusBar />
 
       <Animated.View
         style={[
@@ -186,7 +186,6 @@ export const TimerScreen = () => {
               ev.nativeEvent.contentOffset.x / ITEM_SIZE
             );
             setDuration(timers[index]);
-            console.log("onMomentumScrollEnd", index);
           }}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { x: scrollX } } }],
