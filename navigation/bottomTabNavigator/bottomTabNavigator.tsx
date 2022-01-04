@@ -60,33 +60,6 @@ export const BottomTabNavigator = () => {
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="fitness-center" size={24} color={color} />
           ),
-          headerRight: () => (
-            <View style={bottomTabNavigatorStyles.container}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Modal")}
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                  marginRight: 16,
-                })}
-              >
-                <MaterialIcons name="add" size={24} color={Colors.WHITE} />
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Workouts")}
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                })}
-              >
-                <MaterialIcons
-                  name="edit"
-                  size={24}
-                  color={Colors.WHITE}
-                  style={{ marginRight: 16 }}
-                />
-              </TouchableOpacity>
-            </View>
-          ),
         })}
       />
 
@@ -128,13 +101,3 @@ export const BottomTabNavigator = () => {
     </BottomTab.Navigator>
   );
 };
-
-const bottomTabNavigatorStyles = StyleSheet.create({
-  container: {
-    borderBottomColor: undefined,
-    backgroundColor: undefined,
-    flex: 1,
-    flexDirection: "row",
-    marginTop: 16,
-  },
-});

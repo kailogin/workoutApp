@@ -10,6 +10,8 @@ export enum Categories {
 
 export type Exercise = {
   category: Categories;
+  description?: string;
   exerciseName: string;
-  // TODO: Add id for filtering and react keys to improve performance
+  id: string;
+  videoLink?: string;
 };

@@ -1,3 +1,4 @@
+import React from "react";
 import {
   FlatList,
   SafeAreaView,
@@ -6,9 +7,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
 
-import { workouts } from "./workoutsConstants";
+import { workouts } from "./utils/workoutsConstants";
 import { WorkoutStackNavProps } from "./utils/workoutsParamList";
 import { Colors } from "../../utils/colors";
 import { BaseStatusBar } from "../../components/baseStatusBar";
@@ -26,23 +26,21 @@ export const WorkoutList = ({
 
       <FlatList
         data={workouts}
-        keyExtractor={({ title, subtitle }, index) =>
-          title + subtitle + index.toString()
-        }
-        renderItem={({ item }) => {
+        keyExtractor={({ id }) => id}
+        renderItem={({ item: { muscleGroups, workoutName, id } }) => {
           return (
             <View style={styles.renderItem_container}>
               <TouchableOpacity
+                key={id}
                 onPress={() => {
                   navigation.navigate("Workout", {
-                    name: item.title,
+                    name: workoutName,
                   });
                 }}
-                key={item.title + item.subtitle + Math.random().toString()}
               >
-                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.workoutName}>{workoutName}</Text>
 
-                <Text style={styles.subtitle}>&#8226; {item.subtitle}</Text>
+                <Text style={styles.subtitle}>&#8226; {muscleGroups}</Text>
               </TouchableOpacity>
             </View>
           );
@@ -61,6 +59,9 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     padding: 8,
   },
+  // "renderItem_container:last-child": {
+  //   marginBottom: 40,
+  // },
   view_container: {
     backgroundColor: Colors.BLACK,
     flex: 1,
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     margin: 32,
     marginTop: 56,
   },
-  title: {
+  workoutName: {
     color: Colors.WHITE,
     fontSize: 20,
     fontWeight: "bold",

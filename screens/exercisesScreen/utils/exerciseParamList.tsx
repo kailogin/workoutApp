@@ -2,10 +2,7 @@ import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type ExerciseParamList = {
-  Edit: {
-    name: string;
-    // submit?: React.MutableRefObject<() => void>;
-  };
+  AddExercise: undefined;
   Exercise: {
     name: string;
   };

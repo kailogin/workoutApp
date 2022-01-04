@@ -2,8 +2,20 @@ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import {
   NavigatorScreenParams,
   CompositeScreenProps,
+  ParamListBase,
+  StackNavigationState,
+  TypedNavigator,
 } from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import {
+  NativeStackNavigationOptions,
+  NativeStackScreenProps,
+} from "@react-navigation/native-stack";
+import {
+  NativeStackNavigationEventMap,
+  NativeStackNavigatorProps,
+} from "@react-navigation/native-stack/lib/typescript/src/types";
+import { ExerciseParamList } from "../../screens/exercisesScreen/utils/exerciseParamList";
+import { WorkoutsParamList } from "../../screens/workoutsScreen/utils/workoutsParamList";
 
 declare global {
   namespace ReactNavigation {
@@ -45,3 +57,19 @@ export type BottomTabParamList = {
   Timer: undefined;
   Workouts: undefined;
 };
+
+export type StackType<
+  T extends WorkoutsParamList | ExerciseParamList
+> = TypedNavigator<
+  T,
+  StackNavigationState<ParamListBase>,
+  NativeStackNavigationOptions,
+  NativeStackNavigationEventMap,
+  ({
+    initialRouteName,
+    children,
+    screenListeners,
+    screenOptions,
+    ...rest
+  }: NativeStackNavigatorProps) => JSX.Element
+>;

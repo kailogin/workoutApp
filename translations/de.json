@@ -5,8 +5,20 @@
     "timer": "Timer"
   },
   "bottomTabNav": {
-    "workouts": "Workouts",
+    "workouts": "Trainings",
     "settings": "Einstellungen",
     "exercises": "Übungen"
+  },
+  "exercises": {
+    "noExerciseFound": "Oops, bitte wähle die Übung erneut aus.",
+    "headerExercisesList": "Übungen",
+    "headerEditExercisesList": "Übungen bearbeiten",
+    "headerAddExercise": "Übung hinzufügen"
+  },
+  "workouts": {
+    "noWorkoutFound": "Oops, bitte wähle das Training erneut aus.",
+    "headerWorkoutsList": "Trainings",
+    "headerEditWorkoutsList": "Trainings bearbeiten",
+    "headerAddWorkout": "Training hinzufügen"
   }
 }

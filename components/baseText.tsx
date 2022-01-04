@@ -1,12 +1,14 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, TextStyle } from "react-native";
 
 import { Colors } from "../utils/colors";
 
-interface BaseTextProps {}
+interface BaseTextProps {
+  style?: TextStyle;
+}
 
-export const BaseText: React.FC<BaseTextProps> = ({ children }) => {
-  return <Text style={styles.text}>{children}</Text>;
+export const BaseText: React.FC<BaseTextProps> = ({ children, style }) => {
+  return <Text style={[styles.text, style]}>{children}</Text>;
 };
 
 const styles = StyleSheet.create({

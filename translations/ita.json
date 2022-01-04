@@ -8,5 +8,17 @@
     "workouts": "Allenamenti",
     "settings": "Impostazioni",
     "exercises": "Esercizi"
+  },
+  "exercises": {
+    "noExerciseFound": "Oops, per favore seleziona di nuovo l'esercizio.",
+    "headerExercisesList": "Esercizi",
+    "headerEditExercisesList": "Modifica Esercizi",
+    "headerAddExercise": "Aggiungi Esercizi"
+  },
+  "workouts": {
+    "noWorkoutFound": "Oops, per favore seleziona di nuovo Allenamenti.",
+    "headerWorkoutsList": "Allenamenti",
+    "headerEditWorkoutsList": "Modifica Allenamenti",
+    "headerAddWorkout": "Aggiungi Allenamenti"
   }
 }

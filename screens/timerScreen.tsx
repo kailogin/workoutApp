@@ -192,8 +192,6 @@ export const TimerScreen = () => {
             { useNativeDriver: true }
           )}
           renderItem={({ item, index }) => {
-            console.log("renderItem", index);
-
             const inputRange = [
               (index - 1) * ITEM_SIZE,
               index * ITEM_SIZE,

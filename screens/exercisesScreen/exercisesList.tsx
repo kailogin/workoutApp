@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 
-import { Exercise, Categories } from "./utils/exerciseTypes";
+import { Exercise } from "./utils/exerciseTypes";
 import { SearchBar } from "../../components/searchBar";
 import { BaseView } from "../../components/baseView";
 import { exercises } from "./utils/exercisesConstants";
@@ -26,11 +26,11 @@ export const ExercisesList = ({
     }
 
     const newExercises: Exercise[] = exercises.filter(
-      (object: Exercise) =>
-        object.category
+      (exercise: Exercise) =>
+        exercise.category
           .toUpperCase()
           .includes(searchPhrase.toUpperCase().trim().replace(/\s/g, "")) ||
-        object.exerciseName
+        exercise.exerciseName
           .toUpperCase()
           .includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))
     );
@@ -55,25 +55,17 @@ export const ExercisesList = ({
         .map((key) => [key, groupedExercises[key]])
         .map((category, index: number) => {
           const exercises = category[1].map(
-            (
-              exercise: { category: Categories; exerciseName: string },
-              index: number
-            ) => (
-              // TODO: Fix the path here.
+            ({ id, exerciseName: name }: Exercise, index: number) => (
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("Exercise", {
-                    name: exercise.exerciseName,
+                    name,
                   })
                 }
-                key={
-                  exercise.exerciseName +
-                  index.toString() +
-                  Math.random().toString()
-                }
+                key={id}
                 style={styles.listElementButton}
               >
-                <Text style={styles.listElement}>{exercise.exerciseName}</Text>
+                <Text style={styles.listElement}>{name}</Text>
               </TouchableOpacity>
             )
           );
