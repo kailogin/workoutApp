@@ -59,9 +59,6 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     padding: 8,
   },
-  // "renderItem_container:last-child": {
-  //   marginBottom: 40,
-  // },
   view_container: {
     backgroundColor: Colors.BLACK,
     flex: 1,

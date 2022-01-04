@@ -5,13 +5,14 @@ import {
   StyleSheet,
   Text,
   SafeAreaView,
+  View,
 } from "react-native";
 
 import { BaseText } from "../../../components/baseText";
-import { BaseView } from "../../../components/baseView";
 import { Colors } from "../../../utils/colors";
 import { WorkoutStackNavProps } from "../utils/workoutsParamList";
 import { workouts } from "../utils/workoutsConstants";
+import { Separator } from "../../../components/separator";
 
 interface WorkoutProps extends WorkoutStackNavProps<"Workout"> {}
 
@@ -41,52 +42,63 @@ export const Workout: React.FC<WorkoutProps> = ({
   const { workoutName, muscleGroups, exercises } = selectedWorkout;
 
   return (
-    <BaseView>
-      <BaseText
-        style={{
-          fontSize: 40,
-          marginBottom: 40,
-          textDecorationColor: Colors.ORANGE,
-          textDecorationLine: "underline",
-          textDecorationStyle: "solid",
-        }}
-      >
-        {workoutName}
-      </BaseText>
+    <SafeAreaView style={styles.safe_area_container}>
+      <View style={styles.viewContainer}>
+        <BaseText
+          style={{
+            fontSize: 40,
+            marginBottom: 40,
+            textDecorationColor: Colors.ORANGE,
+            textDecorationLine: "underline",
+            textDecorationStyle: "solid",
+          }}
+        >
+          {workoutName}
+        </BaseText>
 
-      <BaseText
-        style={{
-          fontSize: 24,
-          marginBottom: 32,
-        }}
-      >
-        {muscleGroups}
-      </BaseText>
+        <BaseText
+          style={{
+            fontSize: 24,
+          }}
+        >
+          {muscleGroups}
+        </BaseText>
 
-      <FlatList
-        data={exercises}
-        keyExtractor={({ id }) => id}
-        renderItem={({ item: { exerciseName, id } }) => {
-          return (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("WorkoutExercise", {
-                  name: exerciseName,
-                })
-              }
-              key={id}
-              style={styles.listElementButton}
-            >
-              <Text style={styles.listElement}>{exerciseName}</Text>
-            </TouchableOpacity>
-          );
-        }}
-      />
-    </BaseView>
+        <Separator />
+
+        <FlatList
+          data={exercises}
+          keyExtractor={({ id }) => id}
+          renderItem={({ item: { exerciseName, id } }) => {
+            return (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("WorkoutExercise", {
+                    name: exerciseName,
+                  })
+                }
+                key={id}
+                style={styles.listElementButton}
+              >
+                <Text style={styles.listElement}>{exerciseName}</Text>
+              </TouchableOpacity>
+            );
+          }}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safe_area_container: {
+    flex: 1,
+  },
+  viewContainer: {
+    backgroundColor: Colors.BLACK,
+    flex: 1,
+    padding: 40,
+  },
   listElementButton: {
     backgroundColor: Colors.CARD,
     borderBottomWidth: 1,
