@@ -1,20 +1,32 @@
-import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import "./i18n.config";
 
 import useCachedResources from "./hooks/useCachedResources";
-// import useColorScheme from "./hooks/useColorScheme";
 import { Navigation } from "./navigation";
 import { SplashScreen } from "./screens/splashScreen";
-import { RootStore } from "./stores/store";
 import { AuthProvider } from "./components/authProvider/authProvider";
+import { PersistGate } from "redux-persist/integration/react";
+import { createStore } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import { RootState } from "./stores/rootStore/rootTypes";
+import { rootReducer } from "./stores/rootStore/rootReducer";
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer);
+
+const store = createStore(persistedReducer);
+const persistor = persistStore(store);
 
 export default function App() {
   // --- STATE ---
 
   const isLoadingComplete = useCachedResources();
-  // const colorScheme = useColorScheme();
 
   // --- RENDER ---
 
@@ -25,11 +37,10 @@ export default function App() {
   return (
     <SafeAreaProvider>
       {/* <AuthProvider> */}
-      <Provider store={RootStore}>
-        {/* <Navigation colorScheme={colorScheme} /> */}
-        <Navigation />
-
-        <StatusBar />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Navigation />
+        </PersistGate>
       </Provider>
       {/* </AuthProvider> */}
     </SafeAreaProvider>

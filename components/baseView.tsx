@@ -1,19 +1,26 @@
 import React, { ReactNode } from "react";
-import { ScrollView, View, StyleSheet, SafeAreaView } from "react-native";
+import {
+  ScrollView,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  ViewStyle,
+} from "react-native";
 
 import { Colors } from "../utils/colors";
 import { BaseStatusBar } from "./baseStatusBar";
 
 interface BaseViewProps {
+  baseViewStyle: ViewStyle;
   children: ReactNode;
 }
 
-export const BaseView = ({ children }: BaseViewProps) => {
+export const BaseView = ({ baseViewStyle, children }: BaseViewProps) => {
   return (
     <SafeAreaView style={styles.safe_area_container}>
       <BaseStatusBar />
 
-      <View style={styles.container}>
+      <View style={[styles.container, baseViewStyle]}>
         <ScrollView>{children}</ScrollView>
       </View>
     </SafeAreaView>

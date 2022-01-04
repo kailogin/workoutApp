@@ -1,6 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { TouchableOpacity, StyleSheet, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 
@@ -10,11 +9,12 @@ import {
 } from "../utils/navigationTypes";
 import { TimerScreen } from "../../screens/timerScreen";
 import { SettingsScreen } from "../../screens/settingsScreen/settingsScreen";
-import { useAppSelector } from "../../utils/hooks";
-import { RootState } from "../../stores/store";
 import { ExercisesStack } from "../../screens/exercisesScreen/exercisesStack";
 import { WorkoutsStack } from "../../screens/workoutsScreen/workoutsStack";
 import { Colors } from "../../utils/colors";
+import { OnboardingScreen } from "../../screens/onboarding";
+import { RootState } from "../../stores/rootStore/rootTypes";
+import { useAppSelector } from "../../stores/rootStore/rootStore";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -25,17 +25,20 @@ export const BottomTabNavigator = () => {
 
   // --- STATE ---
 
-  // const colorScheme = useColorScheme();
+  const isFirstVisit = useAppSelector(
+    ({ user }: RootState) => user.isFirstVisit
+  );
 
-  const isFirstVisit = useAppSelector(({ user }: RootState) => user.firstVisit);
-  // console.log(isFirstVisit);
+  console.log(isFirstVisit);
   // https://github.com/expo/examples
 
   // --- RENDER ---
 
-  // if (isFirstVisit) {
-  //   return <HomeScreen />;
-  // }
+  if (isFirstVisit) {
+    return <OnboardingScreen />;
+  }
+
+  // window.localStorage.clear();
 
   return (
     <BottomTab.Navigator

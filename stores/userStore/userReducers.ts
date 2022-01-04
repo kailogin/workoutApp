@@ -1,22 +1,19 @@
-import { UserFirstVisitAction } from "./userActions";
+import { RootAction } from "../rootStore/rootTypes";
+import { UserState } from "./userState";
 
-interface State {
-  firstVisit: boolean;
-}
-
-const initialState = {
-  firstVisit: true,
+const initialUserState = {
+  isFirstVisit: true,
 };
 
 export const userReducer = (
-  state: State = initialState,
-  action: UserFirstVisitAction
-) => {
+  state: UserState = initialUserState,
+  action: RootAction
+): UserState => {
   switch (action.type) {
-    case "SET_FIRST_VISITED_STATE_FALSE":
+    case "SET_FIRST_VISITED_STATE":
       return {
         ...state,
-        firstVisit: action.payload,
+        isFirstVisit: action.payload,
       };
     default:
       return state;
