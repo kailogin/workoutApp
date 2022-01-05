@@ -12,6 +12,8 @@ import { OnboardingScreen } from "../screens/onboardingScreen/onboardingScreen";
 import { useAppDispatch, useAppSelector } from "../stores/rootStore/rootStore";
 import { RootState } from "../stores/rootStore/rootTypes";
 import { setFirstVisitedStateFalse } from "../stores/userStore/userActions";
+import { View } from "react-native";
+import { Colors } from "../utils/colors";
 
 export const Navigation = () => {
   const dispatch = useAppDispatch();
@@ -31,7 +33,11 @@ export const Navigation = () => {
   // --- RENDER ---
 
   if (isFirstVisit) {
-    return <OnboardingScreen handleFinishTour={handleFinishTour} />;
+    return (
+      <View style={{ backgroundColor: Colors.ONBOARDING_BG, flex: 1 }}>
+        <OnboardingScreen handleFinishTour={handleFinishTour} />
+      </View>
+    );
   }
 
   return (

@@ -1,5 +1,3 @@
-import { Colors } from "../../../utils/colors";
-
 type OnboardingSlides = {
   image: any;
   key: string;
@@ -9,22 +7,22 @@ type OnboardingSlides = {
 
 export const onboardingSlides: OnboardingSlides[] = [
   {
-    image: require("../../../images/hiking.svg"),
+    image: require("../../../assets/images/hiking.svg"),
     key: "one",
     title: "Welcome to \nKraft",
   },
   {
-    image: require("../../../images/workout.svg"),
+    image: require("../../../assets/images/workout.svg"),
     key: "two",
     title: "Track your \n workouts",
   },
   {
-    image: require("../../../images/run.svg"),
+    image: require("../../../assets/images/run.svg"),
     key: "three",
     title: "Track your runs",
   },
   {
-    image: require("../../../images/track.svg"),
+    image: require("../../../assets/images/track.svg"),
     key: "four",
     title: "Export your workouts",
   },

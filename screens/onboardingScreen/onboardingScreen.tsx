@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 380,
-    marginVertical: 32,
+    marginBottom: 16,
     transform: [{ scale: 0.75 }],
     width: "100%",
   },
@@ -84,13 +84,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colors.ONBOARDING_BG,
     justifyContent: "center",
-    minHeight: "100vh",
   },
   title: {
     color: Colors.ONBOARDING_TEXT,
     fontSize: 40,
     fontWeight: "bold",
-    marginBottom: 32,
     textAlign: "center",
   },
 });

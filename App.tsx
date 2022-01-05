@@ -9,13 +9,14 @@ import { AuthProvider } from "./components/authProvider/authProvider";
 import { PersistGate } from "redux-persist/integration/react";
 import { createStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { RootState } from "./stores/rootStore/rootTypes";
 import { rootReducer } from "./stores/rootStore/rootReducer";
 
 const persistConfig = {
   key: "root",
-  storage,
+  storage: AsyncStorage,
 };
 
 const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer);
