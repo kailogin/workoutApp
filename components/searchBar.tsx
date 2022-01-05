@@ -1,6 +1,8 @@
 import { SetStateAction, Dispatch } from "react";
 import { StyleSheet, TextInput, View, Keyboard } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
+
 import { Colors } from "../utils/colors";
 
 interface SearchBarProps {
@@ -16,6 +18,8 @@ export const SearchBar = ({
   setSearchPhrase,
   setIsSearchBarClicked,
 }: SearchBarProps) => {
+  const { t } = useTranslation();
+
   // --- RENDER ---
 
   return (
@@ -33,7 +37,7 @@ export const SearchBar = ({
           onFocus={() => {
             setIsSearchBarClicked(true);
           }}
-          placeholder="Search"
+          placeholder={t("searchBarPlaceholder")}
           style={isSearchBarClicked ? styles.inputClicked : styles.input}
           value={searchPhrase}
         />
@@ -79,7 +83,7 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   input: {
-    fontSize: 16,
+    fontSize: 12,
     marginLeft: 10,
     width: "90%",
   },

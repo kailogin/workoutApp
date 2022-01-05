@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Switch, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Switch, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import RadioForm, {
   RadioButton,
@@ -8,12 +8,10 @@ import RadioForm, {
 } from "react-native-simple-radio-button";
 
 import { Languages } from "../../utils/types";
-import i18n, {
-  LanguagesType,
-  mapLanguageCodeToLanguage,
-} from "../../i18n.config";
+import i18n, { LanguagesType } from "../../i18n.config";
 import { BaseView } from "../../components/baseView";
 import { Colors } from "../../utils/colors";
+import { Separator } from "../../components/separator";
 
 export const SettingsScreen = () => {
   const { t } = useTranslation();
@@ -83,8 +81,8 @@ export const SettingsScreen = () => {
                 index={radio_prop.value}
                 isSelected={selectedIndex === radio_prop.value}
                 onPress={handleRadioButtonPress}
-                buttonSize={10}
-                buttonOuterSize={25}
+                buttonSize={8}
+                buttonOuterSize={16}
                 buttonWrapStyle={{ marginLeft: 10 }}
               />
 
@@ -93,13 +91,15 @@ export const SettingsScreen = () => {
                 index={radio_prop.value + 10}
                 labelHorizontal={true}
                 onPress={handleRadioButtonPress}
-                labelStyle={{ fontSize: 16, color: Colors.WHITE }}
+                labelStyle={{ fontSize: 12, color: Colors.WHITE }}
                 labelWrapStyle={{}}
               />
             </RadioButton>
           ))}
         </RadioForm>
       </View>
+
+      <Separator widthPercentage={100} />
 
       <View>
         <Text style={[styles.title, { marginRight: 24 }]}>
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   // },
   title: {
     color: Colors.WHITE,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
     marginBottom: 24,
   },

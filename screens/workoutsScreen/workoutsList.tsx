@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   FlatList,
   SafeAreaView,
@@ -7,18 +7,20 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import { WorkoutStackNavProps } from "./utils/workoutsParamList";
 import { Colors } from "../../utils/colors";
 import { BaseStatusBar } from "../../components/baseStatusBar";
 import { useAppSelector } from "../../stores/rootStore/rootStore";
+import { RootState } from "../../stores/rootStore/rootTypes";
 
 export const WorkoutList = ({
   navigation,
 }: WorkoutStackNavProps<"WorkoutList">) => {
   // --- STATE ---
 
-  const workouts = useAppSelector(({ workout }) => workout);
+  const workouts = useAppSelector(({ workout }: RootState) => workout);
 
   // --- RENDER ---
 
@@ -40,26 +42,36 @@ export const WorkoutList = ({
                   });
                 }}
               >
-                <Text style={styles.workoutName}>{workoutName}</Text>
+                <View style={styles.container}>
+                  <Text style={styles.workoutName}>{workoutName}</Text>
+
+                  <MaterialIcons name="info" size={24} color={Colors.WHITE} />
+                </View>
 
                 <Text style={styles.subtitle}>&#8226; {muscleGroups}</Text>
               </TouchableOpacity>
             </View>
           );
         }}
-        style={{ marginBottom: 40, padding: 40 }}
+        style={{ marginBottom: 32, padding: 40 }}
       />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: undefined,
+    borderBottomColor: undefined,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
   renderItem_container: {
     backgroundColor: Colors.CARD,
     borderBottomWidth: 1,
     borderRadius: 8,
     marginBottom: 4,
-    padding: 8,
+    padding: 16,
   },
   view_container: {
     backgroundColor: Colors.BLACK,
@@ -75,15 +87,14 @@ const styles = StyleSheet.create({
   },
   workoutName: {
     color: Colors.WHITE,
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
     marginBottom: 8,
     marginLeft: 24,
   },
   subtitle: {
     color: Colors.WHITE,
-    fontSize: 16,
-    marginBottom: 24,
+    fontSize: 12,
     marginLeft: 32,
   },
 });

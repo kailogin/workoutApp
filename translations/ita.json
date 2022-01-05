@@ -20,5 +20,6 @@
     "headerWorkoutsList": "Allenamenti",
     "headerEditWorkoutsList": "Modifica Allenamenti",
     "headerAddWorkout": "Aggiungi Allenamenti"
-  }
+  },
+  "searchBarPlaceholder": "Cercare"
 }

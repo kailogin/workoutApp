@@ -52,12 +52,6 @@ export const WorkoutsStack: React.FC<WorkoutsStackProps> = ({}) => {
           headerRight: () => (
             <TouchableOpacity
               onPress={() => {
-                // onPress: dispatch workout information to redux store (save it) and
-                // then return to WorkoutList screen?
-                //   if (route.params.submit) {
-                //     route.params.submit?.current();
-                //   }
-                // }
                 navigation.navigate("WorkoutList");
               }}
             >

@@ -1,15 +1,5 @@
 import React, { useState, useMemo } from "react";
-import {
-  TypedNavigator,
-  StackNavigationState,
-  ParamListBase,
-} from "@react-navigation/native";
-import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
-import {
-  NativeStackNavigationEventMap,
-  NativeStackNavigationProp,
-  NativeStackNavigatorProps,
-} from "@react-navigation/native-stack/lib/typescript/src/types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack/lib/typescript/src/types";
 import { useTranslation } from "react-i18next";
 import { MaterialIcons } from "@expo/vector-icons";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
@@ -20,21 +10,11 @@ import {
 } from "../utils/workoutsParamList";
 import { WorkoutList } from "../workoutsList";
 import { Colors } from "../../../utils/colors";
+import { StackType } from "../../../navigation/utils/navigationTypes";
+import { BaseModal } from "../../../components/baseModal";
 
 interface WorkoutListStackProps {
-  Stack: TypedNavigator<
-    WorkoutsParamList,
-    StackNavigationState<ParamListBase>,
-    NativeStackNavigationOptions,
-    NativeStackNavigationEventMap,
-    ({
-      initialRouteName,
-      children,
-      screenListeners,
-      screenOptions,
-      ...rest
-    }: NativeStackNavigatorProps) => JSX.Element
-  >;
+  Stack: StackType<WorkoutsParamList>;
 }
 
 export const addWorkoutListStack = ({ Stack }: WorkoutListStackProps) => {
@@ -43,6 +23,7 @@ export const addWorkoutListStack = ({ Stack }: WorkoutListStackProps) => {
   // --- STATE ---
 
   const [isEditWorkoutsClicked, setIsEditWorkoutsClicked] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   // --- HELPERS ---
 
@@ -77,7 +58,7 @@ export const addWorkoutListStack = ({ Stack }: WorkoutListStackProps) => {
 
       return (
         <View style={styles.container}>
-          <TouchableOpacity onPress={() => navigation.navigate("AddWorkout")}>
+          <TouchableOpacity onPress={() => setIsModalVisible(true)}>
             <MaterialIcons
               name="add"
               size={24}
@@ -110,7 +91,6 @@ export const addWorkoutListStack = ({ Stack }: WorkoutListStackProps) => {
 
   return (
     <Stack.Screen
-      component={WorkoutList}
       // TODO: Here muss ich den ExercisesList Screen rendern mit den roten Icons -> oder ich kann den state runter passen
       name="WorkoutList"
       options={({
@@ -124,7 +104,17 @@ export const addWorkoutListStack = ({ Stack }: WorkoutListStackProps) => {
         headerRight: () => headerRight(navigation),
         title: "Workouts",
       })}
-    />
+    >
+      {({ navigation, route }: WorkoutStackNavProps<"WorkoutList">) => (
+        <View style={{ flex: 1, backgroundColor: Colors.BLACK }}>
+          <WorkoutList navigation={navigation} route={route} />
+          <BaseModal
+            isVisible={isModalVisible}
+            setIsVisible={setIsModalVisible}
+          />
+        </View>
+      )}
+    </Stack.Screen>
   );
 };
 
@@ -133,5 +123,10 @@ const styles = StyleSheet.create({
     backgroundColor: undefined,
     borderBottomColor: undefined,
     flexDirection: "row",
+  },
+  renderItem_container: {
+    backgroundColor: Colors.BLACK,
+    flex: 1,
+    padding: 40,
   },
 });

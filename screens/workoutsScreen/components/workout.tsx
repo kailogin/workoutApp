@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   View,
 } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
 import { BaseText } from "../../../components/baseText";
 import { Colors } from "../../../utils/colors";
@@ -50,8 +51,8 @@ export const Workout: React.FC<WorkoutProps> = ({
       <View style={styles.viewContainer}>
         <BaseText
           style={{
-            fontSize: 40,
-            marginBottom: 40,
+            fontSize: 24,
+            marginBottom: 24,
             textDecorationColor: Colors.ORANGE,
             textDecorationLine: "underline",
             textDecorationStyle: "solid",
@@ -62,30 +63,57 @@ export const Workout: React.FC<WorkoutProps> = ({
 
         <BaseText
           style={{
-            fontSize: 24,
+            fontSize: 16,
           }}
         >
           {muscleGroups}
         </BaseText>
 
-        <Separator />
+        <Separator widthPercentage={60} />
 
         <FlatList
           data={exercises}
           keyExtractor={({ id }) => id}
           renderItem={({ item: { exerciseName, id } }) => {
             return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("WorkoutExercise", {
-                    name: exerciseName,
-                  })
-                }
-                key={id}
-                style={styles.listElementButton}
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-around",
+                }}
               >
-                <Text style={styles.listElement}>{exerciseName}</Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("WorkoutExercise", {
+                      name: exerciseName,
+                    })
+                  }
+                  key={id}
+                  style={styles.listElementButton}
+                >
+                  <Text
+                    style={styles.listElement}
+                    onPress={() =>
+                      navigation.navigate("WorkoutExercise", {
+                        name: exerciseName,
+                      })
+                    }
+                  >
+                    {exerciseName}
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => console.log("Show me alternatives")}
+                >
+                  <AntDesign
+                    name="downcircleo"
+                    size={24}
+                    color={Colors.WHITE}
+                    style={{ padding: 8 }}
+                  />
+                </TouchableOpacity>
+              </View>
             );
           }}
         />
@@ -104,14 +132,16 @@ const styles = StyleSheet.create({
     padding: 40,
   },
   listElementButton: {
+    // alignItems: "center",
     backgroundColor: Colors.CARD,
     borderBottomWidth: 1,
     borderRadius: 8,
     marginBottom: 6,
+    width: "90%",
   },
   listElement: {
     color: Colors.WHITE,
-    fontSize: 18,
+    fontSize: 12,
     marginBottom: 8,
     marginLeft: 8,
     padding: 8,

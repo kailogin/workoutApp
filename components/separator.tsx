@@ -1,8 +1,15 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+
 import { Colors } from "../utils/colors";
 
-export const Separator = () => <View style={styles.separator} />;
+interface SeparatorProps {
+  widthPercentage?: number;
+}
+
+export const Separator = ({ widthPercentage: width }: SeparatorProps) => (
+  <View style={[styles.separator, { width: `${width}%` }]} />
+);
 
 const styles = StyleSheet.create({
   separator: {

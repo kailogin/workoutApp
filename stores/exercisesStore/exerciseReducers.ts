@@ -24,6 +24,4 @@ export const exerciseReducer = (
     default:
       return state;
   }
-
-  return state;
 };

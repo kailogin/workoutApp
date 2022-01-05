@@ -8,6 +8,7 @@ import { ExerciseStackNavProps } from "./utils/exerciseParamList";
 import { Colors } from "../../utils/colors";
 import { BaseStatusBar } from "../../components/baseStatusBar";
 import { useAppSelector } from "../../stores/rootStore/rootStore";
+import { RootState } from "../../stores/rootStore/rootTypes";
 
 export const ExercisesList = ({
   navigation,
@@ -18,7 +19,7 @@ export const ExercisesList = ({
   const [searchPhrase, setSearchPhrase] = useState("");
   const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
 
-  const exercises = useAppSelector(({ exercise }) => exercise);
+  const exercises = useAppSelector(({ exercise }: RootState) => exercise);
 
   // --- MEMOIZED DATA ---
 
@@ -114,22 +115,22 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderRadius: 8,
     marginBottom: 6,
+    width: "90%",
   },
   listElement: {
     color: Colors.WHITE,
-    fontSize: 18,
+    fontSize: 14,
     marginBottom: 8,
     marginLeft: 8,
     padding: 8,
   },
   listGroupContainer: {
-    // flex: 1,
     marginBottom: 16,
   },
   title: {
     color: Colors.WHITE,
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 32,
+    marginBottom: 16,
   },
 });

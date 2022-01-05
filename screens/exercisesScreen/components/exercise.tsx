@@ -51,7 +51,7 @@ export const Exercise: React.FC<ExerciseProps> = ({
     <BaseView>
       <BaseText
         style={{
-          fontSize: 40,
+          fontSize: 24,
           marginBottom: 40,
           textDecorationColor: Colors.ORANGE,
           textDecorationLine: "underline",
@@ -63,7 +63,7 @@ export const Exercise: React.FC<ExerciseProps> = ({
 
       <BaseText
         style={{
-          fontSize: 24,
+          fontSize: 18,
           marginBottom: 32,
         }}
       >
@@ -73,7 +73,7 @@ export const Exercise: React.FC<ExerciseProps> = ({
       {/* {description && ( */}
       <BaseText
         style={{
-          fontSize: 24,
+          fontSize: 14,
           marginBottom: 32,
         }}
       >

@@ -1,10 +1,6 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
-import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { View } from "react-native";
 
 import LinkingConfiguration from "./utils/LinkingConfiguration";
 import { BottomTabNavigator } from "./bottomTabNavigator/bottomTabNavigator";
@@ -12,7 +8,6 @@ import { OnboardingScreen } from "../screens/onboardingScreen/onboardingScreen";
 import { useAppDispatch, useAppSelector } from "../stores/rootStore/rootStore";
 import { RootState } from "../stores/rootStore/rootTypes";
 import { setFirstVisitedStateFalse } from "../stores/userStore/userActions";
-import { View } from "react-native";
 import { Colors } from "../utils/colors";
 
 export const Navigation = () => {
