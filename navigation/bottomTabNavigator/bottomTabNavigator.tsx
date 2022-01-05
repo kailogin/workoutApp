@@ -12,33 +12,17 @@ import { SettingsScreen } from "../../screens/settingsScreen/settingsScreen";
 import { ExercisesStack } from "../../screens/exercisesScreen/exercisesStack";
 import { WorkoutsStack } from "../../screens/workoutsScreen/workoutsStack";
 import { Colors } from "../../utils/colors";
-import { OnboardingScreen } from "../../screens/onboarding";
-import { RootState } from "../../stores/rootStore/rootTypes";
-import { useAppSelector } from "../../stores/rootStore/rootStore";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export const BottomTabNavigator = () => {
   const { t } = useTranslation();
 
+  // --- HELPERS ---
+
   const translate = (key: string) => t(`bottomTabNav.${key}`);
 
-  // --- STATE ---
-
-  const isFirstVisit = useAppSelector(
-    ({ user }: RootState) => user.isFirstVisit
-  );
-
-  console.log(isFirstVisit);
-  // https://github.com/expo/examples
-
   // --- RENDER ---
-
-  if (isFirstVisit) {
-    return <OnboardingScreen />;
-  }
-
-  // window.localStorage.clear();
 
   return (
     <BottomTab.Navigator
