@@ -11,8 +11,8 @@ import {
 import { BaseText } from "../../../components/baseText";
 import { Colors } from "../../../utils/colors";
 import { WorkoutStackNavProps } from "../utils/workoutsParamList";
-import { workouts } from "../utils/workoutsConstants";
 import { Separator } from "../../../components/separator";
+import { useAppSelector } from "../../../stores/rootStore/rootStore";
 
 interface WorkoutProps extends WorkoutStackNavProps<"Workout"> {}
 
@@ -20,6 +20,10 @@ export const Workout: React.FC<WorkoutProps> = ({
   navigation,
   route,
 }: WorkoutStackNavProps<"Workout">) => {
+  // --- STATE ---
+
+  const workouts = useAppSelector(({ workout }) => workout);
+
   // --- MEMOIZED DATA ---
 
   const selectedWorkout = useMemo(

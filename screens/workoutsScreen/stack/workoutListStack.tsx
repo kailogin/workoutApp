@@ -77,12 +77,7 @@ export const addWorkoutListStack = ({ Stack }: WorkoutListStackProps) => {
 
       return (
         <View style={styles.container}>
-          <TouchableOpacity
-            onPress={() =>
-              // TODO: fix the name prop
-              navigation.navigate("AddWorkout")
-            }
-          >
+          <TouchableOpacity onPress={() => navigation.navigate("AddWorkout")}>
             <MaterialIcons
               name="add"
               size={24}

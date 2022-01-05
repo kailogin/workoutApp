@@ -1,21 +1,29 @@
-import { RootAction } from "../rootStore/rootTypes";
-import { ExerciseState } from "./exerciseState";
-
-const initialExerciseState = {};
+import {
+  ExerciseAction,
+  initialExercisesState,
+  ExerciseState,
+} from "./exerciseTypes";
 
 export const exerciseReducer = (
-  state: ExerciseState = initialExerciseState,
-  action: RootAction
+  state: ExerciseState = initialExercisesState,
+  action: ExerciseAction
 ): ExerciseState => {
-  // switch (action.type) {
-  //   case "SET_FIRST_VISITED_STATE":
-  //     return {
-  //       ...state,
-  //       isFirstVisit: action.payload,
-  //     };
-  //   default:
-  //     return state;
-  // }
+  switch (action.type) {
+    case "ADD_NEW_EXERCISE":
+      return {
+        ...state,
+      };
+    case "DELETE_EXERCISE":
+      return {
+        ...state,
+      };
+    case "MODIFY_EXERCISE":
+      return {
+        ...state,
+      };
+    default:
+      return state;
+  }
 
   return state;
 };

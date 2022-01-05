@@ -11,7 +11,7 @@ import { Colors } from "../utils/colors";
 import { BaseStatusBar } from "./baseStatusBar";
 
 interface BaseViewProps {
-  baseViewStyle: ViewStyle;
+  baseViewStyle?: ViewStyle;
   children: ReactNode;
 }
 

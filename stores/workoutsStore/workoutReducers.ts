@@ -1,21 +1,29 @@
-import { RootAction } from "../rootStore/rootTypes";
-import { WorkoutState } from "./workoutState";
-
-const initialWorkoutState = {};
+import {
+  WorkoutAction,
+  initialWorkoutState,
+  WorkoutState,
+} from "./workoutsTypes";
 
 export const workoutReducer = (
   state: WorkoutState = initialWorkoutState,
-  action: RootAction
+  action: WorkoutAction
 ): WorkoutState => {
-  // switch (action.type) {
-  //   case "SET_FIRST_VISITED_STATE":
-  //     return {
-  //       ...state,
-  //       isFirstVisit: action.payload,
-  //     };
-  //   default:
-  //     return state;
-  // }
+  switch (action.type) {
+    case "ADD_NEW_WORKOUT":
+      return {
+        ...state,
+      };
+    case "DELETE_WORKOUT":
+      return {
+        ...state,
+      };
+    case "MODIFY_WORKOUT":
+      return {
+        ...state,
+      };
+    default:
+      return state;
+  }
 
   return state;
 };

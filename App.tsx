@@ -5,11 +5,11 @@ import "./i18n.config";
 import useCachedResources from "./hooks/useCachedResources";
 import { Navigation } from "./navigation";
 import { SplashScreen } from "./screens/splashScreen";
-import { AuthProvider } from "./components/authProvider/authProvider";
 import { PersistGate } from "redux-persist/integration/react";
-import { createStore } from "@reduxjs/toolkit";
+import { createStore, applyMiddleware } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 import { RootState } from "./stores/rootStore/rootTypes";
 import { rootReducer } from "./stores/rootStore/rootReducer";
@@ -21,7 +21,10 @@ const persistConfig = {
 
 const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer);
 
-const store = createStore(persistedReducer);
+const store = createStore(
+  persistedReducer,
+  composeWithDevTools(applyMiddleware())
+);
 const persistor = persistStore(store);
 
 export default function App() {

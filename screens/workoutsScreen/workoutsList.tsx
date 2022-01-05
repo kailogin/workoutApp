@@ -8,15 +8,17 @@ import {
   View,
 } from "react-native";
 
-import { workouts } from "./utils/workoutsConstants";
 import { WorkoutStackNavProps } from "./utils/workoutsParamList";
 import { Colors } from "../../utils/colors";
 import { BaseStatusBar } from "../../components/baseStatusBar";
+import { useAppSelector } from "../../stores/rootStore/rootStore";
 
 export const WorkoutList = ({
   navigation,
 }: WorkoutStackNavProps<"WorkoutList">) => {
   // --- STATE ---
+
+  const workouts = useAppSelector(({ workout }) => workout);
 
   // --- RENDER ---
 
@@ -45,7 +47,7 @@ export const WorkoutList = ({
             </View>
           );
         }}
-        style={{ padding: 40 }}
+        style={{ marginBottom: 40, padding: 40 }}
       />
     </SafeAreaView>
   );

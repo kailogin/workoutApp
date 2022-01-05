@@ -1,9 +1,6 @@
-import { ExerciseState } from "../exercisesStore/exerciseState";
-import { ExerciseAction } from "../exercisesStore/exerciseTypes";
-import { UserState } from "../userStore/userState";
-import { UserAction } from "../userStore/userTypes";
-import { WorkoutState } from "../workoutsStore/workoutState";
-import { WorkoutAction } from "../workoutsStore/workoutsTypes";
+import { ExerciseAction, ExerciseState } from "../exercisesStore/exerciseTypes";
+import { UserAction, UserState } from "../userStore/userTypes";
+import { WorkoutAction, WorkoutState } from "../workoutsStore/workoutsTypes";
 
 export interface RootState {
   exercise: ExerciseState;

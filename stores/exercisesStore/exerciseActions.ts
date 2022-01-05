@@ -1,5 +1,9 @@
 import { createAction } from "typesafe-actions";
 
-// export const setFirstVisitedStateFalse = createAction(
-//   "SET_FIRST_VISITED_STATE"
-// )<boolean>();
+import { Exercise } from "../../screens/exercisesScreen/utils/exerciseTypes";
+
+export const addNewExercise = createAction("ADD_NEW_EXERCISE")<Exercise>();
+
+export const deleteExercise = createAction("DELETE_EXERCISE")<Exercise>();
+
+export const modifyExercise = createAction("MODIFY_EXERCISE")<Exercise>();

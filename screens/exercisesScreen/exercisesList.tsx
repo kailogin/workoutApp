@@ -4,10 +4,10 @@ import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import { Exercise } from "./utils/exerciseTypes";
 import { SearchBar } from "../../components/searchBar";
 import { BaseView } from "../../components/baseView";
-import { exercises } from "./utils/exercisesConstants";
 import { ExerciseStackNavProps } from "./utils/exerciseParamList";
 import { Colors } from "../../utils/colors";
 import { BaseStatusBar } from "../../components/baseStatusBar";
+import { useAppSelector } from "../../stores/rootStore/rootStore";
 
 export const ExercisesList = ({
   navigation,
@@ -17,6 +17,8 @@ export const ExercisesList = ({
 
   const [searchPhrase, setSearchPhrase] = useState("");
   const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
+
+  const exercises = useAppSelector(({ exercise }) => exercise);
 
   // --- MEMOIZED DATA ---
 

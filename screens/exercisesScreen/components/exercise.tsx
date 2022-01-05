@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 import { BaseText } from "../../../components/baseText";
 import { BaseView } from "../../../components/baseView";
 import { ExerciseStackNavProps } from "../utils/exerciseParamList";
-import { exercises } from ".././utils/exercisesConstants";
 import { Colors } from "../../../utils/colors";
+import { useAppSelector } from "../../../stores/rootStore/rootStore";
 
 interface ExerciseProps extends ExerciseStackNavProps<"Exercise"> {}
 
@@ -15,6 +15,10 @@ export const Exercise: React.FC<ExerciseProps> = ({
   route,
 }: ExerciseStackNavProps<"Exercise">) => {
   const { t } = useTranslation();
+
+  // --- STATE ---
+
+  const exercises = useAppSelector(({ exercise }) => exercise);
 
   // --- HELPERS ---
 
