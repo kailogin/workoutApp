@@ -2,10 +2,11 @@ import React from "react";
 import { View } from "react-native";
 
 import { BaseModal } from "./baseModal";
-import { BaseText } from "./baseText";
+import { Form } from "./form";
 
 interface ModalProps {
   buttonText: string;
+  formTitle: string;
   handleButtonClick: () => void;
   isVisible: boolean;
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,6 +14,7 @@ interface ModalProps {
 
 export const Modal = ({
   buttonText,
+  formTitle,
   handleButtonClick,
   isVisible,
   setIsVisible,
@@ -20,12 +22,7 @@ export const Modal = ({
   // --- RENDER ---
 
   return (
-    <BaseModal
-      buttonText={buttonText}
-      handleAddButtonClick={handleButtonClick}
-      isVisible={isVisible}
-      setIsVisible={setIsVisible}
-    >
+    <BaseModal isVisible={isVisible} setIsVisible={setIsVisible}>
       <View
         style={{
           alignItems: "center",
@@ -34,20 +31,11 @@ export const Modal = ({
           justifyContent: "center",
         }}
       >
-        <BaseText style={{ padding: 16 }}>
-          This will be a thorough description of the exercise. This will be a
-          thorough description of the exercise. This will be a thorough
-          description of the exercise. This will be a thorough description of
-          the exercise. This will be a thorough description of the exercise.
-          This will be a thorough description of the exercise. This will be a
-          thorough description of the exercise.This will be a thorough
-          description of the exercise. This will be a thorough description of
-          the exercise. This will be a thorough description of the exercise.
-          This will be a thorough description of the exercise. This will be a
-          thorough description of the exercise. This will be a thorough
-          description of the exercise. This will be a thorough description of
-          the exercise.
-        </BaseText>
+        <Form
+          buttonText={buttonText}
+          formTitle={formTitle}
+          handleAddButtonClick={handleButtonClick}
+        />
       </View>
     </BaseModal>
   );

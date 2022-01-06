@@ -125,7 +125,8 @@ export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
           <ExercisesList navigation={navigation} route={route} />
 
           <Modal
-            buttonText="Add a new exercise"
+            buttonText="Add"
+            formTitle="Add a new exercise"
             handleButtonClick={() => {
               setIsModalVisible(false);
               handleModalAddExerciseClick();

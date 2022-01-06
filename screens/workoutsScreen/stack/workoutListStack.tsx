@@ -110,7 +110,8 @@ export const workoutListStack = ({ Stack }: WorkoutListStackProps) => {
           <WorkoutList navigation={navigation} route={route} />
 
           <Modal
-            buttonText="Add a new workout"
+            buttonText="Add"
+            formTitle="Add a new workout"
             handleButtonClick={() =>
               console.log("CIAO HERE MUSS EIN NEUES WORKOUT GEADDET WERDEN")
             }
