@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { SafeAreaView, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
+import Toast from "react-native-toast-message";
 
 import { BaseText } from "../../../components/baseText";
 import { BaseView } from "../../../components/baseView";
@@ -94,12 +95,30 @@ export const Exercise: React.FC<ExerciseProps> = ({
 
       <TouchableOpacity
         onPress={() => {
-          console.log("DELETE EXERCISE");
+          const exName = selectedExercise.exerciseName ?? "";
+
+          Toast.show({
+            type: "success",
+            text1: `You deleted the exercise ${exName}`,
+          });
           dispatch(deleteExercise(selectedExercise));
-          // TODO: Toast saying you successfully deleted that exercise and then navigating to exercisesList
+          navigation.navigate("ExercisesList");
+        }}
+        style={{
+          backgroundColor: Colors.ONBOARDING_BG,
+          borderRadius: 12,
+          marginBottom: 32,
+          padding: 12,
+          width: 150,
         }}
       >
-        <BaseText>DELETE THIS EXERCISE</BaseText>
+        <BaseText
+          style={{
+            color: Colors.BLACK,
+          }}
+        >
+          Delete Exercise
+        </BaseText>
       </TouchableOpacity>
 
       {/* TODO: Build in react native youtube plugin */}

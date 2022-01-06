@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   FlatList,
   SafeAreaView,
@@ -41,6 +41,7 @@ export const WorkoutList = ({
                     name: workoutName,
                   });
                 }}
+                style={styles.listElementButton}
               >
                 <View style={styles.container}>
                   <Text style={styles.workoutName}>{workoutName}</Text>
@@ -66,9 +67,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  listElementButton: {
+    width: "90%",
+  },
   renderItem_container: {
     backgroundColor: Colors.CARD,
-    borderBottomWidth: 1,
+    // borderColor: Colors.WHITE,
+    borderWidth: 1,
     borderRadius: 8,
     marginBottom: 4,
     padding: 16,

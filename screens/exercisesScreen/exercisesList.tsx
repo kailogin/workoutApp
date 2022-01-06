@@ -9,11 +9,17 @@ import { Colors } from "../../utils/colors";
 import { BaseStatusBar } from "../../components/baseStatusBar";
 import { useAppSelector } from "../../stores/rootStore/rootStore";
 import { RootState } from "../../stores/rootStore/rootTypes";
+import { MaterialIcons } from "@expo/vector-icons";
+
+interface ExercisesListProps {
+  isEditExercisesClicked: boolean;
+  navProps: ExerciseStackNavProps<"ExercisesList">;
+}
 
 export const ExercisesList = ({
-  navigation,
-  route,
-}: ExerciseStackNavProps<"ExercisesList">) => {
+  isEditExercisesClicked,
+  navProps,
+}: ExercisesListProps) => {
   // --- STATE ---
 
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -54,6 +60,8 @@ export const ExercisesList = ({
     [filteredExercises]
   );
 
+  const { navigation } = navProps;
+
   const workoutExercisesGroupedList = useMemo(
     () =>
       Object.keys(groupedExercises)
@@ -70,7 +78,17 @@ export const ExercisesList = ({
                 key={id}
                 style={styles.listElementButton}
               >
-                <Text style={styles.listElement}>{name}</Text>
+                <View style={styles.listElementView}>
+                  {isEditExercisesClicked && (
+                    <MaterialIcons
+                      name="delete"
+                      size={24}
+                      color={Colors.WHITE}
+                    />
+                  )}
+
+                  <Text style={styles.listElement}>{name}</Text>
+                </View>
               </TouchableOpacity>
             )
           );
@@ -86,7 +104,7 @@ export const ExercisesList = ({
             </View>
           );
         }),
-    [groupedExercises]
+    [groupedExercises, isEditExercisesClicked]
   );
 
   // --- RENDER ---
@@ -114,20 +132,26 @@ const styles = StyleSheet.create({
   },
   listElementButton: {
     backgroundColor: Colors.CARD,
-    borderBottomWidth: 1,
+    borderWidth: 1,
     borderRadius: 8,
+    borderColor: Colors.WHITE,
     marginBottom: 6,
     width: "90%",
   },
   listElement: {
     color: Colors.WHITE,
     fontSize: 14,
-    marginBottom: 8,
     marginLeft: 8,
     padding: 8,
   },
   listGroupContainer: {
     marginBottom: 16,
+  },
+  listElementView: {
+    alignItems: "baseline",
+    flexDirection: "row",
+    paddingHorizontal: 8,
+    paddingVertical: 16,
   },
   title: {
     color: Colors.WHITE,

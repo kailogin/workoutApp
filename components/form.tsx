@@ -4,46 +4,45 @@ import { useActionSheet } from "@expo/react-native-action-sheet";
 
 import { Colors } from "../utils/colors";
 import { BaseText } from "./baseText";
-import { useAppSelector } from "../stores/rootStore/rootStore";
-import { RootState } from "../stores/rootStore/rootTypes";
-import { Categories } from "../screens/exercisesScreen/utils/exerciseTypes";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useAppDispatch } from "../stores/rootStore/rootStore";
+import { addNewExercise } from "../stores/exercisesStore/exerciseActions";
+import { Categories } from "../screens/exercisesScreen/utils/exerciseTypes";
 
 interface FormProps {
+  actionSheetOptions: string[];
   buttonText: string;
   formTitle: string;
+  formSelectTitle: string;
   handleAddButtonClick: () => void;
+  selectedElement: Categories;
+  setSelectedElement: any;
 }
 
 export const Form = ({
+  actionSheetOptions,
   buttonText,
   formTitle,
+  formSelectTitle,
   handleAddButtonClick,
+  selectedElement,
+  setSelectedElement,
 }: FormProps) => {
+  const dispatch = useAppDispatch();
+
   // --- STATE ---
 
   const { showActionSheetWithOptions } = useActionSheet();
 
-  const exercises = useAppSelector(
-    ({ exercise }: RootState) => exercise.exercises
-  );
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
-  const exercisesNamesAndId = exercises.map((exercise) => ({
-    id: exercise.id,
-    label: exercise.exerciseName,
-  }));
+  // --- CALLBACKS ---
 
-  const workoutGroups = Object.keys(Categories);
-
-  const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
-  const [selectedWorkoutGroup, setSelectedWorkoutGroup] = useState<
-    Categories
-  >();
-
-  const handleWorkoutGroupSelection = () => {
+  const handleActionSheetSelection = () => {
     showActionSheetWithOptions(
       {
-        options: ["Cancel", ...workoutGroups],
+        options: ["Cancel", ...actionSheetOptions],
         cancelButtonIndex: 0,
         userInterfaceStyle: "dark",
         tintColor: Colors.ORANGE,
@@ -51,61 +50,121 @@ export const Form = ({
       (buttonIndex) => {
         if (buttonIndex) {
           // Needs to be -1 because of cancel
-          setSelectedWorkoutGroup(workoutGroups[buttonIndex - 1] as Categories);
+          setSelectedElement(actionSheetOptions[buttonIndex - 1]);
         }
       }
     );
   };
 
+  const handleNameValueChange = (value: string) => {
+    console.log(value);
+    setName(value);
+  };
+
+  const handleDescriptionValueChange = (value: string) => {
+    console.log(value);
+    setDescription(value);
+  };
+
+  const handleButtonPress = () => {
+    dispatch(
+      addNewExercise({
+        category: selectedElement,
+        exerciseName: name,
+        // TODO: Fix id gedöhns
+        id: Math.random().toString(),
+        description: "TESCHD",
+        videoLink: "LINK",
+      })
+    );
+
+    handleAddButtonClick();
+  };
+
   // --- RENDER ---
 
   return (
-    <View style={{ flex: 1, paddingVertical: 16 }}>
-      <BaseText style={{ fontSize: 20, marginBottom: 16, textAlign: "center" }}>
+    <View style={{ flex: 1, alignItems: "center" }}>
+      <BaseText
+        style={{
+          fontSize: 20,
+          marginTop: 32,
+          marginBottom: 16,
+          textAlign: "center",
+        }}
+      >
         {formTitle}
       </BaseText>
-      <View>
-        <TextInput placeholder="Name" style={styles.textInput} />
 
-        <TouchableOpacity onPress={handleWorkoutGroupSelection}>
-          <View style={{ alignItems: "baseline", flexDirection: "row" }}>
-            <BaseText style={{ marginBottom: 16, padding: 8 }}>
-              Select Workout Group
-            </BaseText>
+      <TextInput
+        onChangeText={handleNameValueChange}
+        placeholder="Exercise Name"
+        style={styles.textInput}
+        value={name}
+      />
 
-            <MaterialIcons name="add" size={24} color={Colors.WHITE} />
-          </View>
-        </TouchableOpacity>
+      <TouchableOpacity
+        onPress={handleActionSheetSelection}
+        style={styles.listElementButton}
+      >
+        <View style={styles.listElementView}>
+          <BaseText>{formSelectTitle}</BaseText>
 
-        <BaseText style={{ marginBottom: 32, padding: 8 }}>
-          {selectedWorkoutGroup}
+          <MaterialIcons name="add" size={24} color={Colors.WHITE} />
+        </View>
+      </TouchableOpacity>
+
+      <BaseText style={{ alignSelf: "center", marginBottom: 32, padding: 8 }}>
+        {selectedElement}
+      </BaseText>
+
+      <TextInput
+        onChangeText={handleDescriptionValueChange}
+        placeholder="Lorem ipsum sdfjsdkfsd fjskdjk"
+        style={[styles.textInput, { height: 60 }]}
+        value={description}
+      />
+
+      <TouchableOpacity onPress={handleButtonPress} style={styles.button}>
+        <BaseText
+          style={{ fontSize: 12, fontWeight: "bold", textAlign: "center" }}
+        >
+          {buttonText}
         </BaseText>
-
-        <TouchableOpacity onPress={handleAddButtonClick} style={styles.button}>
-          <BaseText
-            style={{ fontSize: 12, fontWeight: "bold", textAlign: "center" }}
-          >
-            {buttonText}
-          </BaseText>
-        </TouchableOpacity>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  listElementView: {
+    alignItems: "center",
+    flexDirection: "row",
+    padding: 16,
+  },
+  listElementButton: {
+    backgroundColor: Colors.CARD,
+    borderWidth: 1,
+    borderRadius: 8,
+    borderColor: Colors.WHITE,
+    width: "90%",
+    marginBottom: 24,
+  },
   button: {
     alignSelf: "center",
     backgroundColor: Colors.ORANGE,
     borderBottomWidth: 1,
     borderRadius: 8,
+    bottom: 40,
+    position: "absolute",
     marginBottom: 6,
     padding: 8,
-    width: "50%",
+    width: 100,
   },
   textInput: {
     borderColor: Colors.WHITE,
-    color: Colors.WHITE,
+    backgroundColor: Colors.WHITE,
+    color: Colors.RED,
     borderRadius: 12,
     borderWidth: 1,
     marginBottom: 24,

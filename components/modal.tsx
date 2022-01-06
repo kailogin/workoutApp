@@ -1,24 +1,15 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { View } from "react-native";
 
 import { BaseModal } from "./baseModal";
-import { Form } from "./form";
 
 interface ModalProps {
-  buttonText: string;
-  formTitle: string;
-  handleButtonClick: () => void;
+  children: ReactNode;
   isVisible: boolean;
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Modal = ({
-  buttonText,
-  formTitle,
-  handleButtonClick,
-  isVisible,
-  setIsVisible,
-}: ModalProps) => {
+export const Modal = ({ children, isVisible, setIsVisible }: ModalProps) => {
   // --- RENDER ---
 
   return (
@@ -31,11 +22,7 @@ export const Modal = ({
           justifyContent: "center",
         }}
       >
-        <Form
-          buttonText={buttonText}
-          formTitle={formTitle}
-          handleAddButtonClick={handleButtonClick}
-        />
+        {children}
       </View>
     </BaseModal>
   );

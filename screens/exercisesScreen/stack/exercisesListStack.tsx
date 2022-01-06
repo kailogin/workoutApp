@@ -1,8 +1,6 @@
-import React, { useMemo, useState } from "react";
-import { MaterialIcons } from "@expo/vector-icons";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { View } from "react-native";
 
 import { ExercisesList } from "../exercisesList";
 import {
@@ -12,9 +10,10 @@ import {
 import { Colors } from "../../../utils/colors";
 import { StackType } from "../../../navigation/utils/navigationTypes";
 import { useAppDispatch } from "../../../stores/rootStore/rootStore";
-import { addNewExercise } from "../../../stores/exercisesStore/exerciseActions";
 import { Categories } from "../utils/exerciseTypes";
 import { Modal } from "../../../components/modal";
+import { ExercisesListStackHeaderRight } from "./exercisesListStackHeaderRight";
+import { Form } from "../../../components/form";
 
 interface ExercisesListStackProps {
   Stack: StackType<ExerciseParamList>;
@@ -29,78 +28,15 @@ export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
 
   const [isEditExercisesClicked, setIsEditExercisesClicked] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedWorkoutGroup, setSelectedWorkoutGroup] = useState(
+    Categories.Abs
+  );
 
   // --- HELPERS ---
 
   const translate = (key: string) => t(`exercises.${key}`);
 
-  const handleModalAddExerciseClick = () => {
-    dispatch(
-      // TODO: This should be form data
-      addNewExercise({
-        category: Categories.Back,
-        description: "TEST",
-        exerciseName: "Pumbe",
-        id: Math.random().toString(),
-      })
-    );
-  };
-
-  // --- MEMOIZED DATA ---
-
-  const headerRight = useMemo(
-    () => (
-      navigation: NativeStackNavigationProp<ExerciseParamList, "ExercisesList">
-    ) => {
-      if (!isEditExercisesClicked) {
-        return (
-          <View style={styles.container}>
-            <TouchableOpacity
-              onPress={() => {
-                setIsEditExercisesClicked(true);
-              }}
-            >
-              <MaterialIcons
-                name="edit"
-                size={24}
-                color={Colors.WHITE}
-                style={{ marginRight: 16 }}
-              />
-            </TouchableOpacity>
-          </View>
-        );
-      }
-
-      return (
-        <View style={styles.container}>
-          <TouchableOpacity onPress={() => setIsModalVisible(true)}>
-            <MaterialIcons
-              name="add"
-              size={24}
-              color={Colors.WHITE}
-              style={{ marginRight: 16 }}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => {
-              // TODO: save all changes. Dispatch action to redux store.
-              setIsEditExercisesClicked(false);
-              navigation.navigate("ExercisesList");
-            }}
-          >
-            <MaterialIcons
-              name="done"
-              size={24}
-              color={Colors.WHITE}
-              style={{ marginRight: 16 }}
-            />
-          </TouchableOpacity>
-        </View>
-      );
-    },
-    [isEditExercisesClicked]
-  );
+  const workoutGroups = Object.keys(Categories);
 
   // --- RENDER ---
 
@@ -116,35 +52,40 @@ export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
         headerTitle: isEditExercisesClicked
           ? translate("headerEditExercisesList")
           : translate("headerExercisesList"),
-        headerRight: () => headerRight(navigation),
+        headerRight: () => (
+          <ExercisesListStackHeaderRight
+            isEditExercisesClicked={isEditExercisesClicked}
+            navigation={navigation}
+            setIsEditExercisesClicked={setIsEditExercisesClicked}
+            setIsModalVisible={setIsModalVisible}
+          />
+        ),
         title: "Exercises Unclicked",
       })}
     >
-      {({ navigation, route }: ExerciseStackNavProps<"ExercisesList">) => (
+      {(navProps: ExerciseStackNavProps<"ExercisesList">) => (
         <View style={{ flex: 1, backgroundColor: Colors.BLACK }}>
-          <ExercisesList navigation={navigation} route={route} />
-
-          <Modal
-            buttonText="Add"
-            formTitle="Add a new exercise"
-            handleButtonClick={() => {
-              setIsModalVisible(false);
-              handleModalAddExerciseClick();
-            }}
-            isVisible={isModalVisible}
-            setIsVisible={setIsModalVisible}
+          <ExercisesList
+            isEditExercisesClicked={isEditExercisesClicked}
+            navProps={navProps}
           />
+
+          <Modal isVisible={isModalVisible} setIsVisible={setIsModalVisible}>
+            <Form
+              actionSheetOptions={workoutGroups}
+              buttonText="Add"
+              formSelectTitle="Muscle group"
+              formTitle="Add a new exercise"
+              handleAddButtonClick={() => {
+                setIsModalVisible(false);
+                console.log("CIAO HERE MUSS EINE Neue Exercise GEADDET WERDEN");
+              }}
+              selectedElement={selectedWorkoutGroup}
+              setSelectedElement={setSelectedWorkoutGroup}
+            />
+          </Modal>
         </View>
       )}
     </Stack.Screen>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    borderBottomColor: undefined,
-    backgroundColor: undefined,
-    // alignItems: "center",
-    flexDirection: "row",
-  },
-});
