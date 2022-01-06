@@ -7,8 +7,8 @@ import { AddWorkout } from "./components/addWorkout";
 import { useTranslation } from "react-i18next";
 
 import { WorkoutExercise } from "./components/workoutExercise";
-import { addWorkoutStack } from "./stack/workoutStack";
-import { addWorkoutListStack } from "./stack/workoutListStack";
+import { workoutStack } from "./stack/workoutStack";
+import { workoutListStack } from "./stack/workoutListStack";
 import {
   WorkoutsParamList,
   WorkoutStackNavProps,
@@ -37,9 +37,9 @@ export const WorkoutsStack: React.FC<WorkoutsStackProps> = ({}) => {
         headerTintColor: Colors.WHITE,
       })}
     >
-      {addWorkoutListStack({ Stack })}
+      {workoutListStack({ Stack })}
 
-      {addWorkoutStack({ Stack })}
+      {workoutStack({ Stack })}
 
       <Stack.Screen
         component={AddWorkout}

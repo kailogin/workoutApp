@@ -11,6 +11,10 @@ import {
 } from "../utils/exerciseParamList";
 import { Colors } from "../../../utils/colors";
 import { StackType } from "../../../navigation/utils/navigationTypes";
+import { useAppDispatch } from "../../../stores/rootStore/rootStore";
+import { addNewExercise } from "../../../stores/exercisesStore/exerciseActions";
+import { Categories } from "../utils/exerciseTypes";
+import { Modal } from "../../../components/modal";
 
 interface ExercisesListStackProps {
   Stack: StackType<ExerciseParamList>;
@@ -19,13 +23,28 @@ interface ExercisesListStackProps {
 export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
   const { t } = useTranslation();
 
+  const dispatch = useAppDispatch();
+
   // --- STATE ---
 
   const [isEditExercisesClicked, setIsEditExercisesClicked] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   // --- HELPERS ---
 
   const translate = (key: string) => t(`exercises.${key}`);
+
+  const handleModalAddExerciseClick = () => {
+    dispatch(
+      // TODO: This should be form data
+      addNewExercise({
+        category: Categories.BACK,
+        description: "TEST",
+        exerciseName: "Pumbe",
+        id: Math.random().toString(),
+      })
+    );
+  };
 
   // --- MEMOIZED DATA ---
 
@@ -54,7 +73,7 @@ export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
 
       return (
         <View style={styles.container}>
-          <TouchableOpacity onPress={() => navigation.navigate("AddExercise")}>
+          <TouchableOpacity onPress={() => setIsModalVisible(true)}>
             <MaterialIcons
               name="add"
               size={24}
@@ -87,7 +106,6 @@ export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
 
   return (
     <Stack.Screen
-      component={ExercisesList}
       // TODO: Here muss ich den ExercisesList Screen rendern mit den roten Icons -> oder ich kann den state runter passen
       name="ExercisesList"
       options={({
@@ -101,7 +119,23 @@ export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
         headerRight: () => headerRight(navigation),
         title: "Exercises Unclicked",
       })}
-    />
+    >
+      {({ navigation, route }: ExerciseStackNavProps<"ExercisesList">) => (
+        <View style={{ flex: 1, backgroundColor: Colors.BLACK }}>
+          <ExercisesList navigation={navigation} route={route} />
+
+          <Modal
+            buttonText="Add a new exercise"
+            handleButtonClick={() => {
+              setIsModalVisible(false);
+              handleModalAddExerciseClick();
+            }}
+            isVisible={isModalVisible}
+            setIsVisible={setIsModalVisible}
+          />
+        </View>
+      )}
+    </Stack.Screen>
   );
 };
 

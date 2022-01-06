@@ -15,7 +15,7 @@ interface WorkoutStackProps {
   Stack: StackType<WorkoutsParamList>;
 }
 
-export const addWorkoutStack = ({ Stack }: WorkoutStackProps) => {
+export const workoutStack = ({ Stack }: WorkoutStackProps) => {
   const { t } = useTranslation();
 
   // --- STATE ---

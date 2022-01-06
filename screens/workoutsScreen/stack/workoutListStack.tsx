@@ -11,13 +11,13 @@ import {
 import { WorkoutList } from "../workoutsList";
 import { Colors } from "../../../utils/colors";
 import { StackType } from "../../../navigation/utils/navigationTypes";
-import { BaseModal } from "../../../components/baseModal";
+import { Modal } from "../../../components/modal";
 
 interface WorkoutListStackProps {
   Stack: StackType<WorkoutsParamList>;
 }
 
-export const addWorkoutListStack = ({ Stack }: WorkoutListStackProps) => {
+export const workoutListStack = ({ Stack }: WorkoutListStackProps) => {
   const { t } = useTranslation();
 
   // --- STATE ---
@@ -108,7 +108,12 @@ export const addWorkoutListStack = ({ Stack }: WorkoutListStackProps) => {
       {({ navigation, route }: WorkoutStackNavProps<"WorkoutList">) => (
         <View style={{ flex: 1, backgroundColor: Colors.BLACK }}>
           <WorkoutList navigation={navigation} route={route} />
-          <BaseModal
+
+          <Modal
+            buttonText="Add a new workout"
+            handleButtonClick={() =>
+              console.log("CIAO HERE MUSS EIN NEUES WORKOUT GEADDET WERDEN")
+            }
             isVisible={isModalVisible}
             setIsVisible={setIsModalVisible}
           />

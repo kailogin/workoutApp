@@ -19,7 +19,9 @@ export const ExercisesList = ({
   const [searchPhrase, setSearchPhrase] = useState("");
   const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
 
-  const exercises = useAppSelector(({ exercise }: RootState) => exercise);
+  const exercises = useAppSelector(
+    ({ exercise }: RootState) => exercise.exercises
+  );
 
   // --- MEMOIZED DATA ---
 
