@@ -5,6 +5,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { createStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
 import useCachedResources from "./hooks/useCachedResources";
 import { Navigation } from "./navigation";
@@ -42,7 +43,9 @@ export default function App() {
     <SafeAreaProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <Navigation />
+          <ActionSheetProvider>
+            <Navigation />
+          </ActionSheetProvider>
         </PersistGate>
       </Provider>
     </SafeAreaProvider>

@@ -1,10 +1,10 @@
 export enum Categories {
-  ABS = "Abs",
-  BACK = "Back",
+  Abs = "Abs",
+  Back = "Back",
   Biceps = "Biceps",
-  CHEST = "Chest",
-  LEGS = "Legs",
-  SHOULDERS = "Shoulders",
+  Chest = "Chest",
+  Legs = "Legs",
+  Shoulders = "Shoulders",
   Triceps = "Triceps",
 }
 

@@ -38,7 +38,7 @@ export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
     dispatch(
       // TODO: This should be form data
       addNewExercise({
-        category: Categories.BACK,
+        category: Categories.Back,
         description: "TEST",
         exerciseName: "Pumbe",
         id: Math.random().toString(),

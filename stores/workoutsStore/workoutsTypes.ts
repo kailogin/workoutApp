@@ -15,27 +15,27 @@ export const initialWorkoutState: Workout[] = [
     workoutName: "Push",
     exercises: [
       {
-        category: Categories.CHEST,
+        category: Categories.Chest,
         exerciseName: "Butterfly",
         id: "0",
       },
       {
-        category: Categories.CHEST,
+        category: Categories.Chest,
         exerciseName: "Dumbbell Press",
         id: "1",
       },
       {
-        category: Categories.CHEST,
+        category: Categories.Chest,
         exerciseName: "Flat Bench Press",
         id: "2",
       },
       {
-        category: Categories.SHOULDERS,
+        category: Categories.Shoulders,
         exerciseName: "Arnold Press",
         id: "3",
       },
       {
-        category: Categories.SHOULDERS,
+        category: Categories.Shoulders,
         exerciseName: "Shoulder Press Barbel",
         id: "4",
       },
@@ -47,27 +47,27 @@ export const initialWorkoutState: Workout[] = [
     workoutName: "Back",
     exercises: [
       {
-        category: Categories.BACK,
+        category: Categories.Back,
         exerciseName: "Deadlifts",
         id: "6",
       },
       {
-        category: Categories.BACK,
+        category: Categories.Back,
         exerciseName: "Rowing",
         id: "7",
       },
       {
-        category: Categories.BACK,
+        category: Categories.Back,
         exerciseName: "Hyperextensions",
         id: "8",
       },
       {
-        category: Categories.BACK,
+        category: Categories.Back,
         exerciseName: "Lat Pulldown",
         id: "9",
       },
       {
-        category: Categories.BACK,
+        category: Categories.Back,
         exerciseName: "One-arm rowing",
         id: "10",
       },
@@ -79,27 +79,27 @@ export const initialWorkoutState: Workout[] = [
     workoutName: "Legs",
     exercises: [
       {
-        category: Categories.LEGS,
+        category: Categories.Legs,
         exerciseName: "Leg Curls",
         id: "13",
       },
       {
-        category: Categories.LEGS,
+        category: Categories.Legs,
         exerciseName: "Farmer's Walks",
         id: "14",
       },
       {
-        category: Categories.LEGS,
+        category: Categories.Legs,
         exerciseName: "Lunges",
         id: "15",
       },
       {
-        category: Categories.ABS,
+        category: Categories.Abs,
         exerciseName: "Crunches",
         id: "16",
       },
       {
-        category: Categories.ABS,
+        category: Categories.Abs,
         exerciseName: "Sit-Ups",
         id: "17",
       },
@@ -111,22 +111,22 @@ export const initialWorkoutState: Workout[] = [
     id: "TEST4",
     exercises: [
       {
-        category: Categories.CHEST,
+        category: Categories.Chest,
         exerciseName: "Flat Bench Press",
         id: "2",
       },
       {
-        category: Categories.SHOULDERS,
+        category: Categories.Shoulders,
         exerciseName: "Arnold Press",
         id: "3",
       },
       {
-        category: Categories.SHOULDERS,
+        category: Categories.Shoulders,
         exerciseName: "Shoulder Press Barbel",
         id: "4",
       },
       {
-        category: Categories.SHOULDERS,
+        category: Categories.Shoulders,
         exerciseName: "Lateral Raises Machine",
         id: "5",
       },
@@ -170,27 +170,27 @@ export const initialWorkoutState: Workout[] = [
     id: "TEST6",
     exercises: [
       {
-        category: Categories.BACK,
+        category: Categories.Back,
         exerciseName: "Hyperextensions",
         id: "8",
       },
       {
-        category: Categories.BACK,
+        category: Categories.Back,
         exerciseName: "Lat Pulldown",
         id: "9",
       },
       {
-        category: Categories.BACK,
+        category: Categories.Back,
         exerciseName: "One-arm rowing",
         id: "10",
       },
       {
-        category: Categories.LEGS,
+        category: Categories.Legs,
         exerciseName: "Squats",
         id: "11",
       },
       {
-        category: Categories.LEGS,
+        category: Categories.Legs,
         exerciseName: "Pistol Squats",
         id: "12",
       },
@@ -202,27 +202,27 @@ export const initialWorkoutState: Workout[] = [
     id: "TEST7",
     exercises: [
       {
-        category: Categories.LEGS,
+        category: Categories.Legs,
         exerciseName: "Leg Curls",
         id: "13",
       },
       {
-        category: Categories.LEGS,
+        category: Categories.Legs,
         exerciseName: "Farmer's Walks",
         id: "14",
       },
       {
-        category: Categories.LEGS,
+        category: Categories.Legs,
         exerciseName: "Lunges",
         id: "15",
       },
       {
-        category: Categories.ABS,
+        category: Categories.Abs,
         exerciseName: "Crunches",
         id: "16",
       },
       {
-        category: Categories.ABS,
+        category: Categories.Abs,
         exerciseName: "Sit-Ups",
         id: "17",
       },
