@@ -7,6 +7,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 import Toast from "react-native-toast-message";
+import "react-native-gesture-handler";
 
 import useCachedResources from "./hooks/useCachedResources";
 import { Navigation } from "./navigation";

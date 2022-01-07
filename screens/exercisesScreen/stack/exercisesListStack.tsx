@@ -9,7 +9,6 @@ import {
 } from "../utils/exerciseParamList";
 import { Colors } from "../../../utils/colors";
 import { StackType } from "../../../navigation/utils/navigationTypes";
-import { useAppDispatch } from "../../../stores/rootStore/rootStore";
 import { Categories } from "../utils/exerciseTypes";
 import { Modal } from "../../../components/modal";
 import { ExercisesListStackHeaderRight } from "./exercisesListStackHeaderRight";
@@ -22,21 +21,14 @@ interface ExercisesListStackProps {
 export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
   const { t } = useTranslation();
 
-  const dispatch = useAppDispatch();
-
   // --- STATE ---
 
   const [isEditExercisesClicked, setIsEditExercisesClicked] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedWorkoutGroup, setSelectedWorkoutGroup] = useState(
-    Categories.Abs
-  );
 
   // --- HELPERS ---
 
   const translate = (key: string) => t(`exercises.${key}`);
-
-  const workoutGroups = Object.keys(Categories);
 
   // --- RENDER ---
 
@@ -72,16 +64,11 @@ export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
 
           <Modal isVisible={isModalVisible} setIsVisible={setIsModalVisible}>
             <Form
-              actionSheetOptions={workoutGroups}
-              buttonText="Add"
-              formSelectTitle="Muscle group"
               formTitle="Add a new exercise"
               handleAddButtonClick={() => {
                 setIsModalVisible(false);
                 console.log("CIAO HERE MUSS EINE Neue Exercise GEADDET WERDEN");
               }}
-              selectedElement={selectedWorkoutGroup}
-              setSelectedElement={setSelectedWorkoutGroup}
             />
           </Modal>
         </View>

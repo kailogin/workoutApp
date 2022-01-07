@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { View } from "react-native";
+import Toast from "react-native-toast-message";
 
 import { BaseModal } from "./baseModal";
 
@@ -24,6 +25,8 @@ export const Modal = ({ children, isVisible, setIsVisible }: ModalProps) => {
       >
         {children}
       </View>
+
+      <Toast />
     </BaseModal>
   );
 };

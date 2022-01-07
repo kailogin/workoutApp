@@ -46,13 +46,7 @@ export const Exercise: React.FC<ExerciseProps> = ({
     );
   }
 
-  const {
-    category,
-    description,
-    exerciseName,
-    id,
-    videoLink,
-  } = selectedExercise;
+  const { category, description, exerciseName, id } = selectedExercise;
 
   return (
     <BaseView>
@@ -120,18 +114,6 @@ export const Exercise: React.FC<ExerciseProps> = ({
           Delete Exercise
         </BaseText>
       </TouchableOpacity>
-
-      {/* TODO: Build in react native youtube plugin */}
-      {videoLink && (
-        <BaseText
-          style={{
-            fontSize: 24,
-            marginBottom: 32,
-          }}
-        >
-          {videoLink}
-        </BaseText>
-      )}
     </BaseView>
   );
 };

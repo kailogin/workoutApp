@@ -13,5 +13,4 @@ export type Exercise = {
   description?: string;
   exerciseName: string;
   id: string;
-  videoLink?: string;
 };

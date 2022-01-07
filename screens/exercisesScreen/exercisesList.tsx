@@ -1,5 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
+import { Swipeable } from "react-native-gesture-handler";
+import Toast from "react-native-toast-message";
 
 import { Exercise } from "./utils/exerciseTypes";
 import { SearchBar } from "../../components/searchBar";
@@ -7,9 +9,14 @@ import { BaseView } from "../../components/baseView";
 import { ExerciseStackNavProps } from "./utils/exerciseParamList";
 import { Colors } from "../../utils/colors";
 import { BaseStatusBar } from "../../components/baseStatusBar";
-import { useAppSelector } from "../../stores/rootStore/rootStore";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../stores/rootStore/rootStore";
 import { RootState } from "../../stores/rootStore/rootTypes";
 import { MaterialIcons } from "@expo/vector-icons";
+import { RightSwipe } from "../../components/rightSwipe";
+import { deleteExercise } from "../../stores/exercisesStore/exerciseActions";
 
 interface ExercisesListProps {
   isEditExercisesClicked: boolean;
@@ -20,10 +27,14 @@ export const ExercisesList = ({
   isEditExercisesClicked,
   navProps,
 }: ExercisesListProps) => {
+  const dispatch = useAppDispatch();
+
   // --- STATE ---
 
   const [searchPhrase, setSearchPhrase] = useState("");
   const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
+
+  const [isCardSwiped, setIsCardSwiped] = useState(false);
 
   const exercises = useAppSelector(
     ({ exercise }: RootState) => exercise.exercises
@@ -62,36 +73,72 @@ export const ExercisesList = ({
 
   const { navigation } = navProps;
 
+  console.log(isCardSwiped);
+
   const workoutExercisesGroupedList = useMemo(
     () =>
       Object.keys(groupedExercises)
         .map((key) => [key, groupedExercises[key]])
         .map((category, index: number) => {
-          const exercises = category[1].map(
-            ({ id, exerciseName: name }: Exercise, index: number) => (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("Exercise", {
-                    name,
-                  })
-                }
-                key={id}
-                style={styles.listElementButton}
-              >
-                <View style={styles.listElementView}>
-                  {isEditExercisesClicked && (
-                    <MaterialIcons
-                      name="delete"
-                      size={24}
-                      color={Colors.WHITE}
+          const exercises = category[1].map((exercise: Exercise) => (
+            <View style={{ width: "90%" }}>
+              <Swipeable
+                renderRightActions={() => {
+                  setIsCardSwiped(true);
+                  return (
+                    <RightSwipe
+                      handleClick={() => {
+                        dispatch(deleteExercise(exercise));
+                        Toast.show({
+                          type: "success",
+                          text1: `You deleted the exercise: ${exercise.exerciseName}.`,
+                        });
+                      }}
                     />
-                  )}
+                  );
+                }}
+                key={exercise.id}
+              >
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("Exercise", {
+                      name: exercise.exerciseName,
+                    })
+                  }
+                  style={[
+                    styles.listElementButton,
+                    {
+                      ...(isCardSwiped && {
+                        borderTopEndRadius: 0,
+                        borderBottomEndRadius: 0,
+                      }),
+                    },
+                  ]}
+                >
+                  <View style={styles.listElementView}>
+                    {isEditExercisesClicked && (
+                      <MaterialIcons
+                        name="delete"
+                        size={24}
+                        color={Colors.WHITE}
+                        onPress={() => {
+                          dispatch(deleteExercise(exercise));
+                          Toast.show({
+                            type: "success",
+                            text1: `You deleted the exercise: ${exercise.exerciseName}.`,
+                          });
+                        }}
+                      />
+                    )}
 
-                  <Text style={styles.listElement}>{name}</Text>
-                </View>
-              </TouchableOpacity>
-            )
-          );
+                    <Text style={styles.listElement}>
+                      {exercise.exerciseName}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </Swipeable>
+            </View>
+          ));
 
           return (
             <View
@@ -104,7 +151,7 @@ export const ExercisesList = ({
             </View>
           );
         }),
-    [groupedExercises, isEditExercisesClicked]
+    [groupedExercises, isEditExercisesClicked, isCardSwiped]
   );
 
   // --- RENDER ---
@@ -136,7 +183,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: Colors.WHITE,
     marginBottom: 6,
-    width: "90%",
   },
   listElement: {
     color: Colors.WHITE,

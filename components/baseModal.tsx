@@ -44,16 +44,17 @@ export const BaseModal: React.FC<BaseModalProps> = ({
         <TouchableOpacity
           onPress={() => setIsVisible(false)}
           style={{
+            marginRight: 16,
             marginTop: 8,
+            position: "absolute",
+            right: 0,
+            top: 0,
           }}
         >
           <MaterialIcons name="close" size={24} color={Colors.WHITE} />
         </TouchableOpacity>
 
-        <View style={{ flex: 1 }}>
-          {/* TODO: Replace this with Form data and not the dummy text I added in addNewModal */}
-          {children}
-        </View>
+        <View style={{ flex: 1 }}>{children}</View>
       </Modal>
     </GestureRecognizer>
   );

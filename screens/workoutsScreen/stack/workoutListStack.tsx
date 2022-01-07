@@ -10,9 +10,6 @@ import { WorkoutList } from "../workoutsList";
 import { Colors } from "../../../utils/colors";
 import { StackType } from "../../../navigation/utils/navigationTypes";
 import { Modal } from "../../../components/modal";
-import { useAppSelector } from "../../../stores/rootStore/rootStore";
-import { RootState } from "../../../stores/rootStore/rootTypes";
-import { Categories } from "../../exercisesScreen/utils/exerciseTypes";
 import { WorkoutListStackHeaderRight } from "./workoutListStackHeaderRight";
 import { Form } from "../../../components/form";
 
@@ -28,25 +25,9 @@ export const workoutListStack = ({ Stack }: WorkoutListStackProps) => {
   const [isEditWorkoutsClicked, setIsEditWorkoutsClicked] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  // const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
-  const [selectedWorkoutGroup, setSelectedWorkoutGroup] = useState(
-    Categories.Abs
-  );
-
-  const exercises = useAppSelector(
-    ({ exercise }: RootState) => exercise.exercises
-  );
-
   // --- HELPERS ---
 
   const translate = (key: string) => t(`workouts.${key}`);
-
-  const workoutGroups = Object.keys(Categories);
-
-  // const exercisesNamesAndId = exercises.map((exercise) => ({
-  //   id: exercise.id,
-  //   label: exercise.exerciseName,
-  // }));
 
   // --- RENDER ---
 
@@ -78,15 +59,10 @@ export const workoutListStack = ({ Stack }: WorkoutListStackProps) => {
 
           <Modal isVisible={isModalVisible} setIsVisible={setIsModalVisible}>
             <Form
-              actionSheetOptions={workoutGroups}
-              buttonText="Add"
-              formSelectTitle="Muscle group"
               formTitle="Add a new workout"
               handleAddButtonClick={() => {
                 setIsModalVisible(false);
               }}
-              selectedElement={selectedWorkoutGroup}
-              setSelectedElement={setSelectedWorkoutGroup}
             />
           </Modal>
         </View>

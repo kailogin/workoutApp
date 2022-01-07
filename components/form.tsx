@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { useActionSheet } from "@expo/react-native-action-sheet";
+import Toast from "react-native-toast-message";
 
 import { Colors } from "../utils/colors";
 import { BaseText } from "./baseText";
@@ -10,24 +11,11 @@ import { addNewExercise } from "../stores/exercisesStore/exerciseActions";
 import { Categories } from "../screens/exercisesScreen/utils/exerciseTypes";
 
 interface FormProps {
-  actionSheetOptions: string[];
-  buttonText: string;
   formTitle: string;
-  formSelectTitle: string;
   handleAddButtonClick: () => void;
-  selectedElement: Categories;
-  setSelectedElement: any;
 }
 
-export const Form = ({
-  actionSheetOptions,
-  buttonText,
-  formTitle,
-  formSelectTitle,
-  handleAddButtonClick,
-  selectedElement,
-  setSelectedElement,
-}: FormProps) => {
+export const Form = ({ formTitle, handleAddButtonClick }: FormProps) => {
   const dispatch = useAppDispatch();
 
   // --- STATE ---
@@ -36,21 +24,34 @@ export const Form = ({
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [muscleGroup, setMuscleGroup] = useState(Categories.Abs);
+
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
+
+  // const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
+
+  // const exercises = useAppSelector(
+  //   ({ exercise }: RootState) => exercise.exercises
+  // );
+
+  // --- HELPERS ---
+
+  const workoutGroups = Object.keys(Categories);
 
   // --- CALLBACKS ---
 
   const handleActionSheetSelection = () => {
     showActionSheetWithOptions(
       {
-        options: ["Cancel", ...actionSheetOptions],
+        options: ["Cancel", ...workoutGroups],
         cancelButtonIndex: 0,
         userInterfaceStyle: "dark",
         tintColor: Colors.ORANGE,
       },
       (buttonIndex) => {
         if (buttonIndex) {
-          // Needs to be -1 because of cancel
-          setSelectedElement(actionSheetOptions[buttonIndex - 1]);
+          // Needs to be -1 because of "Cancel"
+          setMuscleGroup(workoutGroups[buttonIndex - 1] as Categories);
         }
       }
     );
@@ -66,29 +67,79 @@ export const Form = ({
     setDescription(value);
   };
 
-  const handleButtonPress = () => {
+  const handleMuscleGroupValueChange = (value: string) => {
+    console.log(value);
+    setMuscleGroup(value as Categories);
+  };
+
+  const validateFields = () => {
+    if (!name || name === "") {
+      setIsSubmitButtonDisabled(true);
+
+      Toast.show({
+        type: "error",
+        text1: "Please choose a workout name.",
+      });
+      return;
+    }
+
+    if (!description || description === "") {
+      setIsSubmitButtonDisabled(true);
+
+      Toast.show({
+        type: "error",
+        text1: "Please set a description.",
+      });
+      return;
+    }
+
+    setIsSubmitButtonDisabled(false);
+  };
+
+  const handleButtonPress = async () => {
+    validateFields();
+
+    if (isSubmitButtonDisabled) {
+      return;
+    }
+
     dispatch(
       addNewExercise({
-        category: selectedElement,
+        category: muscleGroup,
         exerciseName: name,
         // TODO: Fix id gedöhns
         id: Math.random().toString(),
-        description: "TESCHD",
-        videoLink: "LINK",
+        description: description,
       })
     );
 
     handleAddButtonClick();
   };
 
+  // --- EFFECTS ---
+
+  useEffect(() => {
+    if (!description || description === "") {
+      setIsSubmitButtonDisabled(true);
+      return;
+    }
+
+    if (!name || name === "") {
+      setIsSubmitButtonDisabled(true);
+      return;
+    }
+
+    setIsSubmitButtonDisabled(false);
+  }, [description, name]);
+
   // --- RENDER ---
 
   return (
-    <View style={{ flex: 1, alignItems: "center" }}>
+    <View style={{ flex: 1 }}>
       <BaseText
         style={{
           fontSize: 20,
-          marginTop: 32,
+          marginTop: 40,
           marginBottom: 16,
           textAlign: "center",
         }}
@@ -96,40 +147,76 @@ export const Form = ({
         {formTitle}
       </BaseText>
 
+      <BaseText style={{ fontSize: 16 }}>Exercise name</BaseText>
+
       <TextInput
         onChangeText={handleNameValueChange}
-        placeholder="Exercise Name"
         style={styles.textInput}
         value={name}
       />
 
-      <TouchableOpacity
-        onPress={handleActionSheetSelection}
-        style={styles.listElementButton}
+      <BaseText style={{ fontSize: 16 }}>Muscle group</BaseText>
+
+      <View
+        style={{
+          alignItems: "center",
+          backgroundColor: Colors.WHITE,
+          borderRadius: 12,
+          flexDirection: "row",
+          marginBottom: 40,
+          // padding: 10,
+          width: "95%",
+        }}
       >
-        <View style={styles.listElementView}>
-          <BaseText>{formSelectTitle}</BaseText>
+        <TextInput
+          onChangeText={handleMuscleGroupValueChange}
+          style={[
+            styles.textInput,
+            {
+              borderWidth: 0,
+              marginBottom: 0,
+              marginRight: 10,
+              width: "90%",
+            },
+          ]}
+          value={muscleGroup}
+          onPressIn={handleActionSheetSelection}
+        />
 
-          <MaterialIcons name="add" size={24} color={Colors.WHITE} />
-        </View>
-      </TouchableOpacity>
+        <MaterialIcons
+          name="add"
+          size={24}
+          color={Colors.BLACK}
+          style={{ marginRight: 16 }}
+          onPress={handleActionSheetSelection}
+        />
+      </View>
 
-      <BaseText style={{ alignSelf: "center", marginBottom: 32, padding: 8 }}>
-        {selectedElement}
+      <BaseText
+        style={{
+          alignSelf: "flex-start",
+          color: Colors.WHITE,
+          fontSize: 16,
+        }}
+      >
+        Description
       </BaseText>
 
       <TextInput
+        multiline
         onChangeText={handleDescriptionValueChange}
-        placeholder="Lorem ipsum sdfjsdkfsd fjskdjk"
-        style={[styles.textInput, { height: 60 }]}
+        style={[styles.textInput, { height: 150, minWidth: "100%" }]}
         value={description}
       />
 
-      <TouchableOpacity onPress={handleButtonPress} style={styles.button}>
+      <TouchableOpacity
+        onPress={handleButtonPress}
+        style={isSubmitButtonDisabled ? styles.buttonDisabled : styles.button}
+      >
         <BaseText
           style={{ fontSize: 12, fontWeight: "bold", textAlign: "center" }}
         >
-          {buttonText}
+          Add
         </BaseText>
       </TouchableOpacity>
     </View>
@@ -145,7 +232,7 @@ const styles = StyleSheet.create({
   listElementButton: {
     backgroundColor: Colors.CARD,
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 24,
     borderColor: Colors.WHITE,
     width: "90%",
     marginBottom: 24,
@@ -161,19 +248,24 @@ const styles = StyleSheet.create({
     padding: 8,
     width: 100,
   },
+  buttonDisabled: {
+    alignSelf: "center",
+    backgroundColor: Colors.RED,
+    borderBottomWidth: 1,
+    borderColor: Colors.RED,
+    borderRadius: 8,
+    bottom: 40,
+    position: "absolute",
+    marginBottom: 6,
+    padding: 8,
+    width: 100,
+  },
   textInput: {
-    borderColor: Colors.WHITE,
     backgroundColor: Colors.WHITE,
-    color: Colors.RED,
+    color: Colors.BLACK,
     borderRadius: 12,
     borderWidth: 1,
-    marginBottom: 24,
+    marginBottom: 32,
     padding: 12,
-  },
-  picker: {
-    height: 50,
-    marginBottom: 40,
-    padding: 4,
-    width: "100%",
   },
 });
