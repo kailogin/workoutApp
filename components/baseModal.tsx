@@ -1,27 +1,27 @@
 import React, { ReactNode } from "react";
-import { TouchableOpacity, View } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { View } from "react-native";
 import Modal from "react-native-modal";
 import GestureRecognizer from "react-native-swipe-gestures";
+import Toast from "react-native-toast-message";
 
 import { Colors } from "../utils/colors";
 
 interface BaseModalProps {
   children: ReactNode;
+  handleClose: () => void;
   isVisible: boolean;
-  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const BaseModal: React.FC<BaseModalProps> = ({
   children,
+  handleClose,
   isVisible,
-  setIsVisible,
 }: BaseModalProps) => {
   // --- RENDER ---
 
   return (
     <GestureRecognizer
-      onSwipeDown={() => setIsVisible(false)}
+      onSwipeDown={() => handleClose()}
       style={{
         flex: !isVisible ? 0 : 1,
       }}
@@ -41,20 +41,20 @@ export const BaseModal: React.FC<BaseModalProps> = ({
           marginTop: 90,
         }}
       >
-        <TouchableOpacity
-          onPress={() => setIsVisible(false)}
-          style={{
-            marginRight: 16,
-            marginTop: 8,
-            position: "absolute",
-            right: 0,
-            top: 0,
-          }}
-        >
-          <MaterialIcons name="close" size={24} color={Colors.WHITE} />
-        </TouchableOpacity>
+        <View style={{ flex: 1 }}>
+          <View
+            style={{
+              alignItems: "center",
+              alignContent: "center",
+              flex: 1,
+              justifyContent: "center",
+            }}
+          >
+            {children}
+          </View>
 
-        <View style={{ flex: 1 }}>{children}</View>
+          <Toast />
+        </View>
       </Modal>
     </GestureRecognizer>
   );

@@ -8,7 +8,7 @@ export const exerciseReducer = (
   state: ExerciseState = initialExercisesState,
   action: ExerciseAction
 ): ExerciseState => {
-  console.warn(action.payload);
+  console.warn("exerciseAction:", action);
 
   switch (action.type) {
     case "ADD_NEW_EXERCISE":
@@ -18,29 +18,26 @@ export const exerciseReducer = (
       };
     case "DELETE_EXERCISE":
       return {
-        ...state,
+        ...state.exercises,
         exercises: state.exercises.filter(
           (exercise) => exercise.id !== action.payload.id
         ),
       };
     case "MODIFY_EXERCISE": {
-      const modifiedExercise = state.exercises.find(
-        ({ id }) => id === action.payload.id
-      );
-
-      console.log(modifiedExercise);
-
-      if (modifiedExercise) {
-        return { ...state, exercises: [...state.exercises, modifiedExercise] };
-      }
-
+      // TODO: TEST THIS
       return {
-        ...state,
+        ...state.exercises,
+        exercises: state.exercises.map((exercise) => {
+          if (exercise.id === action.payload.id) {
+            return action.payload;
+          }
+
+          return exercise;
+        }),
       };
     }
+
     default:
       return state;
   }
-
-  return state;
 };

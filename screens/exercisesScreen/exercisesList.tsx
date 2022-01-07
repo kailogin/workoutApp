@@ -34,8 +34,6 @@ export const ExercisesList = ({
   const [searchPhrase, setSearchPhrase] = useState("");
   const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
 
-  const [isCardSwiped, setIsCardSwiped] = useState(false);
-
   const exercises = useAppSelector(
     ({ exercise }: RootState) => exercise.exercises
   );
@@ -73,18 +71,15 @@ export const ExercisesList = ({
 
   const { navigation } = navProps;
 
-  console.log(isCardSwiped);
-
   const workoutExercisesGroupedList = useMemo(
     () =>
       Object.keys(groupedExercises)
         .map((key) => [key, groupedExercises[key]])
         .map((category, index: number) => {
           const exercises = category[1].map((exercise: Exercise) => (
-            <View style={{ width: "90%" }}>
+            <View style={{ width: "90%" }} key={Math.random().toString()}>
               <Swipeable
                 renderRightActions={() => {
-                  setIsCardSwiped(true);
                   return (
                     <RightSwipe
                       handleClick={() => {
@@ -105,15 +100,8 @@ export const ExercisesList = ({
                       name: exercise.exerciseName,
                     })
                   }
-                  style={[
-                    styles.listElementButton,
-                    {
-                      ...(isCardSwiped && {
-                        borderTopEndRadius: 0,
-                        borderBottomEndRadius: 0,
-                      }),
-                    },
-                  ]}
+                  key={exercise.id + "TEST"}
+                  style={styles.listElementButton}
                 >
                   <View style={styles.listElementView}>
                     {isEditExercisesClicked && (
@@ -151,7 +139,7 @@ export const ExercisesList = ({
             </View>
           );
         }),
-    [groupedExercises, isEditExercisesClicked, isCardSwiped]
+    [groupedExercises, isEditExercisesClicked]
   );
 
   // --- RENDER ---

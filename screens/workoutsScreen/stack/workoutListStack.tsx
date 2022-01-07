@@ -9,9 +9,9 @@ import {
 import { WorkoutList } from "../workoutsList";
 import { Colors } from "../../../utils/colors";
 import { StackType } from "../../../navigation/utils/navigationTypes";
-import { Modal } from "../../../components/modal";
 import { WorkoutListStackHeaderRight } from "./workoutListStackHeaderRight";
-import { Form } from "../../../components/form";
+import { BaseModal } from "../../../components/baseModal";
+import { AddWorkoutForm } from "../../../components/addWorkoutForm";
 
 interface WorkoutListStackProps {
   Stack: StackType<WorkoutsParamList>;
@@ -57,14 +57,16 @@ export const workoutListStack = ({ Stack }: WorkoutListStackProps) => {
         <View style={{ flex: 1, backgroundColor: Colors.BLACK }}>
           <WorkoutList navigation={navigation} route={route} />
 
-          <Modal isVisible={isModalVisible} setIsVisible={setIsModalVisible}>
-            <Form
-              formTitle="Add a new workout"
+          <BaseModal
+            handleClose={() => setIsModalVisible(false)}
+            isVisible={isModalVisible}
+          >
+            <AddWorkoutForm
               handleAddButtonClick={() => {
                 setIsModalVisible(false);
               }}
             />
-          </Modal>
+          </BaseModal>
         </View>
       )}
     </Stack.Screen>

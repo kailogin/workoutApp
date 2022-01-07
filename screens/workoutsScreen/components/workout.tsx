@@ -6,14 +6,26 @@ import {
   Text,
   SafeAreaView,
   View,
+  Button,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { Swipeable } from "react-native-gesture-handler";
+import Toast from "react-native-toast-message";
 
 import { BaseText } from "../../../components/baseText";
 import { Colors } from "../../../utils/colors";
 import { WorkoutStackNavProps } from "../utils/workoutsParamList";
 import { Separator } from "../../../components/separator";
-import { useAppSelector } from "../../../stores/rootStore/rootStore";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../stores/rootStore/rootStore";
+import { RightSwipe } from "../../../components/rightSwipe";
+import {
+  addExerciseInWorkout,
+  deleteExerciseInWorkout,
+} from "../../../stores/workoutsStore/workoutActions";
+import { Categories } from "../../exercisesScreen/utils/exerciseTypes";
 
 interface WorkoutProps extends WorkoutStackNavProps<"Workout"> {}
 
@@ -21,9 +33,11 @@ export const Workout: React.FC<WorkoutProps> = ({
   navigation,
   route,
 }: WorkoutStackNavProps<"Workout">) => {
+  const dispatch = useAppDispatch();
+
   // --- STATE ---
 
-  const workouts = useAppSelector(({ workout }) => workout);
+  const workouts = useAppSelector(({ workout }) => workout.workouts);
 
   // --- MEMOIZED DATA ---
 
@@ -74,46 +88,71 @@ export const Workout: React.FC<WorkoutProps> = ({
         <FlatList
           data={exercises}
           keyExtractor={({ id }) => id}
-          renderItem={({ item: { exerciseName, id } }) => {
+          renderItem={({ item }) => {
+            const { exerciseName, id } = item;
+
             return (
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-around",
-                }}
-              >
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("WorkoutExercise", {
-                      name: exerciseName,
-                    })
-                  }
+              <View style={{ width: "90%" }} key={Math.random().toString()}>
+                <Swipeable
+                  renderRightActions={() => {
+                    return (
+                      <RightSwipe
+                        handleClick={() => {
+                          dispatch(deleteExerciseInWorkout(item));
+                          Toast.show({
+                            type: "success",
+                            text1: `You deleted the exercise: ${exerciseName}.`,
+                          });
+                        }}
+                      />
+                    );
+                  }}
                   key={id}
-                  style={styles.listElementButton}
                 >
-                  <Text
-                    style={styles.listElement}
+                  <TouchableOpacity
                     onPress={() =>
                       navigation.navigate("WorkoutExercise", {
                         name: exerciseName,
                       })
                     }
+                    key={id}
+                    style={styles.listElementButton}
                   >
-                    {exerciseName}
-                  </Text>
-                </TouchableOpacity>
+                    <View style={styles.listElementView}>
+                      <Text
+                        style={styles.listElement}
+                        onPress={() =>
+                          navigation.navigate("WorkoutExercise", {
+                            name: exerciseName,
+                          })
+                        }
+                      >
+                        {exerciseName}
+                      </Text>
 
-                <TouchableOpacity
-                  onPress={() => console.log("Show me alternatives")}
-                >
-                  <AntDesign
-                    name="downcircleo"
-                    size={24}
-                    color={Colors.WHITE}
-                    style={{ padding: 8 }}
-                  />
-                </TouchableOpacity>
+                      <AntDesign
+                        name="rightcircleo"
+                        size={24}
+                        color={Colors.WHITE}
+                        style={{ padding: 8 }}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                </Swipeable>
               </View>
+            );
+          }}
+        />
+
+        <Button
+          title="ADD WORKOUT EXERCISE"
+          onPress={() => {
+            dispatch(
+              addExerciseInWorkout({
+                exerciseName: "CHIHAUAHU",
+                id: "!!@#@3423423423423",
+                category: Categories.Abs,
+              })
             );
           }}
         />
@@ -132,19 +171,22 @@ const styles = StyleSheet.create({
     padding: 40,
   },
   listElementButton: {
-    // alignItems: "center",
     backgroundColor: Colors.CARD,
-    borderBottomWidth: 1,
     borderRadius: 8,
-    marginBottom: 6,
-    width: "90%",
+    marginBottom: 12,
   },
   listElement: {
     color: Colors.WHITE,
-    fontSize: 12,
-    marginBottom: 8,
+    fontSize: 14,
     marginLeft: 8,
     padding: 8,
+  },
+  listElementView: {
+    alignItems: "baseline",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    paddingHorizontal: 8,
+    paddingVertical: 16,
   },
   listGroupContainer: {
     // flex: 1,

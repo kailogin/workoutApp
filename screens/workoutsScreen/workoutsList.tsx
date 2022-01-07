@@ -8,19 +8,28 @@ import {
   View,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Swipeable } from "react-native-gesture-handler";
 
 import { WorkoutStackNavProps } from "./utils/workoutsParamList";
 import { Colors } from "../../utils/colors";
 import { BaseStatusBar } from "../../components/baseStatusBar";
-import { useAppSelector } from "../../stores/rootStore/rootStore";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../stores/rootStore/rootStore";
 import { RootState } from "../../stores/rootStore/rootTypes";
+import Toast from "react-native-toast-message";
+import { RightSwipe } from "../../components/rightSwipe";
+import { deleteWorkout } from "../../stores/workoutsStore/workoutActions";
 
 export const WorkoutList = ({
   navigation,
 }: WorkoutStackNavProps<"WorkoutList">) => {
+  const dispatch = useAppDispatch();
+
   // --- STATE ---
 
-  const workouts = useAppSelector(({ workout }: RootState) => workout);
+  const workouts = useAppSelector(({ workout }: RootState) => workout.workouts);
 
   // --- RENDER ---
 
@@ -31,27 +40,46 @@ export const WorkoutList = ({
       <FlatList
         data={workouts}
         keyExtractor={({ id }) => id}
-        renderItem={({ item: { muscleGroups, workoutName, id } }) => {
+        renderItem={({ item }) => {
+          const { muscleGroups, workoutName, id } = item;
+
           return (
-            <View style={styles.renderItem_container}>
-              <TouchableOpacity
-                key={id}
-                onPress={() => {
-                  navigation.navigate("Workout", {
-                    name: workoutName,
-                  });
-                }}
-                style={styles.listElementButton}
-              >
-                <View style={styles.container}>
-                  <Text style={styles.workoutName}>{workoutName}</Text>
+            <Swipeable
+              renderRightActions={() => {
+                return (
+                  <RightSwipe
+                    handleClick={() => {
+                      dispatch(deleteWorkout(item));
+                      Toast.show({
+                        type: "success",
+                        text1: `You deleted the workout: ${workoutName}.`,
+                      });
+                    }}
+                  />
+                );
+              }}
+              key={id}
+            >
+              <View style={styles.renderItem_container}>
+                <TouchableOpacity
+                  key={id}
+                  onPress={() => {
+                    navigation.navigate("Workout", {
+                      name: workoutName,
+                    });
+                  }}
+                  style={styles.listElementButton}
+                >
+                  <View style={styles.container}>
+                    <Text style={styles.workoutName}>{workoutName}</Text>
 
-                  <MaterialIcons name="info" size={24} color={Colors.WHITE} />
-                </View>
+                    <MaterialIcons name="info" size={24} color={Colors.WHITE} />
+                  </View>
 
-                <Text style={styles.subtitle}>&#8226; {muscleGroups}</Text>
-              </TouchableOpacity>
-            </View>
+                  <Text style={styles.subtitle}>&#8226; {muscleGroups}</Text>
+                </TouchableOpacity>
+              </View>
+            </Swipeable>
           );
         }}
         style={{ marginBottom: 32, padding: 40 }}
@@ -72,7 +100,6 @@ const styles = StyleSheet.create({
   },
   renderItem_container: {
     backgroundColor: Colors.CARD,
-    // borderColor: Colors.WHITE,
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 4,

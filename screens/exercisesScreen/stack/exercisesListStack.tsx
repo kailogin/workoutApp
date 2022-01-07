@@ -9,10 +9,9 @@ import {
 } from "../utils/exerciseParamList";
 import { Colors } from "../../../utils/colors";
 import { StackType } from "../../../navigation/utils/navigationTypes";
-import { Categories } from "../utils/exerciseTypes";
-import { Modal } from "../../../components/modal";
 import { ExercisesListStackHeaderRight } from "./exercisesListStackHeaderRight";
-import { Form } from "../../../components/form";
+import { AddExerciseForm } from "../../../components/addExerciseForm";
+import { BaseModal } from "../../../components/baseModal";
 
 interface ExercisesListStackProps {
   Stack: StackType<ExerciseParamList>;
@@ -62,15 +61,18 @@ export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
             navProps={navProps}
           />
 
-          <Modal isVisible={isModalVisible} setIsVisible={setIsModalVisible}>
-            <Form
-              formTitle="Add a new exercise"
+          <BaseModal
+            handleClose={() => {
+              setIsModalVisible(false);
+            }}
+            isVisible={isModalVisible}
+          >
+            <AddExerciseForm
               handleAddButtonClick={() => {
                 setIsModalVisible(false);
-                console.log("CIAO HERE MUSS EINE Neue Exercise GEADDET WERDEN");
               }}
             />
-          </Modal>
+          </BaseModal>
         </View>
       )}
     </Stack.Screen>

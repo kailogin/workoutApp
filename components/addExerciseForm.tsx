@@ -10,12 +10,13 @@ import { useAppDispatch } from "../stores/rootStore/rootStore";
 import { addNewExercise } from "../stores/exercisesStore/exerciseActions";
 import { Categories } from "../screens/exercisesScreen/utils/exerciseTypes";
 
-interface FormProps {
-  formTitle: string;
+interface AddExerciseFormProps {
   handleAddButtonClick: () => void;
 }
 
-export const Form = ({ formTitle, handleAddButtonClick }: FormProps) => {
+export const AddExerciseForm = ({
+  handleAddButtonClick,
+}: AddExerciseFormProps) => {
   const dispatch = useAppDispatch();
 
   // --- STATE ---
@@ -25,14 +26,23 @@ export const Form = ({ formTitle, handleAddButtonClick }: FormProps) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [muscleGroup, setMuscleGroup] = useState(Categories.Abs);
-
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
 
-  // const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
+  // --- EFFECTS ---
 
-  // const exercises = useAppSelector(
-  //   ({ exercise }: RootState) => exercise.exercises
-  // );
+  useEffect(() => {
+    if (!description || description === "") {
+      setIsSubmitButtonDisabled(true);
+      return;
+    }
+
+    if (!name || name === "") {
+      setIsSubmitButtonDisabled(true);
+      return;
+    }
+
+    setIsSubmitButtonDisabled(false);
+  }, [description, name]);
 
   // --- HELPERS ---
 
@@ -58,17 +68,14 @@ export const Form = ({ formTitle, handleAddButtonClick }: FormProps) => {
   };
 
   const handleNameValueChange = (value: string) => {
-    console.log(value);
     setName(value);
   };
 
   const handleDescriptionValueChange = (value: string) => {
-    console.log(value);
     setDescription(value);
   };
 
   const handleMuscleGroupValueChange = (value: string) => {
-    console.log(value);
     setMuscleGroup(value as Categories);
   };
 
@@ -78,7 +85,7 @@ export const Form = ({ formTitle, handleAddButtonClick }: FormProps) => {
 
       Toast.show({
         type: "error",
-        text1: "Please choose a workout name.",
+        text1: "Please choose an exercise name.",
       });
       return;
     }
@@ -96,7 +103,7 @@ export const Form = ({ formTitle, handleAddButtonClick }: FormProps) => {
     setIsSubmitButtonDisabled(false);
   };
 
-  const handleButtonPress = async () => {
+  const handleExerciseButtonPress = () => {
     validateFields();
 
     if (isSubmitButtonDisabled) {
@@ -116,22 +123,6 @@ export const Form = ({ formTitle, handleAddButtonClick }: FormProps) => {
     handleAddButtonClick();
   };
 
-  // --- EFFECTS ---
-
-  useEffect(() => {
-    if (!description || description === "") {
-      setIsSubmitButtonDisabled(true);
-      return;
-    }
-
-    if (!name || name === "") {
-      setIsSubmitButtonDisabled(true);
-      return;
-    }
-
-    setIsSubmitButtonDisabled(false);
-  }, [description, name]);
-
   // --- RENDER ---
 
   return (
@@ -140,14 +131,14 @@ export const Form = ({ formTitle, handleAddButtonClick }: FormProps) => {
         style={{
           fontSize: 20,
           marginTop: 40,
-          marginBottom: 16,
+          marginBottom: 24,
           textAlign: "center",
         }}
       >
-        {formTitle}
+        Add a new Exercise
       </BaseText>
 
-      <BaseText style={{ fontSize: 16 }}>Exercise name</BaseText>
+      <BaseText style={styles.inputTitle}>Exercise name</BaseText>
 
       <TextInput
         onChangeText={handleNameValueChange}
@@ -155,7 +146,7 @@ export const Form = ({ formTitle, handleAddButtonClick }: FormProps) => {
         value={name}
       />
 
-      <BaseText style={{ fontSize: 16 }}>Muscle group</BaseText>
+      <BaseText style={styles.inputTitle}>Muscle group</BaseText>
 
       <View
         style={{
@@ -165,7 +156,7 @@ export const Form = ({ formTitle, handleAddButtonClick }: FormProps) => {
           flexDirection: "row",
           marginBottom: 40,
           // padding: 10,
-          width: "95%",
+          width: "90%",
         }}
       >
         <TextInput
@@ -192,15 +183,7 @@ export const Form = ({ formTitle, handleAddButtonClick }: FormProps) => {
         />
       </View>
 
-      <BaseText
-        style={{
-          alignSelf: "flex-start",
-          color: Colors.WHITE,
-          fontSize: 16,
-        }}
-      >
-        Description
-      </BaseText>
+      <BaseText style={styles.inputTitle}>Description</BaseText>
 
       <TextInput
         multiline
@@ -210,13 +193,13 @@ export const Form = ({ formTitle, handleAddButtonClick }: FormProps) => {
       />
 
       <TouchableOpacity
-        onPress={handleButtonPress}
+        onPress={handleExerciseButtonPress}
         style={isSubmitButtonDisabled ? styles.buttonDisabled : styles.button}
       >
         <BaseText
           style={{ fontSize: 12, fontWeight: "bold", textAlign: "center" }}
         >
-          Add
+          Add Exercise
         </BaseText>
       </TouchableOpacity>
     </View>
@@ -267,5 +250,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 32,
     padding: 12,
+  },
+  inputTitle: {
+    color: Colors.WHITE,
+    fontSize: 16,
+    marginBottom: 4,
   },
 });
