@@ -36,12 +36,18 @@ export const BaseModal: React.FC<BaseModalProps> = ({
           flex: 1,
           justifyContent: "center",
           marginBottom: 0,
-          marginLeft: 0,
-          marginRight: 0,
+          marginLeft: 20,
+          marginRight: 20,
           marginTop: 90,
         }}
       >
-        <View style={{ flex: 1 }}>
+        <View
+          style={{
+            flex: 1,
+            // Needed for the children to have a fixed width.
+            width: "90%",
+          }}
+        >
           <View
             style={{
               alignItems: "center",

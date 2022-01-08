@@ -17,6 +17,9 @@ import { RootState } from "../../stores/rootStore/rootTypes";
 import { MaterialIcons } from "@expo/vector-icons";
 import { RightSwipe } from "../../components/rightSwipe";
 import { deleteExercise } from "../../stores/exercisesStore/exerciseActions";
+import { BaseText } from "../../components/baseText";
+import { AddExerciseForm } from "../../components/addExerciseForm";
+import { BaseModal } from "../../components/baseModal";
 
 interface ExercisesListProps {
   isEditExercisesClicked: boolean;
@@ -33,6 +36,7 @@ export const ExercisesList = ({
 
   const [searchPhrase, setSearchPhrase] = useState("");
   const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
+  const [showAddExerciseModal, setShowAddExerciseModal] = useState(false);
 
   const exercises = useAppSelector(
     ({ exercise }: RootState) => exercise.exercises
@@ -154,6 +158,41 @@ export const ExercisesList = ({
         setSearchPhrase={setSearchPhrase}
         setIsSearchBarClicked={setIsSearchBarClicked}
       />
+
+      <TouchableOpacity
+        onPress={() => setShowAddExerciseModal(true)}
+        style={{
+          alignItems: "center",
+          flexDirection: "row",
+          justifyContent: "flex-start",
+          marginBottom: 16,
+        }}
+      >
+        <MaterialIcons
+          name="add"
+          size={24}
+          style={{
+            backgroundColor: Colors.CARD,
+            color: Colors.WHITE,
+            marginRight: 16,
+            padding: 12,
+          }}
+          color={Colors.WHITE}
+        />
+
+        <BaseText>Add Exercise</BaseText>
+      </TouchableOpacity>
+
+      <BaseModal
+        handleClose={() => {
+          setShowAddExerciseModal(false);
+        }}
+        isVisible={showAddExerciseModal}
+      >
+        <AddExerciseForm
+          handleAddButtonClick={() => setShowAddExerciseModal(false)}
+        />
+      </BaseModal>
 
       {workoutExercisesGroupedList}
     </BaseView>

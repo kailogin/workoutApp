@@ -11,6 +11,12 @@ import { useAppDispatch, useAppSelector } from "../stores/rootStore/rootStore";
 import { Categories } from "../screens/exercisesScreen/utils/exerciseTypes";
 import { RootState } from "../stores/rootStore/rootTypes";
 import { addNewWorkout } from "../stores/workoutsStore/workoutActions";
+import {
+  multiSelectColorStyles,
+  multiSelectIcons,
+  multiSelectStyles,
+  RenderSelectText,
+} from "./multiSelectHelpers";
 
 interface AddWorkoutFormProps {
   handleAddButtonClick: () => void;
@@ -133,7 +139,6 @@ export const AddWorkoutForm = ({
     handleAddButtonClick();
   };
 
-  console.log({ isSubmitButtonDisabled });
   // --- RENDER ---
 
   return (
@@ -166,8 +171,7 @@ export const AddWorkoutForm = ({
           borderRadius: 12,
           flexDirection: "row",
           marginBottom: 40,
-          // padding: 10,
-          width: "90%",
+          width: "100%",
         }}
       >
         <TextInput
@@ -194,29 +198,18 @@ export const AddWorkoutForm = ({
         />
       </View>
 
-      <BaseText style={styles.inputTitle}>Exercises</BaseText>
-
       <MultiSelect
-        colors={{
-          primary: Colors.ORANGE,
-          selectToggleTextColor: Colors.ORANGE,
-          searchSelectionColor: Colors.ORANGE,
-        }}
-        styles={{
-          selectToggle: {
-            borderRadius: 12,
-            borderColor: Colors.ORANGE,
-            borderWidth: 1,
-            padding: 8,
-          },
-        }}
-        searchPlaceholderText="Search exercises..."
-        items={exerciseNamesAndId}
-        uniqueKey="id"
-        onSelectedItemsChange={handleSelectedMultiSelectItemsChange}
+        colors={multiSelectColorStyles}
         IconRenderer={MaterialIcons}
+        icons={multiSelectIcons}
+        items={exerciseNamesAndId}
+        onSelectedItemsChange={handleSelectedMultiSelectItemsChange}
+        renderSelectText={RenderSelectText}
+        searchPlaceholderText="Search exercises..."
         selectedItems={selectedExercises}
         showRemoveAll
+        uniqueKey="id"
+        styles={multiSelectStyles}
       />
 
       <TouchableOpacity
@@ -244,7 +237,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 24,
     borderColor: Colors.WHITE,
-    width: "90%",
+    width: "100%",
     marginBottom: 24,
   },
   button: {

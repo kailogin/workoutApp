@@ -1,3 +1,4 @@
+import { Exercise } from "../../screens/exercisesScreen/utils/exerciseTypes";
 import {
   WorkoutAction,
   initialWorkoutState,
@@ -29,11 +30,18 @@ export const workoutReducer = (
       return {
         ...state.workouts,
         workouts: state.workouts.map((workout) => {
+          if (workout.id === action.payload.workoutId) {
+            return {
+              ...workout,
+              exercises: workout.exercises.filter(
+                (exercise) => exercise.id !== action.payload.id
+              ),
+            };
+          }
+
           return {
             ...workout,
-            exercises: workout.exercises.filter(
-              (exercise) => exercise.id !== action.payload.id
-            ),
+            exercises: [...workout.exercises],
           };
         }),
       };
@@ -42,9 +50,23 @@ export const workoutReducer = (
       return {
         ...state.workouts,
         workouts: state.workouts.map((workout) => {
+          if (workout.id === action.payload.workoutId) {
+            const newExercise: Exercise = {
+              category: action.payload.category,
+              exerciseName: action.payload.exerciseName,
+              id: action.payload.id,
+              description: action.payload.description,
+            };
+
+            return {
+              ...workout,
+              exercises: [...workout.exercises, newExercise],
+            };
+          }
+
           return {
             ...workout,
-            exercises: workout.exercises.concat(action.payload),
+            exercises: [...workout.exercises],
           };
         }),
       };
