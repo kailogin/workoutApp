@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 import Toast from "react-native-toast-message";
+import uuid from "react-native-uuid";
 
 import { Exercise } from "./utils/exerciseTypes";
 import { SearchBar } from "../../components/searchBar";
@@ -81,7 +82,7 @@ export const ExercisesList = ({
         .map((key) => [key, groupedExercises[key]])
         .map((category, index: number) => {
           const exercises = category[1].map((exercise: Exercise) => (
-            <View style={{ width: "90%" }} key={Math.random().toString()}>
+            <View style={{ width: "90%" }} key={uuid.v4().toString()}>
               <Swipeable
                 renderRightActions={() => {
                   return (
@@ -104,7 +105,7 @@ export const ExercisesList = ({
                       name: exercise.exerciseName,
                     })
                   }
-                  key={exercise.id + "TEST"}
+                  key={uuid.v4().toString()}
                   style={styles.listElementButton}
                 >
                   <View style={styles.listElementView}>
@@ -133,10 +134,7 @@ export const ExercisesList = ({
           ));
 
           return (
-            <View
-              key={index.toString() + Math.random().toString()}
-              style={styles.listGroupContainer}
-            >
+            <View key={uuid.v4().toString()} style={styles.listGroupContainer}>
               <Text style={styles.title}>{category[0]}</Text>
 
               {exercises}

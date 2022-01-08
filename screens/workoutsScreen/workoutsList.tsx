@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Swipeable } from "react-native-gesture-handler";
+import uuid from "react-native-uuid";
 
 import { WorkoutStackNavProps } from "./utils/workoutsParamList";
 import { Colors } from "../../utils/colors";
@@ -58,7 +59,7 @@ export const WorkoutList = ({
                   />
                 );
               }}
-              key={id}
+              key={uuid.v4().toString()}
             >
               <View style={styles.renderItem_container}>
                 <TouchableOpacity

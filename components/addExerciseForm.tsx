@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import Toast from "react-native-toast-message";
+import uuid from "react-native-uuid";
 
 import { Colors } from "../utils/colors";
 import { BaseText } from "./baseText";
@@ -114,8 +115,7 @@ export const AddExerciseForm = ({
       addNewExercise({
         category: muscleGroup,
         exerciseName: name,
-        // TODO: Fix id gedöhns
-        id: Math.random().toString(),
+        id: uuid.v4().toString(),
         description: description,
       })
     );

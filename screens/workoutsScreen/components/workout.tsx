@@ -11,6 +11,7 @@ import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { Swipeable } from "react-native-gesture-handler";
 import Toast from "react-native-toast-message";
 import MultiSelect from "react-native-sectioned-multi-select";
+import uuid from "react-native-uuid";
 
 import { BaseText } from "../../../components/baseText";
 import { Colors } from "../../../utils/colors";
@@ -53,15 +54,6 @@ export const Workout: React.FC<WorkoutProps> = ({
 
   // --- MEMOIZED DATA ---
 
-  const exerciseNamesAndId = useMemo(
-    () =>
-      exerciseOptions.map((exercise) => ({
-        id: exercise.id,
-        name: exercise.exerciseName,
-      })),
-    [exerciseOptions]
-  );
-
   const selectedWorkout = useMemo(
     () => workouts.find((item) => item.workoutName === route.params.name),
     [route.params.name, workouts]
@@ -69,15 +61,11 @@ export const Workout: React.FC<WorkoutProps> = ({
 
   // --- CALLBACKS ---
 
-  const handleSelectedMultiSelectItemsChange = useCallback((exercises: any) => {
-    if (exercises in selectedExercises) {
-      return;
-    }
-
-    setSelectedExercises([...exercises]);
+  const handleSelectedMultiSelectItemsChange = useCallback((exis: any) => {
+    setSelectedExercises([...exis]);
   }, []);
 
-  // --- RENDER ---
+  // --- RENDER I ---
 
   if (!selectedWorkout) {
     return (
@@ -88,6 +76,30 @@ export const Workout: React.FC<WorkoutProps> = ({
       </SafeAreaView>
     );
   }
+
+  const {
+    exercises,
+    id: workoutId,
+    muscleGroups,
+    workoutName,
+  } = selectedWorkout;
+
+  const getExerciseNamesAndIds = useCallback(() => {
+    const exerciseNamesAndIds = exerciseOptions.map((exercise) => ({
+      id: exercise.id,
+      name: exercise.exerciseName,
+    }));
+
+    const exerciseIDsFiltered = exerciseNamesAndIds.map((ex) => ex.id);
+    const workoutExerciseIds = exercises.map((ex) => ex.id);
+    const filteredExerciseOptionIds = exerciseIDsFiltered.filter(
+      (id) => !workoutExerciseIds.includes(id)
+    );
+
+    return exerciseNamesAndIds.filter((exerciseOption) =>
+      filteredExerciseOptionIds.includes(exerciseOption.id)
+    );
+  }, [exerciseOptions, exercises]);
 
   const dispatchExercises = useCallback(() => {
     const chosenExercises = exerciseOptions.filter((exercise) =>
@@ -106,13 +118,6 @@ export const Workout: React.FC<WorkoutProps> = ({
       );
     });
   }, [exerciseOptions, selectedExercises]);
-
-  const {
-    exercises,
-    id: workoutId,
-    muscleGroups,
-    workoutName,
-  } = selectedWorkout;
 
   return (
     <SafeAreaView style={styles.safe_area_container}>
@@ -146,7 +151,7 @@ export const Workout: React.FC<WorkoutProps> = ({
             searchPlaceholderText="Search exercises..."
             renderSelectText={RenderSelectText}
             icons={multiSelectIcons}
-            items={exerciseNamesAndId}
+            items={getExerciseNamesAndIds()}
             uniqueKey="id"
             onConfirm={() => {
               dispatchExercises();
@@ -166,7 +171,7 @@ export const Workout: React.FC<WorkoutProps> = ({
             const { category, exerciseName, id } = item;
 
             return (
-              <View style={{ width: "90%" }} key={Math.random().toString()}>
+              <View style={{ width: "90%" }} key={uuid.v4().toString()}>
                 <Swipeable
                   renderRightActions={() => {
                     return (
@@ -188,7 +193,7 @@ export const Workout: React.FC<WorkoutProps> = ({
                       />
                     );
                   }}
-                  key={id}
+                  key={uuid.v4().toString()}
                 >
                   <TouchableOpacity
                     onPress={() =>

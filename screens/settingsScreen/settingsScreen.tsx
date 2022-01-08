@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Switch, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import RadioForm, {
   RadioButton,
   RadioButtonInput,
   RadioButtonLabel,
 } from "react-native-simple-radio-button";
+import uuid from "react-native-uuid";
 
 import { Languages } from "../../utils/types";
 import i18n, { LanguagesType } from "../../i18n.config";
@@ -20,7 +21,6 @@ export const SettingsScreen = () => {
 
   // --- STATE ---
 
-  const [isDarkModeEnabled, setIsDarkModeEnabled] = useState(true);
   const [selectedLanguage, setSelectedLanguage] = useState<LanguagesType>(
     "English"
   );
@@ -35,9 +35,6 @@ export const SettingsScreen = () => {
   ];
 
   // --- CALLBACKS ---
-
-  const toggleSwitch = () =>
-    setIsDarkModeEnabled((previousState) => !previousState);
 
   const handleRadioButtonPress = (itemValue: 0 | 1 | 2) => {
     let language;
@@ -71,7 +68,7 @@ export const SettingsScreen = () => {
           {radio_props.map((radio_prop) => (
             <RadioButton
               labelHorizontal={true}
-              key={radio_prop.label + radio_prop.value}
+              key={uuid.v4().toString()}
               style={{ marginBottom: 16 }}
             >
               <RadioButtonInput
@@ -100,19 +97,6 @@ export const SettingsScreen = () => {
       </View>
 
       <Separator widthPercentage={100} />
-
-      <View>
-        <Text style={[styles.title, { marginRight: 24 }]}>
-          {translate("darkModeCta")}
-        </Text>
-
-        <Switch
-          trackColor={{ false: Colors.CARD, true: Colors.ORANGE }}
-          thumbColor={Colors.WHITE}
-          onValueChange={toggleSwitch}
-          value={isDarkModeEnabled}
-        />
-      </View>
     </BaseView>
   );
 };

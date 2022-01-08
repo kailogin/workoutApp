@@ -3,6 +3,7 @@ import { TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import Toast from "react-native-toast-message";
 import MultiSelect from "react-native-sectioned-multi-select";
+import uuid from "react-native-uuid";
 
 import { Colors } from "../utils/colors";
 import { BaseText } from "./baseText";
@@ -130,7 +131,7 @@ export const AddWorkoutForm = ({
     dispatch(
       addNewWorkout({
         exercises: findRightExercises,
-        id: Math.random.toString(),
+        id: uuid.v4().toString(),
         muscleGroups: muscleGroup,
         workoutName: name,
       })
