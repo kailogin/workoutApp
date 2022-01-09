@@ -40,7 +40,7 @@ export const Exercise: React.FC<ExerciseProps> = ({
     return (
       <SafeAreaView style={{ backgroundColor: Colors.BLACK, height: "100%" }}>
         <BaseText style={{ fontSize: 24, marginTop: 40, padding: 40 }}>
-          {t("noExerciseFound")}
+          {t("exercises.noExerciseFound")}
         </BaseText>
       </SafeAreaView>
     );
@@ -70,6 +70,8 @@ export const Exercise: React.FC<ExerciseProps> = ({
       >
         {category}
       </BaseText>
+
+      {/* TODO: Add description to all types */}
 
       {/* {description && ( */}
       <BaseText
@@ -111,7 +113,7 @@ export const Exercise: React.FC<ExerciseProps> = ({
             color: Colors.BLACK,
           }}
         >
-          Delete Exercise
+          {t("exercises.delete")}
         </BaseText>
       </TouchableOpacity>
     </BaseView>

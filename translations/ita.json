@@ -13,13 +13,14 @@
     "noExerciseFound": "Oops, per favore seleziona di nuovo l'esercizio.",
     "headerExercisesList": "Esercizi",
     "headerEditExercisesList": "Modifica Esercizi",
-    "headerAddExercise": "Aggiungi Esercizi"
+    "headerAddExercise": "Aggiungi Esercizi",
+    "delete": "Eliminare Esercizo",
+    "successDelete": "Hai cancellato l'esercizo:"
   },
   "workouts": {
     "noWorkoutFound": "Oops, per favore seleziona di nuovo Allenamenti.",
     "headerWorkoutsList": "Allenamenti",
-    "headerEditWorkoutsList": "Modifica Allenamenti",
-    "headerAddWorkout": "Aggiungi Allenamenti"
+    "headerEditWorkoutsList": "Modifica Allenamenti"
   },
   "searchBarPlaceholder": "Cercare"
 }

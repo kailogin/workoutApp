@@ -4,7 +4,12 @@ import { initReactI18next } from "react-i18next";
 import en from "./translations/en.json";
 import de from "./translations/de.json";
 import ita from "./translations/ita.json";
-import { Languages } from "./utils/types";
+
+export enum Languages {
+  ENG = "en",
+  GER = "de",
+  ITA = "ita",
+}
 
 const resources = {
   en: {

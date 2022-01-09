@@ -14,6 +14,7 @@ import {
   NativeStackNavigationEventMap,
   NativeStackNavigatorProps,
 } from "@react-navigation/native-stack/lib/typescript/src/types";
+
 import { ExerciseParamList } from "../../screens/exercisesScreen/utils/exerciseParamList";
 import { WorkoutsParamList } from "../../screens/workoutsScreen/utils/workoutsParamList";
 

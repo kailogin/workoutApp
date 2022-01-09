@@ -1,11 +1,7 @@
 import React from "react";
-import { MaterialIcons } from "@expo/vector-icons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { TouchableOpacity } from "react-native";
-import { Colors } from "../../utils/colors";
-import { AddWorkout } from "./components/addWorkout";
-import { useTranslation } from "react-i18next";
 
+import { Colors } from "../../utils/colors";
 import { WorkoutExercise } from "./components/workoutExercise";
 import { workoutStack } from "./stack/workoutStack";
 import { workoutListStack } from "./stack/workoutListStack";
@@ -14,17 +10,9 @@ import {
   WorkoutStackNavProps,
 } from "./utils/workoutsParamList";
 
-interface WorkoutsStackProps {}
-
 const Stack = createNativeStackNavigator<WorkoutsParamList>();
 
-export const WorkoutsStack: React.FC<WorkoutsStackProps> = ({}) => {
-  const { t } = useTranslation();
-
-  // --- HELPERS ---
-
-  const translate = (key: string) => t(`workouts.${key}`);
-
+export const WorkoutsStack = () => {
   // --- RENDER ---
 
   return (
@@ -40,32 +28,6 @@ export const WorkoutsStack: React.FC<WorkoutsStackProps> = ({}) => {
       {workoutListStack({ Stack })}
 
       {workoutStack({ Stack })}
-
-      <Stack.Screen
-        component={AddWorkout}
-        name="AddWorkout"
-        options={({
-          navigation,
-          route,
-        }: WorkoutStackNavProps<"AddWorkout">) => ({
-          headerTitle: translate("headerAddWorkout"),
-          headerRight: () => (
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("WorkoutList");
-              }}
-            >
-              <MaterialIcons
-                name="save"
-                size={24}
-                color={Colors.WHITE}
-                style={{ marginRight: 16 }}
-              />
-            </TouchableOpacity>
-          ),
-          title: "New workout",
-        })}
-      />
 
       <Stack.Screen
         component={WorkoutExercise}

@@ -9,8 +9,6 @@ export const workoutReducer = (
   state: WorkoutState = initialWorkoutState,
   action: WorkoutAction
 ): WorkoutState => {
-  console.warn("workoutAction:", action);
-
   switch (action.type) {
     case "ADD_NEW_WORKOUT":
       return {

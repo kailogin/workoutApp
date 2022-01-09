@@ -13,13 +13,14 @@
     "noExerciseFound": "Oops, please select the exercise again.",
     "headerExercisesList": "Exercises",
     "headerEditExercisesList": "Edit Exercises",
-    "headerAddExercise": "Add Exercise"
+    "headerAddExercise": "Add Exercise",
+    "delete": "Delete Exercise",
+    "successDelete": "You deleted the exercise:"
   },
   "workouts": {
     "noWorkoutFound": "Oops, please select the workout again.",
     "headerWorkoutsList": "Workouts",
-    "headerEditWorkoutsList": "Edit Workouts",
-    "headerAddWorkout": "Add Workout"
+    "headerEditWorkoutsList": "Edit Workouts"
   },
   "searchBarPlaceholder": "Search"
 }

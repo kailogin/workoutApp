@@ -13,6 +13,4 @@ export const userReducer = (
     default:
       return state;
   }
-
-  return state;
 };

@@ -55,7 +55,7 @@ export const AddWorkoutForm = ({
     }
 
     setIsSubmitButtonDisabled(false);
-  }, [name]);
+  }, [name, selectedExercises]);
 
   // --- HELPERS ---
 

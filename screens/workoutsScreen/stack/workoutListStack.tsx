@@ -50,7 +50,7 @@ export const workoutListStack = ({ Stack }: WorkoutListStackProps) => {
             setIsModalVisible={setIsModalVisible}
           />
         ),
-        title: "Workouts",
+        title: translate("headerWorkoutsList"),
       })}
     >
       {({ navigation, route }: WorkoutStackNavProps<"WorkoutList">) => (

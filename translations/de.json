@@ -13,13 +13,14 @@
     "noExerciseFound": "Oops, bitte wähle die Übung erneut aus.",
     "headerExercisesList": "Übungen",
     "headerEditExercisesList": "Übungen bearbeiten",
-    "headerAddExercise": "Übung hinzufügen"
+    "headerAddExercise": "Übung hinzufügen",
+    "delete": "Übung löschen",
+    "successDelete": "Du hast die Übung gelöscht:"
   },
   "workouts": {
     "noWorkoutFound": "Oops, bitte wähle das Training erneut aus.",
     "headerWorkoutsList": "Trainings",
-    "headerEditWorkoutsList": "Trainings bearbeiten",
-    "headerAddWorkout": "Training hinzufügen"
+    "headerEditWorkoutsList": "Trainings bearbeiten"
   },
   "searchBarPlaceholder": "Suchen"
 }

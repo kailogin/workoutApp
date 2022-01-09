@@ -20,7 +20,7 @@ export const workoutStack = ({ Stack }: WorkoutStackProps) => {
 
   // --- STATE ---
 
-  const [isEditWorkoutClicked, setIsEditWorkoutClicked] = useState(false);
+  const [isStartWorkoutClicked, setIsStartWorkoutClicked] = useState(false);
 
   // --- HELPERS ---
 
@@ -30,18 +30,17 @@ export const workoutStack = ({ Stack }: WorkoutStackProps) => {
 
   const headerRight = useMemo(
     () => ({ navigation, route }: WorkoutStackNavProps<"Workout">) => {
-      if (!isEditWorkoutClicked) {
+      if (!isStartWorkoutClicked) {
         return (
           <View style={styles.container}>
             <TouchableOpacity
               onPress={() => {
-                // TODO: Dispatch an action to save the new workout in redux.
-                // dispatch(setSaveNewWorkout)
-                setIsEditWorkoutClicked(true);
+                // TODO: Start new workout -> Create instance of workout in redux store
+                setIsStartWorkoutClicked(true);
               }}
             >
               <MaterialIcons
-                name="edit"
+                name="not-started"
                 size={24}
                 color={Colors.WHITE}
                 style={{ marginRight: 16 }}
@@ -54,12 +53,8 @@ export const workoutStack = ({ Stack }: WorkoutStackProps) => {
       return (
         <TouchableOpacity
           onPress={() => {
-            //   if (route.params.submit) {
-            //     route.params.submit?.current();
-            //   }
-            // }
-            // dispatch action and save the current changes and state
-            setIsEditWorkoutClicked(false);
+            // TODO: End current workout -> Dispatch all information to redux store
+            setIsStartWorkoutClicked(false);
           }}
           style={{ paddingRight: 8 }}
         >
@@ -72,7 +67,7 @@ export const workoutStack = ({ Stack }: WorkoutStackProps) => {
         </TouchableOpacity>
       );
     },
-    [isEditWorkoutClicked]
+    [isStartWorkoutClicked]
   );
 
   // --- RENDER ---
@@ -82,7 +77,9 @@ export const workoutStack = ({ Stack }: WorkoutStackProps) => {
       component={Workout}
       name="Workout"
       options={({ navigation, route }) => ({
-        headerTitle: isEditWorkoutClicked ? "Edit Workout" : route.params?.name,
+        headerTitle: isStartWorkoutClicked
+          ? translate("headerEditWorkoutsList")
+          : route.params?.name,
         headerRight: () => headerRight(navigation),
         title: route.params?.name,
       })}

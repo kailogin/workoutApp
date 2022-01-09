@@ -3,6 +3,7 @@ import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 import Toast from "react-native-toast-message";
 import uuid from "react-native-uuid";
+import { useTranslation } from "react-i18next";
 
 import { Exercise } from "./utils/exerciseTypes";
 import { SearchBar } from "../../components/searchBar";
@@ -32,6 +33,8 @@ export const ExercisesList = ({
   navProps,
 }: ExercisesListProps) => {
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation();
 
   // --- STATE ---
 
@@ -91,7 +94,9 @@ export const ExercisesList = ({
                         dispatch(deleteExercise(exercise));
                         Toast.show({
                           type: "success",
-                          text1: `You deleted the exercise: ${exercise.exerciseName}.`,
+                          text1:
+                            t("exercises.successDelete") +
+                            exercise.exerciseName,
                         });
                       }}
                     />
@@ -118,7 +123,9 @@ export const ExercisesList = ({
                           dispatch(deleteExercise(exercise));
                           Toast.show({
                             type: "success",
-                            text1: `You deleted the exercise: ${exercise.exerciseName}.`,
+                            text1:
+                              t("exercises.successDelete") +
+                              exercise.exerciseName,
                           });
                         }}
                       />

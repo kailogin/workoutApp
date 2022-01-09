@@ -8,30 +8,28 @@ interface RightSwipeProps {
   handleClick: () => void;
 }
 
-export const RightSwipe = ({ handleClick }: RightSwipeProps) => {
-  return (
-    <TouchableOpacity
-      onPress={handleClick}
+export const RightSwipe = ({ handleClick }: RightSwipeProps) => (
+  <TouchableOpacity
+    onPress={handleClick}
+    style={{
+      alignItems: "center",
+      backgroundColor: Colors.RED,
+      borderTopEndRadius: 12,
+      borderBottomEndRadius: 12,
+      flex: 0.5,
+      justifyContent: "center",
+      marginBottom: 6,
+    }}
+  >
+    <BaseText
       style={{
-        alignItems: "center",
-        backgroundColor: Colors.RED,
-        borderTopEndRadius: 12,
-        borderBottomEndRadius: 12,
-        flex: 0.5,
-        justifyContent: "center",
-        marginBottom: 6,
+        color: Colors.WHITE,
+        fontSize: 12,
+        fontWeight: "600",
+        padding: 8,
       }}
     >
-      <BaseText
-        style={{
-          color: Colors.WHITE,
-          fontSize: 12,
-          fontWeight: "600",
-          padding: 8,
-        }}
-      >
-        DELETE
-      </BaseText>
-    </TouchableOpacity>
-  );
-};
+      DELETE
+    </BaseText>
+  </TouchableOpacity>
+);

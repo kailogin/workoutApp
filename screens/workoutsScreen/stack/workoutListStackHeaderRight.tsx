@@ -27,7 +27,6 @@ export const WorkoutListStackHeaderRight = ({
         <TouchableOpacity
           onPress={() => {
             setIsEditWorkoutsClicked(true);
-            navigation.navigate("WorkoutList");
           }}
         >
           <MaterialIcons

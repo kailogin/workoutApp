@@ -1,6 +1,5 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useTranslation } from "react-i18next";
 
 import { Colors } from "../../utils/colors";
 import { Exercise } from "./components/exercise";
@@ -15,12 +14,6 @@ interface ExercisesStackProps {}
 const Stack = createNativeStackNavigator<ExerciseParamList>();
 
 export const ExercisesStack: React.FC<ExercisesStackProps> = ({}) => {
-  const { t } = useTranslation();
-
-  // --- HELPERS ---
-
-  const translate = (key: string) => t(`exercises.${key}`);
-
   // --- RENDER ---
 
   return (

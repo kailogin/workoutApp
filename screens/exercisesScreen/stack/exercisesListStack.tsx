@@ -33,7 +33,6 @@ export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
 
   return (
     <Stack.Screen
-      // TODO: Here muss ich den ExercisesList Screen rendern mit den roten Icons -> oder ich kann den state runter passen
       name="ExercisesList"
       options={({
         navigation,
@@ -51,11 +50,11 @@ export const exercisesListStack = ({ Stack }: ExercisesListStackProps) => {
             setIsModalVisible={setIsModalVisible}
           />
         ),
-        title: "Exercises Unclicked",
+        title: translate("headerExercisesList"),
       })}
     >
       {(navProps: ExerciseStackNavProps<"ExercisesList">) => (
-        <View style={{ flex: 1, backgroundColor: Colors.BLACK }}>
+        <View style={{ backgroundColor: Colors.BLACK, flex: 1 }}>
           <ExercisesList
             isEditExercisesClicked={isEditExercisesClicked}
             navProps={navProps}

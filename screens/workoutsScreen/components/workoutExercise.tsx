@@ -1,5 +1,4 @@
-import { MaterialIcons } from "@expo/vector-icons";
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FlatList,
@@ -12,7 +11,6 @@ import { Swipeable } from "react-native-gesture-handler";
 import uuid from "react-native-uuid";
 
 import { BaseText } from "../../../components/baseText";
-import { BaseView } from "../../../components/baseView";
 import { RightSwipe } from "../../../components/rightSwipe";
 import { deleteSetInExercise } from "../../../stores/exercisesStore/exerciseActions";
 import {
@@ -59,7 +57,7 @@ export const WorkoutExercise: React.FC<WorkoutProps> = ({
   const { exerciseName, sets, id: exerciseId } = selectedExercise;
 
   return (
-    <BaseView>
+    <View style={{ backgroundColor: Colors.BLACK, flex: 1, padding: 40 }}>
       <BaseText
         style={{
           fontSize: 24,
@@ -103,7 +101,6 @@ export const WorkoutExercise: React.FC<WorkoutProps> = ({
                   <BaseText
                     style={{
                       backgroundColor: Colors.WHITE,
-                      borderRadius: 11,
                       color: Colors.BLACK,
                       fontWeight: "900",
                       height: 22,
@@ -125,7 +122,7 @@ export const WorkoutExercise: React.FC<WorkoutProps> = ({
         )}
         keyExtractor={() => uuid.v4().toString()}
       />
-    </BaseView>
+    </View>
   );
 };
 
@@ -151,7 +148,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   listElementView: {
-    alignItems: "baseline",
+    alignItems: "center",
     flexDirection: "row",
     paddingHorizontal: 8,
     paddingVertical: 16,

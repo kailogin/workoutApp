@@ -8,8 +8,7 @@ import RadioForm, {
 } from "react-native-simple-radio-button";
 import uuid from "react-native-uuid";
 
-import { Languages } from "../../utils/types";
-import i18n, { LanguagesType } from "../../i18n.config";
+import i18n, { Languages, LanguagesType } from "../../i18n.config";
 import { BaseView } from "../../components/baseView";
 import { Colors } from "../../utils/colors";
 import { Separator } from "../../components/separator";
@@ -52,9 +51,7 @@ export const SettingsScreen = () => {
     }
 
     i18n.changeLanguage(language);
-    // const lng = mapLanguageCodeToLanguage(language);
     setSelectedIndex(itemValue);
-    // setSelectedLanguage(lng);
   };
   // --- RENDER ---
 

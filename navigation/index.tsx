@@ -15,7 +15,7 @@ export const Navigation = () => {
 
   // --- STATE ---
 
-  const isFirstVisit = useAppSelector(
+  const showOnboardingTour = useAppSelector(
     ({ user }: RootState) => user.isFirstVisit
   );
 
@@ -27,7 +27,7 @@ export const Navigation = () => {
 
   // --- RENDER ---
 
-  if (isFirstVisit) {
+  if (showOnboardingTour) {
     return (
       <View style={{ backgroundColor: Colors.ONBOARDING_BG, flex: 1 }}>
         <OnboardingScreen handleFinishTour={handleFinishTour} />
