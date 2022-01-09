@@ -11,11 +11,13 @@
   },
   "exercises": {
     "noExerciseFound": "Oops, per favore seleziona di nuovo l'esercizio.",
+    "addNewSet": "Aggiungi un nuovo set",
     "headerExercisesList": "Esercizi",
     "headerEditExercisesList": "Modifica Esercizi",
     "headerAddExercise": "Aggiungi Esercizi",
     "delete": "Eliminare Esercizo",
-    "successDelete": "Hai cancellato l'esercizo:"
+    "successDelete": "Hai cancellato l'esercizo:",
+    "successSave": "Avete salato i set per l'esercizo."
   },
   "workouts": {
     "noWorkoutFound": "Oops, per favore seleziona di nuovo Allenamenti.",

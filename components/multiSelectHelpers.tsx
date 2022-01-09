@@ -1,6 +1,7 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import { View } from "react-native";
+
 import { Colors } from "../utils/colors";
 import { BaseText } from "./baseText";
 

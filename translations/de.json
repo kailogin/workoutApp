@@ -11,11 +11,13 @@
   },
   "exercises": {
     "noExerciseFound": "Oops, bitte wähle die Übung erneut aus.",
+    "addNewSet": "Neuen Satz hinzufügen",
     "headerExercisesList": "Übungen",
     "headerEditExercisesList": "Übungen bearbeiten",
     "headerAddExercise": "Übung hinzufügen",
     "delete": "Übung löschen",
-    "successDelete": "Du hast die Übung gelöscht:"
+    "successDelete": "Du hast die Übung gelöscht:",
+    "successSave": "Du hast die Sätze zur Übung gespeichert."
   },
   "workouts": {
     "noWorkoutFound": "Oops, bitte wähle das Training erneut aus.",

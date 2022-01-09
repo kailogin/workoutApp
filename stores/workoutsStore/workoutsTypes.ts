@@ -23,17 +23,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -45,17 +45,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -67,17 +67,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -89,17 +89,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -118,17 +118,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -140,17 +140,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -162,17 +162,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -184,17 +184,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -206,17 +206,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -235,17 +235,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -257,17 +257,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -279,17 +279,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -301,17 +301,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -323,17 +323,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -352,17 +352,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -374,17 +374,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -396,17 +396,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -418,17 +418,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -447,17 +447,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -469,17 +469,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -491,17 +491,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -513,17 +513,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],
@@ -535,17 +535,17 @@ export const initialWorkoutState: WorkoutState = {
           sets: [
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
             {
               id: uuid.v4().toString(),
-              reps: 12,
+              reps: "12",
               weight: "20kg",
             },
           ],

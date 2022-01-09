@@ -10,7 +10,7 @@ export enum Categories {
 
 export type WorkoutSet = {
   id: string;
-  reps: number;
+  reps: string;
   weight: string;
 };
 

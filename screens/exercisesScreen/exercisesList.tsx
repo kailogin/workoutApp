@@ -185,7 +185,7 @@ export const ExercisesList = ({
           color={Colors.WHITE}
         />
 
-        <BaseText>Add Exercise</BaseText>
+        <BaseText>{t("exercises.headerAddExercise")}</BaseText>
       </TouchableOpacity>
 
       <BaseModal

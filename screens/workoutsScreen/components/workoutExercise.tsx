@@ -1,23 +1,34 @@
-import React, { useMemo } from "react";
+import { MaterialIcons } from "@expo/vector-icons";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
+  Button,
   FlatList,
   SafeAreaView,
   StyleSheet,
-  TouchableOpacity,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
   View,
+  TouchableOpacity,
 } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
+import Toast from "react-native-toast-message";
 import uuid from "react-native-uuid";
 
 import { BaseText } from "../../../components/baseText";
 import { RightSwipe } from "../../../components/rightSwipe";
-import { deleteSetInExercise } from "../../../stores/exercisesStore/exerciseActions";
+import {
+  addSetInExercise,
+  deleteSetInExercise,
+  updateExerciseSet,
+} from "../../../stores/exercisesStore/exerciseActions";
 import {
   useAppDispatch,
   useAppSelector,
 } from "../../../stores/rootStore/rootStore";
 import { Colors } from "../../../utils/colors";
+import { WorkoutSet } from "../../exercisesScreen/utils/exerciseTypes";
 import { WorkoutStackNavProps } from "../utils/workoutsParamList";
 
 interface WorkoutProps extends WorkoutStackNavProps<"WorkoutExercise"> {}
@@ -32,15 +43,30 @@ export const WorkoutExercise: React.FC<WorkoutProps> = ({
 
   // --- STATE ---
 
-  // const [repInputs, setRepInputs] = useState<number[]>([]);
+  const [workoutSets, setWorkoutSets] = useState<WorkoutSet[] | []>([]);
+
   const exercises = useAppSelector(({ exercise }) => exercise.exercises);
 
   // --- HELPERS ---
 
   const selectedExercise = useMemo(
-    () => exercises.find((item) => item.exerciseName === route.params.name),
+    () =>
+      exercises.find((item) => item.exerciseName === route.params.name) ||
+      exercises[0],
     [exercises, route.params.name]
   );
+
+  const updateRepsState = (text: string, index: number) => {
+    const newState = [...workoutSets];
+    newState[index].reps = text;
+    setWorkoutSets([...newState]);
+  };
+
+  const updateWeightsState = (text: string, index: number) => {
+    const newState = [...workoutSets];
+    newState[index].weight = text;
+    setWorkoutSets([...newState]);
+  };
 
   // --- RENDER ---
 
@@ -48,54 +74,116 @@ export const WorkoutExercise: React.FC<WorkoutProps> = ({
     return (
       <SafeAreaView style={{ backgroundColor: Colors.BLACK, height: "100%" }}>
         <BaseText style={{ fontSize: 24, marginTop: 40, padding: 40 }}>
-          {t("noExerciseFound")}
+          {t("exercises.noExerciseFound")}
         </BaseText>
       </SafeAreaView>
     );
   }
 
-  const { exerciseName, sets, id: exerciseId } = selectedExercise;
+  const { category, exerciseName, sets, id: exerciseId } = selectedExercise;
+
+  // --- EFFECTS ---
+
+  useEffect(() => {
+    if (selectedExercise) {
+      setWorkoutSets(selectedExercise.sets);
+    }
+  }, [selectedExercise]);
 
   return (
     <View style={{ backgroundColor: Colors.BLACK, flex: 1, padding: 40 }}>
-      <BaseText
+      <View
         style={{
-          fontSize: 24,
-          marginBottom: 40,
-          textDecorationColor: Colors.ORANGE,
-          textDecorationLine: "underline",
-          textDecorationStyle: "solid",
+          flexDirection: "row",
+          justifyContent: "space-between",
         }}
       >
-        {exerciseName}
-      </BaseText>
+        <BaseText
+          style={{
+            fontSize: 24,
+            marginBottom: 40,
+            textDecorationColor: Colors.ORANGE,
+            textDecorationLine: "underline",
+            textDecorationStyle: "solid",
+          }}
+        >
+          {exerciseName}
+        </BaseText>
+        <MaterialIcons
+          name="save"
+          size={24}
+          color={Colors.WHITE}
+          onPress={() => {
+            dispatch(updateExerciseSet({ sets: workoutSets, exerciseId }));
+            Toast.show({
+              type: "success",
+              text1: t("exercises.successSave"),
+            });
+          }}
+        />
+      </View>
+
+      <TouchableOpacity
+        onPress={() =>
+          dispatch(
+            addSetInExercise({
+              id: uuid.v4().toString(),
+              weight: "40kg",
+              reps: "15",
+              exerciseId,
+            })
+          )
+        }
+        style={{
+          alignItems: "center",
+          flexDirection: "row",
+          justifyContent: "flex-start",
+          marginBottom: 16,
+        }}
+      >
+        <MaterialIcons
+          name="add"
+          size={24}
+          style={{
+            backgroundColor: Colors.CARD,
+            color: Colors.WHITE,
+            marginRight: 16,
+            padding: 12,
+          }}
+          color={Colors.WHITE}
+        />
+
+        <BaseText>{t("exercises.addNewSet")}</BaseText>
+      </TouchableOpacity>
 
       <FlatList
         data={sets}
         renderItem={({ item, index }) => (
-          <View style={{ width: "90%" }} key={uuid.v4().toString()}>
+          <View style={{ width: "90%" }} key={index}>
             <Swipeable
               renderRightActions={() => {
                 return (
                   <RightSwipe
                     handleClick={() => {
+                      // TODO: Customize this -> how manually add difference reps and weight?
+
                       dispatch(
                         deleteSetInExercise({
                           id: item.id,
                           weight: item.weight,
                           reps: item.reps,
-                          exerciseId: exerciseId,
+                          exerciseId,
                         })
                       );
                     }}
                   />
                 );
               }}
-              key={uuid.v4().toString()}
+              // key={uuid.v4().toString()}
             >
-              <TouchableOpacity
-                key={uuid.v4().toString()}
-                style={styles.listElementButton}
+              <TouchableWithoutFeedback
+                onPress={Keyboard.dismiss}
+                accessible={false}
               >
                 <View style={styles.listElementView}>
                   <BaseText
@@ -112,11 +200,38 @@ export const WorkoutExercise: React.FC<WorkoutProps> = ({
                     {index}
                   </BaseText>
 
-                  <BaseText style={styles.listElement}>
-                    {item.reps} x {item.weight}
-                  </BaseText>
+                  <TextInput
+                    autoCorrect={false}
+                    keyboardType="number-pad"
+                    style={[
+                      styles.listElement,
+                      {
+                        marginRight: 10,
+                        width: "40%",
+                      },
+                    ]}
+                    onChangeText={(text: string) => {
+                      updateRepsState(text, index);
+                    }}
+                    value={item.reps}
+                  />
+
+                  <TextInput
+                    autoCorrect={false}
+                    style={[
+                      styles.listElement,
+                      {
+                        marginRight: 10,
+                        width: "40%",
+                      },
+                    ]}
+                    onChangeText={(text: string) =>
+                      updateWeightsState(text, index)
+                    }
+                    value={item.weight}
+                  />
                 </View>
-              </TouchableOpacity>
+              </TouchableWithoutFeedback>
             </Swipeable>
           </View>
         )}
@@ -139,17 +254,25 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   listElement: {
+    borderColor: Colors.WHITE,
+    borderWidth: 1,
+    borderRadius: 8,
     color: Colors.WHITE,
     fontSize: 14,
     marginLeft: 8,
     padding: 8,
+    width: 50,
+    minWidth: 50,
   },
   listGroupContainer: {
     marginBottom: 16,
   },
   listElementView: {
     alignItems: "center",
+    backgroundColor: Colors.CARD,
+    borderRadius: 8,
     flexDirection: "row",
+    marginBottom: 6,
     paddingHorizontal: 8,
     paddingVertical: 16,
   },

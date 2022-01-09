@@ -117,17 +117,17 @@ export const Workout: React.FC<WorkoutProps> = ({
             {
               id: uuid.v4().toString(),
               weight: "20kg",
-              reps: 10,
+              reps: "10",
             },
             {
               id: uuid.v4().toString(),
               weight: "20kg",
-              reps: 10,
+              reps: "10",
             },
             {
               id: uuid.v4().toString(),
               weight: "20kg",
-              reps: 10,
+              reps: "10",
             },
           ],
           workoutId: selectedWorkout.id,
@@ -199,6 +199,7 @@ export const Workout: React.FC<WorkoutProps> = ({
                               category,
                               exerciseName,
                               id,
+                              // TODO: Check if this deletes it everywhere
                               sets: [],
                               workoutId,
                             })

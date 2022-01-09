@@ -22,7 +22,6 @@ export const workoutListStack = ({ Stack }: WorkoutListStackProps) => {
 
   // --- STATE ---
 
-  const [isEditWorkoutsClicked, setIsEditWorkoutsClicked] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   // --- HELPERS ---
@@ -39,14 +38,10 @@ export const workoutListStack = ({ Stack }: WorkoutListStackProps) => {
         route,
       }: WorkoutStackNavProps<"WorkoutList">) => ({
         headerTintColor: Colors.WHITE,
-        headerTitle: isEditWorkoutsClicked
-          ? translate("headerEditWorkoutsList")
-          : translate("headerWorkoutsList"),
+        headerTitle: translate("headerWorkoutsList"),
         headerRight: () => (
           <WorkoutListStackHeaderRight
-            isEditWorkoutsClicked={isEditWorkoutsClicked}
             navigation={navigation}
-            setIsEditWorkoutsClicked={setIsEditWorkoutsClicked}
             setIsModalVisible={setIsModalVisible}
           />
         ),

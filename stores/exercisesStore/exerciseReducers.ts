@@ -24,6 +24,26 @@ export const exerciseReducer = (
         ),
       };
 
+    case "UPDATE_EXERCISE_SET":
+      return {
+        ...state.exercises,
+        exercises: state.exercises.map((exercise) => {
+          if (exercise.id === action.payload.exerciseId) {
+            const newSet: WorkoutSet[] = action.payload.sets;
+
+            return {
+              ...exercise,
+              sets: newSet,
+            };
+          }
+
+          return {
+            ...exercise,
+            sets: [...exercise.sets],
+          };
+        }),
+      };
+
     case "ADD_SET_IN_EXERCISE":
       return {
         ...state.exercises,

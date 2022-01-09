@@ -11,11 +11,13 @@
   },
   "exercises": {
     "noExerciseFound": "Oops, please select the exercise again.",
+    "addNewSet": "Add new set",
     "headerExercisesList": "Exercises",
     "headerEditExercisesList": "Edit Exercises",
     "headerAddExercise": "Add Exercise",
     "delete": "Delete Exercise",
-    "successDelete": "You deleted the exercise:"
+    "successDelete": "You deleted the exercise:",
+    "successSave": "You saved the sets to the exercise."
   },
   "workouts": {
     "noWorkoutFound": "Oops, please select the workout again.",

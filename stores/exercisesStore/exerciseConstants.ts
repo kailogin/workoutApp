@@ -9,21 +9,21 @@ export const ExerciseConstants: Exercise[] = [
   {
     category: Categories.Chest,
     exerciseName: "Butterfly",
-    id: uuid.v4().toString(),
+    id: "1",
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -35,17 +35,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -57,17 +57,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -79,17 +79,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -101,17 +101,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -123,17 +123,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -145,17 +145,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -167,17 +167,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -190,17 +190,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -212,17 +212,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -234,17 +234,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -256,17 +256,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -278,17 +278,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -300,17 +300,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -322,17 +322,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -344,17 +344,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -366,17 +366,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -388,17 +388,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -410,17 +410,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -432,17 +432,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -454,17 +454,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -476,17 +476,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -498,17 +498,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -520,17 +520,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -542,17 +542,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -564,17 +564,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
@@ -586,17 +586,17 @@ export const ExerciseConstants: Exercise[] = [
     sets: [
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
       {
         id: uuid.v4().toString(),
-        reps: 10,
+        reps: "10",
         weight: "20kg",
       },
     ],
