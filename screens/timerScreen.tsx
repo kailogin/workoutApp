@@ -11,7 +11,7 @@ import {
 import uuid from "react-native-uuid";
 
 import { BaseStatusBar } from "../components/baseStatusBar";
-import { Colors } from "../utils/colors";
+import { Colors } from "../utils/theme";
 
 const { width, height } = Dimensions.get("window");
 

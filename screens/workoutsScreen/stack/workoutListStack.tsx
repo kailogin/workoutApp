@@ -7,7 +7,7 @@ import {
   WorkoutStackNavProps,
 } from "../utils/workoutsParamList";
 import { WorkoutList } from "../workoutsList";
-import { Colors } from "../../../utils/colors";
+import { Colors } from "../../../utils/theme";
 import { StackType } from "../../../navigation/utils/navigationTypes";
 import { WorkoutListStackHeaderRight } from "./workoutListStackHeaderRight";
 import { BaseModal } from "../../../components/baseModal";

@@ -6,7 +6,7 @@ import Toast from "react-native-toast-message";
 import { BaseText } from "../../../components/baseText";
 import { BaseView } from "../../../components/baseView";
 import { ExerciseStackNavProps } from "../utils/exerciseParamList";
-import { Colors } from "../../../utils/colors";
+import { Colors, SIZES } from "../../../utils/theme";
 import {
   useAppDispatch,
   useAppSelector,
@@ -102,7 +102,7 @@ export const Exercise: React.FC<ExerciseProps> = ({
         }}
         style={{
           backgroundColor: Colors.ONBOARDING_BG,
-          borderRadius: 12,
+          borderRadius: SIZES.RADIUS_REG,
           marginBottom: 32,
           padding: 12,
           width: 150,

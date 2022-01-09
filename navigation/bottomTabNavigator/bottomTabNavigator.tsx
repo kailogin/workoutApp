@@ -11,7 +11,7 @@ import { TimerScreen } from "../../screens/timerScreen";
 import { SettingsScreen } from "../../screens/settingsScreen/settingsScreen";
 import { ExercisesStack } from "../../screens/exercisesScreen/exercisesStack";
 import { WorkoutsStack } from "../../screens/workoutsScreen/workoutsStack";
-import { Colors } from "../../utils/colors";
+import { Colors } from "../../utils/theme";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 

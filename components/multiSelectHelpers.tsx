@@ -2,7 +2,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import { View } from "react-native";
 
-import { Colors } from "../utils/colors";
+import { Colors, SIZES } from "../utils/theme";
 import { BaseText } from "./baseText";
 
 export const multiSelectColorStyles = {
@@ -31,7 +31,7 @@ export const multiSelectIcons = {
 export const multiSelectStyles = {
   selectToggle: {
     backgroundColor: Colors.BLACK,
-    borderRadius: 12,
+    borderRadius: SIZES.RADIUS_REG,
     padding: 8,
   },
   cancelButton: {

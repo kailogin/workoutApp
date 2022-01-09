@@ -14,7 +14,7 @@ import MultiSelect from "react-native-sectioned-multi-select";
 import uuid from "react-native-uuid";
 
 import { BaseText } from "../../../components/baseText";
-import { Colors } from "../../../utils/colors";
+import { Colors, SIZES } from "../../../utils/theme";
 import { WorkoutStackNavProps } from "../utils/workoutsParamList";
 import { Separator } from "../../../components/separator";
 import {
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
   },
   listElementButton: {
     backgroundColor: Colors.CARD,
-    borderRadius: 8,
+    borderRadius: SIZES.RADIUS_SMALL,
     marginBottom: 12,
   },
   listElement: {

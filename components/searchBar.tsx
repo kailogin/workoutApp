@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, View, Keyboard } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 
-import { Colors } from "../utils/colors";
+import { Colors } from "../utils/theme";
 
 interface SearchBarProps {
   isSearchBarClicked: boolean;

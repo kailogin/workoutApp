@@ -9,7 +9,7 @@ import { Exercise } from "./utils/exerciseTypes";
 import { SearchBar } from "../../components/searchBar";
 import { BaseView } from "../../components/baseView";
 import { ExerciseStackNavProps } from "./utils/exerciseParamList";
-import { Colors } from "../../utils/colors";
+import { Colors, SIZES } from "../../utils/theme";
 import { BaseStatusBar } from "../../components/baseStatusBar";
 import {
   useAppDispatch,
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
   listElementButton: {
     backgroundColor: Colors.CARD,
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: SIZES.RADIUS_SMALL,
     borderColor: Colors.WHITE,
     marginBottom: 6,
   },

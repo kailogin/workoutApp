@@ -3,13 +3,41 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { Feather, Ionicons } from "@expo/vector-icons";
 
-import { Colors } from "../../utils/colors";
+import { Colors } from "../../utils/theme";
 import { BaseStatusBar } from "../../components/baseStatusBar";
-import { onboardingSlides } from "./utils/onboardingScreenConstants";
 
 interface OnboardingScreenProps {
   handleFinishTour: () => void;
 }
+type OnboardingSlides = {
+  image: any;
+  key: string;
+  text?: string;
+  title: string;
+};
+
+const onboardingSlides: OnboardingSlides[] = [
+  {
+    image: require("../../assets/images/hiking.svg"),
+    key: "one",
+    title: "Welcome to \nKraft",
+  },
+  {
+    image: require("../../assets/images/workout.svg"),
+    key: "two",
+    title: "Track your \n workouts",
+  },
+  {
+    image: require("../../assets/images/run.svg"),
+    key: "three",
+    title: "Track your runs",
+  },
+  {
+    image: require("../../assets/images/track.svg"),
+    key: "four",
+    title: "Export your workouts",
+  },
+];
 
 export const OnboardingScreen = ({
   handleFinishTour,

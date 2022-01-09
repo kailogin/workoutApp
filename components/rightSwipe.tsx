@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 
-import { Colors } from "../utils/colors";
+import { Colors } from "../utils/theme";
 import { BaseText } from "./baseText";
 
 interface RightSwipeProps {

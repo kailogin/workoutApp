@@ -12,7 +12,7 @@ import { Swipeable } from "react-native-gesture-handler";
 import uuid from "react-native-uuid";
 
 import { WorkoutStackNavProps } from "./utils/workoutsParamList";
-import { Colors } from "../../utils/colors";
+import { Colors, SIZES } from "../../utils/theme";
 import { BaseStatusBar } from "../../components/baseStatusBar";
 import {
   useAppDispatch,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   renderItem_container: {
     backgroundColor: Colors.CARD,
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: SIZES.RADIUS_SMALL,
     marginBottom: 4,
     padding: 16,
   },

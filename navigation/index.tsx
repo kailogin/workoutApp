@@ -8,7 +8,7 @@ import { OnboardingScreen } from "../screens/onboardingScreen/onboardingScreen";
 import { useAppDispatch, useAppSelector } from "../stores/rootStore/rootStore";
 import { RootState } from "../stores/rootStore/rootTypes";
 import { setFirstVisitedStateFalse } from "../stores/userStore/userActions";
-import { Colors } from "../utils/colors";
+import { Colors } from "../utils/theme";
 
 export const Navigation = () => {
   const dispatch = useAppDispatch();

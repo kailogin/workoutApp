@@ -2,7 +2,7 @@ import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Colors } from "../../../utils/colors";
+import { Colors } from "../../../utils/theme";
 
 import { WorkoutsParamList } from "../utils/workoutsParamList";
 

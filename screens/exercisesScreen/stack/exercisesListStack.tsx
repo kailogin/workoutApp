@@ -7,7 +7,7 @@ import {
   ExerciseParamList,
   ExerciseStackNavProps,
 } from "../utils/exerciseParamList";
-import { Colors } from "../../../utils/colors";
+import { Colors } from "../../../utils/theme";
 import { StackType } from "../../../navigation/utils/navigationTypes";
 import { ExercisesListStackHeaderRight } from "./exercisesListStackHeaderRight";
 import { AddExerciseForm } from "../../../components/addExerciseForm";

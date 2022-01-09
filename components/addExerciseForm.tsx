@@ -4,7 +4,7 @@ import { useActionSheet } from "@expo/react-native-action-sheet";
 import Toast from "react-native-toast-message";
 import uuid from "react-native-uuid";
 
-import { Colors } from "../utils/colors";
+import { Colors, SIZES } from "../utils/theme";
 import { BaseText } from "./baseText";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useAppDispatch } from "../stores/rootStore/rootStore";
@@ -120,17 +120,17 @@ export const AddExerciseForm = ({
         sets: [
           {
             id: uuid.v4().toString(),
-            reps: 12,
+            reps: "12",
             weight: "20kg",
           },
           {
             id: uuid.v4().toString(),
-            reps: 12,
+            reps: "12",
             weight: "20kg",
           },
           {
             id: uuid.v4().toString(),
-            reps: 12,
+            reps: "12",
             weight: "20kg",
           },
         ],
@@ -169,7 +169,7 @@ export const AddExerciseForm = ({
         style={{
           alignItems: "center",
           backgroundColor: Colors.WHITE,
-          borderRadius: 12,
+          borderRadius: SIZES.RADIUS_REG,
           flexDirection: "row",
           marginBottom: 40,
           // padding: 10,
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     backgroundColor: Colors.ORANGE,
     borderBottomWidth: 1,
-    borderRadius: 8,
+    borderRadius: SIZES.RADIUS_SMALL,
     bottom: 40,
     position: "absolute",
     marginBottom: 6,
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.RED,
     borderBottomWidth: 1,
     borderColor: Colors.RED,
-    borderRadius: 8,
+    borderRadius: SIZES.RADIUS_SMALL,
     bottom: 40,
     position: "absolute",
     marginBottom: 6,
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   textInput: {
     backgroundColor: Colors.WHITE,
     color: Colors.BLACK,
-    borderRadius: 12,
+    borderRadius: SIZES.RADIUS_REG,
     borderWidth: 1,
     marginBottom: 32,
     padding: 12,

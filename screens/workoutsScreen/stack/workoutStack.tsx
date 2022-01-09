@@ -3,7 +3,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 
-import { Colors } from "../../../utils/colors";
+import { Colors } from "../../../utils/theme";
 import { Workout } from "../components/workout";
 import {
   WorkoutsParamList,

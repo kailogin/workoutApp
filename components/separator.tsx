@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-import { Colors } from "../utils/colors";
+import { Colors } from "../utils/theme";
 
 interface SeparatorProps {
   widthPercentage?: number;

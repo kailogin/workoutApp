@@ -4,7 +4,7 @@ import Modal from "react-native-modal";
 import GestureRecognizer from "react-native-swipe-gestures";
 import Toast from "react-native-toast-message";
 
-import { Colors } from "../utils/colors";
+import { Colors } from "../utils/theme";
 
 interface BaseModalProps {
   children: ReactNode;

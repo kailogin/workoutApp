@@ -2,7 +2,7 @@ import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import { BaseView } from "../components/baseView";
 
 import { RootStackScreenProps } from "../navigation/utils/navigationTypes";
-import { Colors } from "../utils/colors";
+import { Colors } from "../utils/theme";
 
 export type NotFoundScreenProps = RootStackScreenProps<"NotFound">;
 

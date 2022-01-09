@@ -10,7 +10,7 @@ import uuid from "react-native-uuid";
 
 import i18n, { Languages, LanguagesType } from "../../i18n.config";
 import { BaseView } from "../../components/baseView";
-import { Colors } from "../../utils/colors";
+import { Colors, SIZES } from "../../utils/theme";
 import { Separator } from "../../components/separator";
 
 export const SettingsScreen = () => {
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: Colors.CARD,
     borderBottomWidth: 1,
-    borderRadius: 8,
+    borderRadius: SIZES.RADIUS_SMALL,
     marginBottom: 4,
     padding: 8,
   },

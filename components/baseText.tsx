@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TextStyle } from "react-native";
 
-import { Colors } from "../utils/colors";
+import { Colors } from "../utils/theme";
 
 interface BaseTextProps {
   style?: TextStyle;

@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from "react-native";
 
-import { Colors } from "../utils/colors";
+import { Colors } from "../utils/theme";
 import { BaseStatusBar } from "./baseStatusBar";
 
 interface BaseViewProps {

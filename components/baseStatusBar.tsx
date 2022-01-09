@@ -1,6 +1,6 @@
 import React from "react";
 import { StatusBar, View } from "react-native";
-import { Colors } from "../utils/colors";
+import { Colors } from "../utils/theme";
 
 export const BaseStatusBar = () => {
   // --- RENDER ---

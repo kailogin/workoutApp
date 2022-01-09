@@ -27,7 +27,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../../stores/rootStore/rootStore";
-import { Colors } from "../../../utils/colors";
+import { Colors, SIZES } from "../../../utils/theme";
 import { WorkoutSet } from "../../exercisesScreen/utils/exerciseTypes";
 import { WorkoutStackNavProps } from "../utils/workoutsParamList";
 
@@ -249,14 +249,14 @@ const styles = StyleSheet.create({
   listElementButton: {
     backgroundColor: Colors.CARD,
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: SIZES.RADIUS_SMALL,
     borderColor: Colors.WHITE,
     marginBottom: 6,
   },
   listElement: {
     borderColor: Colors.WHITE,
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: SIZES.RADIUS_SMALL,
     color: Colors.WHITE,
     fontSize: 14,
     marginLeft: 8,
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
   listElementView: {
     alignItems: "center",
     backgroundColor: Colors.CARD,
-    borderRadius: 8,
+    borderRadius: SIZES.RADIUS_SMALL,
     flexDirection: "row",
     marginBottom: 6,
     paddingHorizontal: 8,
