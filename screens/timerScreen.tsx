@@ -8,6 +8,8 @@ import {
   View,
   StyleSheet,
 } from "react-native";
+import uuid from "react-native-uuid";
+
 import { BaseStatusBar } from "../components/baseStatusBar";
 import { Colors } from "../utils/colors";
 
@@ -180,7 +182,7 @@ export const TimerScreen = () => {
           data={timers}
           decelerationRate="fast"
           horizontal
-          keyExtractor={(item) => item.toString()}
+          keyExtractor={() => uuid.v4().toString()}
           onMomentumScrollEnd={(ev) => {
             const index = Math.round(
               ev.nativeEvent.contentOffset.x / ITEM_SIZE

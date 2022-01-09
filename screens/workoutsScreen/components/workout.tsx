@@ -113,6 +113,23 @@ export const Workout: React.FC<WorkoutProps> = ({
           description: ex.description,
           exerciseName: ex.exerciseName,
           id: ex.id,
+          sets: [
+            {
+              id: uuid.v4().toString(),
+              weight: "20kg",
+              reps: 10,
+            },
+            {
+              id: uuid.v4().toString(),
+              weight: "20kg",
+              reps: 10,
+            },
+            {
+              id: uuid.v4().toString(),
+              weight: "20kg",
+              reps: 10,
+            },
+          ],
           workoutId: selectedWorkout.id,
         })
       );
@@ -182,6 +199,7 @@ export const Workout: React.FC<WorkoutProps> = ({
                               category,
                               exerciseName,
                               id,
+                              sets: [],
                               workoutId,
                             })
                           );

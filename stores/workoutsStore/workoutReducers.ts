@@ -53,9 +53,10 @@ export const workoutReducer = (
           if (workout.id === action.payload.workoutId) {
             const newExercise: Exercise = {
               category: action.payload.category,
+              description: action.payload.description,
               exerciseName: action.payload.exerciseName,
               id: action.payload.id,
-              description: action.payload.description,
+              sets: action.payload.sets,
             };
 
             return {

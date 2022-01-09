@@ -46,7 +46,7 @@ export const Exercise: React.FC<ExerciseProps> = ({
     );
   }
 
-  const { category, description, exerciseName, id } = selectedExercise;
+  const { category, description, exerciseName, id, sets } = selectedExercise;
 
   return (
     <BaseView>

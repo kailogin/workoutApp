@@ -117,6 +117,23 @@ export const AddExerciseForm = ({
         exerciseName: name,
         id: uuid.v4().toString(),
         description: description,
+        sets: [
+          {
+            id: uuid.v4().toString(),
+            reps: 12,
+            weight: "20kg",
+          },
+          {
+            id: uuid.v4().toString(),
+            reps: 12,
+            weight: "20kg",
+          },
+          {
+            id: uuid.v4().toString(),
+            reps: 12,
+            weight: "20kg",
+          },
+        ],
       })
     );
 
