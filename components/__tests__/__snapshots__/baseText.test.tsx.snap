@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseText snapshot 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#fff",
+        "fontFamily": "Montserrat",
+      },
+      undefined,
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders the Flatlist component with BaseText as renderItem 1`] = `
+<RCTScrollView
+  data={
+    Array [
+      "Item1",
+      "Item2",
+      "Item3",
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#fff",
+              "fontFamily": "Montserrat",
+            },
+            undefined,
+          ]
+        }
+      >
+        Item1
+      </Text>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#fff",
+              "fontFamily": "Montserrat",
+            },
+            undefined,
+          ]
+        }
+      >
+        Item2
+      </Text>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#fff",
+              "fontFamily": "Montserrat",
+            },
+            undefined,
+          ]
+        }
+      >
+        Item3
+      </Text>
+    </View>
+  </View>
+</RCTScrollView>
+`;

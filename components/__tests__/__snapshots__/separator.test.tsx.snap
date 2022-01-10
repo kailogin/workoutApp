@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseText snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#fff",
+        "height": 1,
+        "marginBottom": 32,
+        "width": "80%",
+      },
+      Object {
+        "width": "undefined%",
+      },
+    ]
+  }
+/>
+`;

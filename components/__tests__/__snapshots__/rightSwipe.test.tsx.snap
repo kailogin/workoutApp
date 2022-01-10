@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseText snapshot 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F76A6A",
+      "borderBottomEndRadius": 12,
+      "borderTopEndRadius": 12,
+      "flex": 0.5,
+      "justifyContent": "center",
+      "marginBottom": 6,
+      "opacity": 1,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#fff",
+          "fontFamily": "Montserrat",
+        },
+        Object {
+          "color": "#fff",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "padding": 8,
+        },
+      ]
+    }
+  >
+    DELETE
+  </Text>
+</View>
+`;

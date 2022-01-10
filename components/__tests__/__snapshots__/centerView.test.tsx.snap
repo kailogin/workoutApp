@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CenterView snapshot 1`] = `
+<View>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#fff",
+          "fontFamily": "Montserrat",
+        },
+        undefined,
+      ]
+    }
+  >
+    TEST ME 
+  </Text>
+</View>
+`;

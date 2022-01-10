@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar snapshot 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "justifyContent": "flex-start",
+      "marginBottom": 40,
+      "width": "90%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "borderRadius": 15,
+        "flexDirection": "row",
+        "padding": 10,
+        "width": "95%",
+      }
+    }
+  >
+    <Text />
+    <TextInput
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      onFocus={[Function]}
+      placeholder="searchBarPlaceholder"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "borderColor": "#F2994A",
+          "fontSize": 16,
+          "marginLeft": 10,
+          "width": "90%",
+        }
+      }
+      underlineColorAndroid="transparent"
+      value="TEST"
+    />
+    <Text />
+  </View>
+</View>
+`;
