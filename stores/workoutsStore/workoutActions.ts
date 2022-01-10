@@ -9,8 +9,8 @@ export const deleteWorkout = createAction("DELETE_WORKOUT")<Workout>();
 
 export const deleteExerciseInWorkout = createAction(
   "DELETE_EXERCISE_IN_WORKOUT"
-)<Exercise & { workoutId: string }>();
+)<Omit<Exercise, "description"> & { workoutId: string }>();
 
 export const addExerciseInWorkout = createAction("ADD_EXERCISE_IN_WORKOUT")<
-  Exercise & { workoutId: string }
+  Omit<Exercise, "description"> & { workoutId: string }
 >();

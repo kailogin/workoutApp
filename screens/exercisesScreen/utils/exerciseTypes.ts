@@ -20,6 +20,7 @@ export type Exercise = {
   exerciseName: string;
   id: string;
   sets: WorkoutSet[];
+  youtubeId?: string;
 };
 
 export type ExercisesCompleteList =

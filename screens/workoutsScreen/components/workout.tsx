@@ -110,7 +110,6 @@ export const Workout: React.FC<WorkoutProps> = ({
       dispatch(
         addExerciseInWorkout({
           category: ex.category,
-          description: ex.description,
           exerciseName: ex.exerciseName,
           id: ex.id,
           sets: [
@@ -200,7 +199,7 @@ export const Workout: React.FC<WorkoutProps> = ({
                               exerciseName,
                               id,
                               // TODO: Check if this deletes it everywhere
-                              sets: [],
+                              sets: [...item.sets],
                               workoutId,
                             })
                           );

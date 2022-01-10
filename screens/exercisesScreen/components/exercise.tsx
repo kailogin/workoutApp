@@ -12,6 +12,7 @@ import {
   useAppSelector,
 } from "../../../stores/rootStore/rootStore";
 import { deleteExercise } from "../../../stores/exercisesStore/exerciseActions";
+import { YouTubeView } from "../../../components/youtubeView";
 
 interface ExerciseProps extends ExerciseStackNavProps<"Exercise"> {}
 
@@ -46,7 +47,14 @@ export const Exercise: React.FC<ExerciseProps> = ({
     );
   }
 
-  const { category, description, exerciseName, id, sets } = selectedExercise;
+  const {
+    category,
+    description,
+    exerciseName,
+    id,
+    sets,
+    youtubeId,
+  } = selectedExercise;
 
   return (
     <BaseView>
@@ -71,23 +79,18 @@ export const Exercise: React.FC<ExerciseProps> = ({
         {category}
       </BaseText>
 
-      {/* TODO: Add description to all types */}
+      {description && (
+        <BaseText
+          style={{
+            fontSize: 14,
+            marginBottom: 32,
+          }}
+        >
+          {description}
+        </BaseText>
+      )}
 
-      {/* {description && ( */}
-      <BaseText
-        style={{
-          fontSize: 14,
-          marginBottom: 32,
-        }}
-      >
-        This will be a thorough description of the exercise. This will be a
-        thorough description of the exercise. This will be a thorough
-        description of the exercise. This will be a thorough description of the
-        exercise. This will be a thorough description of the exercise. This will
-        be a thorough description of the exercise. This will be a thorough
-        description of the exercise.
-      </BaseText>
-      {/* )} */}
+      {youtubeId && <YouTubeView youtubeId={youtubeId} />}
 
       <TouchableOpacity
         onPress={() => {
