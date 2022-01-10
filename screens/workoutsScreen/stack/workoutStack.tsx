@@ -80,7 +80,7 @@ export const workoutStack = ({ Stack }: WorkoutStackProps) => {
         headerTitle: isStartWorkoutClicked
           ? translate("headerEditWorkoutsList")
           : route.params?.name,
-        headerRight: () => headerRight(navigation),
+        headerRight: () => null,
         title: route.params?.name,
       })}
     />
