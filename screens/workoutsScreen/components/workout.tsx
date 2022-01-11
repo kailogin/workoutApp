@@ -12,6 +12,7 @@ import { Swipeable } from "react-native-gesture-handler";
 import Toast from "react-native-toast-message";
 import MultiSelect from "react-native-sectioned-multi-select";
 import uuid from "react-native-uuid";
+import { useTranslation } from "react-i18next";
 
 import { BaseText } from "../../../components/baseText";
 import { Colors, SIZES } from "../../../utils/theme";
@@ -42,6 +43,8 @@ export const Workout: React.FC<WorkoutProps> = ({
 }: WorkoutStackNavProps<"Workout">) => {
   const dispatch = useAppDispatch();
 
+  const { t } = useTranslation();
+
   // --- STATE ---
 
   const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
@@ -71,7 +74,7 @@ export const Workout: React.FC<WorkoutProps> = ({
     return (
       <SafeAreaView style={{ backgroundColor: Colors.BLACK, height: "100%" }}>
         <BaseText style={{ fontSize: 24, marginTop: 40, padding: 40 }}>
-          Oops, please select the workout again.
+          {t("workoutError")}
         </BaseText>
       </SafeAreaView>
     );
@@ -164,7 +167,7 @@ export const Workout: React.FC<WorkoutProps> = ({
           <MultiSelect
             colors={multiSelectColorStyles}
             styles={multiSelectStyles}
-            searchPlaceholderText="Search exercises..."
+            searchPlaceholderText={t("searchExercises")}
             renderSelectText={RenderSelectText}
             icons={multiSelectIcons}
             items={getExerciseNamesAndIds()}
@@ -198,14 +201,15 @@ export const Workout: React.FC<WorkoutProps> = ({
                               category,
                               exerciseName,
                               id,
-                              // TODO: Check if this deletes it everywhere
                               sets: [...item.sets],
                               workoutId,
                             })
                           );
                           Toast.show({
                             type: "success",
-                            text1: `You deleted the exercise: ${exerciseName} from ${workoutName}.`,
+                            text1: `${t(
+                              "exercises.successDelete"
+                            )} ${exerciseName} ${t("from")} ${workoutName}.`,
                           });
                         }}
                       />

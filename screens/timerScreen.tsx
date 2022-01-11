@@ -23,7 +23,6 @@ export const TimerScreen = () => {
   // --- STATE ---
 
   const scrollX = useRef(new Animated.Value(0)).current;
-  // TODO: Fix type
   const inputRef = useRef<any>();
 
   const [duration, setDuration] = useState(timers[0]);

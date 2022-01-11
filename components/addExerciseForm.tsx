@@ -3,6 +3,7 @@ import { TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import Toast from "react-native-toast-message";
 import uuid from "react-native-uuid";
+import { useTranslation } from "react-i18next";
 
 import { Colors, SIZES } from "../utils/theme";
 import { BaseText } from "./baseText";
@@ -19,6 +20,8 @@ export const AddExerciseForm = ({
   handleAddButtonClick,
 }: AddExerciseFormProps) => {
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation();
 
   // --- STATE ---
 
@@ -86,7 +89,7 @@ export const AddExerciseForm = ({
 
       Toast.show({
         type: "error",
-        text1: "Please choose an exercise name.",
+        text1: t("chooseName"),
       });
       return;
     }
@@ -96,7 +99,7 @@ export const AddExerciseForm = ({
 
       Toast.show({
         type: "error",
-        text1: "Please set a description.",
+        text1: t("chooseDescription"),
       });
       return;
     }

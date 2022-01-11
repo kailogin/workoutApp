@@ -4,6 +4,7 @@ import { useActionSheet } from "@expo/react-native-action-sheet";
 import Toast from "react-native-toast-message";
 import MultiSelect from "react-native-sectioned-multi-select";
 import uuid from "react-native-uuid";
+import { useTranslation } from "react-i18next";
 
 import { Colors, SIZES } from "../utils/theme";
 import { BaseText } from "./baseText";
@@ -27,6 +28,8 @@ export const AddWorkoutForm = ({
   handleAddButtonClick,
 }: AddWorkoutFormProps) => {
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation();
 
   // --- STATE ---
 
@@ -113,7 +116,7 @@ export const AddWorkoutForm = ({
 
       Toast.show({
         type: "error",
-        text1: "Please choose a workout name.",
+        text1: t("chooseWorkoutName"),
       });
       return;
     }
@@ -152,10 +155,10 @@ export const AddWorkoutForm = ({
           textAlign: "center",
         }}
       >
-        Add a new Workout
+        {t("addNewWorkout")}
       </BaseText>
 
-      <BaseText style={styles.inputTitle}>Workout name</BaseText>
+      <BaseText style={styles.inputTitle}>{t("workoutName")}</BaseText>
 
       <TextInput
         onChangeText={handleNameValueChange}
@@ -163,7 +166,7 @@ export const AddWorkoutForm = ({
         value={name}
       />
 
-      <BaseText style={styles.inputTitle}>Muscle group</BaseText>
+      <BaseText style={styles.inputTitle}>{t("muscleGroup")}</BaseText>
 
       <View
         style={{
@@ -206,7 +209,7 @@ export const AddWorkoutForm = ({
         items={exerciseNamesAndId}
         onSelectedItemsChange={handleSelectedMultiSelectItemsChange}
         renderSelectText={RenderSelectText}
-        searchPlaceholderText="Search exercises..."
+        searchPlaceholderText={t("searchExercises")}
         selectedItems={selectedExercises}
         showRemoveAll
         uniqueKey="id"
@@ -220,7 +223,7 @@ export const AddWorkoutForm = ({
         <BaseText
           style={{ fontSize: 12, fontWeight: "bold", textAlign: "center" }}
         >
-          Add Workout
+          {t("addWorkout")}
         </BaseText>
       </TouchableOpacity>
     </View>

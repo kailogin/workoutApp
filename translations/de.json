@@ -24,5 +24,17 @@
     "headerWorkoutsList": "Trainings",
     "headerEditWorkoutsList": "Trainings bearbeiten"
   },
-  "searchBarPlaceholder": "Suchen"
+  "searchBarPlaceholder": "Suchen",
+  "addWorkout": "Workout hinzufügen",
+  "searchExercises": "Übungen durchsuchen ...",
+  "muscleGroup": "Muskelgruppe",
+  "addNewWorkout": "Ein neues Training hinzufügen",
+  "workoutName": "Trainingsname",
+  "chooseName": "Bitte wähle einen Trainingsnamen.",
+  "chooseDescription": "Bitte lege eine Beschreibung fest.",
+  "chooseWorkoutName": "Bitte wähle einen Trainingsnamen.",
+  "from": "von",
+  "workoutError": "Ups, bitte wähle das Training erneut aus.",
+  "nonExist": "Dieser Bildschirm existiert nicht.",
+  "home": "Gehe zum Startbildschirm!"
 }

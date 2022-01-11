@@ -1,30 +1,33 @@
-import { StyleSheet, TouchableOpacity, Text } from "react-native";
-import { BaseView } from "../components/baseView";
+import { useTranslation } from "react-i18next";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
+import { BaseText } from "../components/baseText";
+import { BaseView } from "../components/baseView";
 import { RootStackScreenProps } from "../navigation/utils/navigationTypes";
-import { Colors } from "../utils/theme";
 
 export type NotFoundScreenProps = RootStackScreenProps<"NotFound">;
 
 export const NotFoundScreen = ({ navigation }: NotFoundScreenProps) => {
+  const { t } = useTranslation();
+
   // --- RENDER ---
 
   return (
     <BaseView>
-      <Text style={notFoundScreenStyles.title}>This screen doesn't exist.</Text>
+      <BaseText style={styles.linkText}>{t("nonExist")}</BaseText>
 
       <TouchableOpacity
         // @ts-ignore
         onPress={() => navigation.replace("Root")}
-        style={notFoundScreenStyles.link}
+        style={styles.link}
       >
-        <Text style={notFoundScreenStyles.linkText}>Go to home screen!</Text>
+        <BaseText style={styles.linkText}>{t("home")}</BaseText>
       </TouchableOpacity>
     </BaseView>
   );
 };
 
-const notFoundScreenStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: "bold",
@@ -35,6 +38,5 @@ const notFoundScreenStyles = StyleSheet.create({
   },
   linkText: {
     fontSize: 14,
-    color: Colors.WHITE,
   },
 });

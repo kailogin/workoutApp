@@ -1,8 +1,8 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import { Colors } from "../utils/theme";
-import { BaseText } from "./baseText";
 
 interface RightSwipeProps {
   handleClick: () => void;
@@ -21,15 +21,6 @@ export const RightSwipe = ({ handleClick }: RightSwipeProps) => (
       marginBottom: 6,
     }}
   >
-    <BaseText
-      style={{
-        color: Colors.WHITE,
-        fontSize: 12,
-        fontWeight: "600",
-        padding: 8,
-      }}
-    >
-      DELETE
-    </BaseText>
+    <MaterialIcons name="delete" size={24} color={Colors.WHITE} />
   </TouchableOpacity>
 );

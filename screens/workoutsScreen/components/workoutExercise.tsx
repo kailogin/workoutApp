@@ -109,6 +109,7 @@ export const WorkoutExercise: React.FC<WorkoutProps> = ({
         >
           {exerciseName}
         </BaseText>
+
         <MaterialIcons
           name="save"
           size={24}

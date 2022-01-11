@@ -24,5 +24,17 @@
     "headerWorkoutsList": "Allenamenti",
     "headerEditWorkoutsList": "Modifica Allenamenti"
   },
-  "searchBarPlaceholder": "Cercare"
+  "searchBarPlaceholder": "Cerca",
+  "addWorkout": "Aggiungi allenamento",
+  "searchExercises": "Cerca esercizi...",
+  "muscleGroup": "Grupo muscolare",
+  "addNewWorkout": "Aggiungi un nuovo allenamento",
+  "workoutName": "Nome allenamento",
+  "chooseName": "Scegliete un nome per l'allenamento.",
+  "chooseDescription": "Impostare una descrizione.",
+  "chooseWorkoutName": "Scelga il nome di un allenamento.",
+  "from": "da",
+  "workoutError": "Oops, si prega di selezionare nuovamente l'allenamento.",
+  "nonExist": "Questo schermo non esiste.",
+  "home": "Vai alla schermata iniziale!"
 }

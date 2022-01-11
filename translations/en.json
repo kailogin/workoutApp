@@ -24,5 +24,17 @@
     "headerWorkoutsList": "Workouts",
     "headerEditWorkoutsList": "Edit Workouts"
   },
-  "searchBarPlaceholder": "Search"
+  "addWorkout": "Add Workout",
+  "searchExercises": "Search exercises...",
+  "muscleGroup": "Muscle Group",
+  "searchBarPlaceholder": "Search",
+  "addNewWorkout": "Add a new workout",
+  "workoutName": "Workout name",
+  "chooseName": "Please choose an exercise name.",
+  "chooseDescription": "Please set a description.",
+  "chooseWorkoutName": "Please choose a workout name.",
+  "from": "from",
+  "workoutError": "Oops, please select the workout again.",
+  "nonExist": "This screen does not exist.",
+  "home": "Go to home screen!"
 }

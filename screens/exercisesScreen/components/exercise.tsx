@@ -94,11 +94,9 @@ export const Exercise: React.FC<ExerciseProps> = ({
 
       <TouchableOpacity
         onPress={() => {
-          const exName = selectedExercise.exerciseName ?? "";
-
           Toast.show({
             type: "success",
-            text1: `You deleted the exercise ${exName}`,
+            text1: t("exercises.successDelete") + selectedExercise.exerciseName,
           });
           dispatch(deleteExercise(selectedExercise));
           navigation.navigate("ExercisesList");
